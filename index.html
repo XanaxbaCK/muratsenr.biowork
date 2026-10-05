@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Threads Bilgi Bankası & Bio Link</title>
+    <title>Murat Şener | Threads Bilgi Bankası</title>
     <style>
-        /* --- GENEL AYARLAR & RENK PALETİ --- */
+        /* --- GENEL AYARLAR & KOYU TEMA --- */
         * {
             margin: 0;
             padding: 0;
@@ -125,7 +125,6 @@
             margin-bottom: 20px;
         }
 
-        /* --- ÖZEL AKSİYON BUTONLARI --- */
         .btn-action {
             width: 100%;
             background-color: #1f242c;
@@ -152,7 +151,7 @@
             box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
         }
 
-        /* --- SATIR FORMATINDAKİ KARTLAR --- */
+        /* --- SATIR KARTLARI --- */
         .row-card {
             display: flex;
             align-items: center;
@@ -195,21 +194,6 @@
             margin-top: 2px;
         }
 
-        .badge-count {
-            background-color: #1f242c;
-            color: #00f2fe;
-            font-size: 11px;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 12px;
-            border: 1px solid rgba(0, 242, 254, 0.2);
-        }
-
-        .arrow-right {
-            color: #8b949e;
-            font-size: 14px;
-        }
-
         .section-label {
             font-size: 12px;
             font-weight: 600;
@@ -219,7 +203,7 @@
             padding-left: 4px;
         }
 
-        /* --- PROMPT DETAY MODAL (POP-UP) --- */
+        /* --- MODAL (POP-UP) STİLLERİ --- */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -271,8 +255,15 @@
             font-size: 18px;
             font-weight: 700;
             color: #ffffff;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             padding-right: 24px;
+        }
+
+        .modal-desc-static {
+            font-size: 13px;
+            color: #8b949e;
+            margin-bottom: 14px;
+            line-height: 1.4;
         }
 
         .modal-content-scroll {
@@ -280,7 +271,7 @@
             border: 1px solid #21262d;
             border-radius: 10px;
             padding: 14px;
-            max-height: 200px;
+            max-height: 180px;
             overflow-y: auto;
             font-family: monospace;
             font-size: 13px;
@@ -306,10 +297,7 @@
             font-weight: 700;
             cursor: pointer;
             width: 100%;
-            transition: opacity 0.2s;
         }
-
-        .btn-modal-primary:hover { opacity: 0.9; }
 
         .btn-modal-secondary {
             background-color: transparent;
@@ -324,10 +312,6 @@
             text-align: center;
             text-decoration: none;
             display: block;
-        }
-
-        .btn-modal-secondary:hover {
-            background-color: rgba(255, 51, 102, 0.05);
         }
 
         .toast {
@@ -353,16 +337,17 @@
         <!-- PROFİL ALANI -->
         <div class="profile-section">
             <div class="profile-avatar-wrapper">
+                <!-- Buraya kendi profil fotoğrafının linkini koyabilirsin -->
                 <img src="https://unsplash.com" alt="Avatar" class="profile-avatar">
             </div>
             <div class="profile-name">@muratsenr</div>
             <div class="profile-title">Content Creator & SW Dev</div>
         </div>
 
-        <!-- FOLYO KARTI (BENTO BOX) -->
-        <a href="https://www.threads.com/@muratsenr" target="_blank" class="bento-card">
+        <!-- PORTFOLYO KARTI (BENTO BOX) -->
+        <a href="https://behance.net" target="_blank" class="bento-card">
             <div class="card-icon-top">🎨</div>
-            <div class="card-title">Pörtföy</div>
+            <div class="card-title">Portfolyo</div>
             <div class="card-subtitle">/MURAT ŞENER</div>
             <div class="card-desc">Son bilgi, renk grading ve Threads paylaşımlarıma göz at.</div>
             <div class="btn-action">Keşfet ↗</div>
@@ -370,22 +355,34 @@
 
         <div class="section-label">Paylaşılan İçerikler</div>
 
-        <!-- PROMPTS SATIRI -->
-        <div class="row-card" onclick="openPromptModal()">
+        <!-- 1. GÜNCELLEME SATIRI: THREADS GÜNCELLEMESİ -->
+        <div class="row-card" onclick="openInfoModal('threads-update')">
             <div class="row-left">
                 <div class="row-icon">>_</div>
                 <div>
                     <div class="row-text-main">Paylaşılan Bilgi ve Ayarlar</div>
-                    <div class="row-text-sub">En son eklenen bilgi akışı ve güncelleme bilgileri burada. Tümünü görmek için başlığa dokun.</div>
+                    <div class="row-text-sub">14 - 26 Eylül 2026 THREADS GÜNCELLEMESİ</div>
                 </div>
             </div>
-            <div class="badge-count">14 - 26 Eylül 2026 THREADS GÜNCELLEMESİ</div>
+            <span class="arrow-right">Gör →</span>
+        </div>
+
+        <!-- 2. GÜNCELLEME SATIRI: GLOBAL GÜNDEM (İSTEDİĞİN KADAR ÇOĞALTABİLİRSİN) -->
+        <div class="row-card" onclick="openInfoModal('global-trends')">
+            <div class="row-left">
+                <div class="row-icon">🌍</div>
+                <div>
+                    <div class="row-text-main">Global Gündem Başlıkları</div>
+                    <div class="row-text-sub">26 - 28 Eylül Gündem Özetleri</div>
+                </div>
+            </div>
+            <span class="arrow-right">Gör →</span>
         </div>
 
         <div class="section-label">Sosyal Medya & İletişim</div>
 
-        <!-- INSTAGRAM SATIRI -->
-        <a href="https://www.instagram.com/@muratsenr" target="_blank" class="row-card">
+        <!-- INSTAGRAM -->
+        <a href="https://instagram.com/muratsenr" target="_blank" class="row-card">
             <div class="row-left">
                 <div class="row-icon">📸</div>
                 <div>
@@ -396,8 +393,8 @@
             <span class="arrow-right">Takip Et →</span>
         </a>
 
-        <!-- İŞBİRLİĞİ SATIRI -->
-        <a href="https://www.instagram.com/@muratsenr" target="_blank" class="row-card">
+        <!-- ÖNERİLER İÇİN DM -->
+        <a href="https://instagram.com/muratsenr" target="_blank" class="row-card">
             <div class="row-left">
                 <div class="row-icon">📩</div>
                 <div>
@@ -408,10 +405,10 @@
             <span class="arrow-right">Mesaj Gönder →</span>
         </a>
 
-        <!-- E-POSTA SATIRI -->
+        <!-- E-POSTA -->
         <a href="mailto:mura7sener@gmail.com" class="row-card">
             <div class="row-left">
-                <div class="row-icon">✉️</div>
+                <div class="row-icon">✉</div>
                 <div>
                     <div class="row-text-main">E-posta ile İletişim</div>
                     <div class="row-text-sub">mura7sener@gmail.com</div>
@@ -420,59 +417,68 @@
             <span class="arrow-right">Mail At →</span>
         </a>
     </div>
-    <!-- PROMPT POP-UP PENCERESİ (MODAL) -->
-    <div class="modal-overlay" id="promptModal" onclick="closePromptModal(event)">
+    <!-- DİNAMİK POP-UP PENCERESİ (MODAL) -->
+    <div class="modal-overlay" id="infoModal" onclick="closeInfoModal(event)">
         <div class="modal-box" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closePromptModal(null)">✕</button>
-            <div class="modal-title" id="mTitle">Güncelleme </div>
-            <div class="modal-content-scroll" id="mText">Güncelleme ile ilgili detay için aşağıda ki linkle tıklayınız. Teşekkürler :)</div>
+            <button class="modal-close" onclick="closeInfoModal(null)">✕</button>
+            <div class="modal-title" id="modalTitle">Başlık Yükleniyor...</div>
+            <div class="modal-desc-static">Güncelleme ile ilgili detay için aşağıdaki linke tıklayınız. Teşekkürler :)</div>
+            <div class="modal-content-scroll" id="modalText">İçerik yükleniyor...</div>
             <div class="modal-buttons">
-                <button class="btn-modal-primary" onclick="copyPromptText()">📋 14-26 EYLÜL GÜNCELLEME</button>
-                <a href="https://www.threads.com/share/GI2R6pf35/" target="_blank" class="btn-modal-secondary" id="mReels">▷ İlgili Gönderiyi Gör</a>
+                <button class="btn-modal-primary" onclick="copyContentText()">📋 Metni Kopyala</button>
+                <a href="#" target="_blank" class="btn-modal-secondary" id="modalLink">▷ İlgili Gönderiyi Gör</a>
             </div>
         </div>
     </div>
 
-    <!-- PROMPT POP-UP PENCERESİ (MODAL) -->
-    <div class="modal-overlay" id="promptModal" onclick="closePromptModal(event)">
-        <div class="modal-box" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closePromptModal(null)">✕</button>
-            <div class="modal-title" id="mTitle">Global Gündem Başlıkları </div>
-            <div class="modal-content-scroll" id="mText">Gündem ile ilgili detay için aşağıda ki linkle tıklayınız. Teşekkürler :)</div>
-            <div class="modal-buttons">
-                <button class="btn-modal-primary" onclick="copyPromptText()">📋 26-28 EYLÜL GÜNDEM </button>
-                <a href="https://www.threads.com/share/EB5U046Go/" target="_blank" class="btn-modal-secondary" id="mReels">▷ İlgili Gönderiyi Gör</a>
-            </div>
-        </div>
-    </div>
+    <!-- BAŞARILI TOST BİLDİRİMİ -->
+    <div class="toast" id="toastNotification">Kopyalandı!</div>
 
-    <!-- BAŞARILI REP BİLDİRİMİ -->
-    <div class="toast" id="toastNotification">Sayfa Açıldı!</div>
-
-    <!-- JAVASCRIPT KONTROLLERİ -->
+    <!-- VERİ MERKEZİ VE TETİKLEYİCİ JAVASCRIPT KODLARI -->
     <script>
-        const modal = document.getElementById('promptModal');
+        // Sitedeki pop-up içeriklerini tek bir yerden kolayca yönettiğin alan:
+        const database = {
+            'threads-update': {
+                title: '14-26 Eylül Güncelleme',
+                link: 'https://www.threads.com/share/HGTx2uLJG/', // Kendi Threads gönderi linkini yapıştır
+                text: `[14-26 EYLÜL THREADS GÜNCELLEME NOTLARI]\n\n• Algoritma dağıtım hızı optimize edildi.\n• Görsel sıkıştırma kalitesi artırıldı.\n• Profil içi bento grid entegrasyonu tamamlandı.\n\nTüm detaylar ve parametreler yukarıdaki metindedir.`
+            },
+            'global-trends': {
+                title: '26-28 Eylül Gündem',
+                link: 'https://www.threads.com/share/F0wMl4wW_/', // İlgili gönderi linki
+                text: `[GLOBAL YAPAY ZEKA VE KODLAMA GÜNDEMİ]\n\n1. Web tasarım dünyasında statik Bento şablonları hızla yayılıyor.\n2. GitHub Pages ile ücretsiz barındırma kitleler tarafından daha çok tercih ediliyor.\n3. Mobil öncelikli portfolyo sayfaları dönüşüm oranlarını artırdı.`
+            }
+        };
+
+        const modal = document.getElementById('infoModal');
         const toast = document.getElementById('toastNotification');
 
-        function openPromptModal() {
-            modal.classList.add('active');
+        // Tıklanan karta göre içeriği doldurup modalı açan fonksiyon
+        function openInfoModal(key) {
+            const data = database[key];
+            if (data) {
+                document.getElementById('modalTitle').innerText = data.title;
+                document.getElementById('modalText').innerText = data.text;
+                document.getElementById('modalLink').href = data.link;
+                modal.classList.add('active');
+            }
         }
 
-        function closePromptModal(event) {
+        function closeInfoModal(event) {
             if (!event || event.target === modal || event.type === 'click') {
                 modal.classList.remove('active');
             }
         }
 
-        function copyPromptText() {
-            const promptText = document.getElementById('mText').innerText;
-            navigator.clipboard.writeText(promptText).then(() => {
+        function copyContentText() {
+            const textToCopy = document.getElementById('modalText').innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
                 toast.style.opacity = '1';
                 setTimeout(() => {
                     toast.style.opacity = '0';
                 }, 2000);
             }).catch(err => {
-                console.error('Kopyalama hatası: ', err);
+                console.error('Kopyalanamadı: ', err);
             });
         }
     </script>
