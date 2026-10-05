@@ -144,14 +144,7 @@
             text-decoration: none;
         }
 
-        .bento-card:hover .btn-action {
-            background: linear-gradient(45deg, #00c6ff, #00f2fe);
-            color: #090d10;
-            border-color: transparent;
-            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
-        }
-
-        /* --- SATIR KARTLARI --- */
+        /* --- SOSYAL MEDYA KARTLARI --- */
         .row-card {
             display: flex;
             align-items: center;
@@ -171,101 +164,87 @@
             background-color: #161b22;
         }
 
-        .row-left {
+        .row-left { display: flex; align-items: center; gap: 14px; }
+        .row-icon { font-size: 18px; color: #8b949e; }
+        .row-text-main { font-size: 14px; font-weight: 600; color: #ffffff; }
+        .row-text-sub { font-size: 12px; color: #8b949e; margin-top: 2px; }
+        .section-label { font-size: 12px; font-weight: 600; color: #8b949e; margin-top: 10px; margin-bottom: -4px; padding-left: 4px; }
+
+        /* --- ARAMA PANELİ VE DİNAMİK LİSTE STİLLERİ --- */
+        .search-wrapper {
+            margin-top: 16px;
             display: flex;
-            align-items: center;
-            gap: 14px;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .row-icon {
-            font-size: 18px;
-            color: #8b949e;
-        }
-
-        .row-text-main {
-            font-size: 14px;
-            font-weight: 600;
-            color: #ffffff;
-        }
-
-        .row-text-sub {
-            font-size: 12px;
-            color: #8b949e;
-            margin-top: 2px;
-        }
-
-        .section-label {
-            font-size: 12px;
-            font-weight: 600;
-            color: #8b949e;
-            margin-top: 10px;
-            margin-bottom: -4px;
-            padding-left: 4px;
-        }
-
-        /* --- MODAL (POP-UP) STİLLERİ --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(5, 8, 10, 0.85);
-            backdrop-filter: blur(8px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal-box {
-            background-color: #12161a;
-            border: 1px solid #30363d;
+        .search-input {
             width: 100%;
-            max-width: 440px;
-            border-radius: 20px;
-            padding: 24px;
-            position: relative;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .modal-overlay.active .modal-box {
-            transform: scale(1);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 16px; right: 16px;
-            background: none;
-            border: none;
-            color: #8b949e;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .modal-title {
-            font-size: 18px;
-            font-weight: 700;
+            background-color: #090d10;
+            border: 1px solid #30363d;
             color: #ffffff;
-            margin-bottom: 12px;
-            padding-right: 24px;
-        }
-
-        .modal-desc-static {
+            padding: 12px 16px;
+            border-radius: 10px;
             font-size: 13px;
-            color: #8b949e;
-            margin-bottom: 14px;
-            line-height: 1.4;
+            outline: none;
+            transition: border-color 0.2s;
         }
 
+        .search-input:focus {
+            border-color: #00f2fe;
+        }
+
+        .nested-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 320px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        /* Listelenecek Konuların Tasarımı */
+        .nested-item {
+            background-color: #1c2128;
+            border: 1px solid #30363d;
+            padding: 14px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nested-item:hover {
+            border-color: #00f2fe;
+            background-color: #222831;
+            transform: translateX(2px);
+        }
+
+        .nested-sub-text {
+            font-size: 11px;
+            color: #8b949e;
+            font-weight: 400;
+            margin-top: 4px;
+        }
+
+        /* Başlangıçta gizleme sınıfı */
+        .hidden-content {
+            display: none;
+        }
+
+        /* --- POP-UP VE BİLDİRİM STİLLERİ --- */
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(5, 8, 10, 0.85); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; padding: 20px; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-box { background-color: #12161a; border: 1px solid #30363d; width: 100%; max-width: 440px; border-radius: 20px; padding: 24px; position: relative; transform: scale(0.9); transition: transform 0.3s ease; }
+        .modal-overlay.active .modal-box { transform: scale(1); }
+        .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: #8b949e; font-size: 18px; cursor: pointer; }
+        .modal-title { font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 12px; }
+        .modal-desc-static { font-size: 13px; color: #8b949e; margin-bottom: 14px; }
+        
         .modal-content-scroll {
             background-color: #090d10;
             border: 1px solid #21262d;
@@ -281,54 +260,10 @@
             white-space: pre-wrap;
         }
 
-        .modal-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .btn-modal-primary {
-            background: linear-gradient(45deg, #00c6ff, #00f2fe);
-            color: #090d10;
-            border: none;
-            padding: 12px;
-            border-radius: 25px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .btn-modal-secondary {
-            background-color: transparent;
-            color: #ff3366;
-            border: 1px solid rgba(255, 51, 102, 0.3);
-            padding: 12px;
-            border-radius: 25px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            text-align: center;
-            text-decoration: none;
-            display: block;
-        }
-
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            background-color: #00f2fe;
-            color: #090d10;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 700;
-            box-shadow: 0 4px 12px rgba(0,242,254,0.3);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 1100;
-            pointer-events: none;
-        }
+        .modal-buttons { display: flex; flex-direction: column; gap: 10px; }
+        .btn-modal-primary { background: linear-gradient(45deg, #00c6ff, #00f2fe); color: #090d10; border: none; padding: 12px; border-radius: 25px; font-size: 14px; font-weight: 700; cursor: pointer; }
+        .btn-modal-secondary { background-color: transparent; color: #ff3366; border: 1px solid rgba(255, 51, 102, 0.3); padding: 12px; border-radius: 25px; font-size: 14px; font-weight: 600; text-align: center; text-decoration: none; display: block; }
+        .toast { position: fixed; bottom: 30px; background-color: #00f2fe; color: #090d10; padding: 10px 20px; border-radius: 20px; font-size: 13px; font-weight: 700; opacity: 0; transition: opacity 0.3s ease; z-index: 1100; pointer-events: none; }
     </style>
 </head>
 <body>
@@ -337,93 +272,55 @@
         <!-- PROFİL ALANI -->
         <div class="profile-section">
             <div class="profile-avatar-wrapper">
-                <!-- Buraya kendi profil fotoğrafının linkini koyabilirsin -->
                 <img src="https://unsplash.com" alt="Avatar" class="profile-avatar">
             </div>
             <div class="profile-name">@muratsenr</div>
             <div class="profile-title">Content Creator & SW Dev</div>
         </div>
 
-        <!-- PORTFOLYO KARTI (BENTO BOX) -->
-        <a href="https://behance.net" target="_blank" class="bento-card">
-            <div class="card-icon-top">🎨</div>
-            <div class="card-title">Portfolyo</div>
-            <div class="card-subtitle">/MURAT ŞENER</div>
-            <div class="card-desc">Son bilgi, renk grading ve Threads paylaşımlarıma göz at.</div>
-            <div class="btn-action">Keşfet ↗</div>
-        </a>
+        <!-- BENTO KART: BİLGİ BANKASI VE AÇILIR LİSTE -->
+        <div class="bento-card">
+            <div class="card-icon-top">>_</div>
+            <div class="card-title">Paylaşılan Bilgi ve Ayarlar</div>
+            <div class="card-desc">Paylaştığım tüm güncellemeler, ipuçları ve bilgiler aşağıda listelenmiştir. Konu başlığına tıklayarak detaylara erişebilirsiniz.</div>
+            
+            <button class="btn-action" id="toggleLibraryBtn" onclick="toggleLibrary()">Konu Listesini Göster ▾</button>
 
-        <div class="section-label">Paylaşılan İçerikler</div>
-
-        <!-- 1. GÜNCELLEME SATIRI: THREADS GÜNCELLEMESİ -->
-        <div class="row-card" onclick="openInfoModal('threads-update')">
-            <div class="row-left">
-                <div class="row-icon">>_</div>
-                <div>
-                    <div class="row-text-main">Paylaşılan Bilgi ve Ayarlar</div>
-                    <div class="row-text-sub">14 - 26 Eylül 2026 THREADS GÜNCELLEMESİ</div>
-                </div>
+            <!-- AÇILIR LİSTE VE ARAMA PANELİ -->
+            <div id="libraryPanel" class="search-wrapper hidden-content">
+                <input type="text" id="searchInput" class="search-input" placeholder="Konularda hızlıca ara... (Örn: Güncelleme, Spam vb. )" oninput="filterLibrary()">
+                
+                <!-- Konular buraya liste şeklinde alt alta dökülecek -->
+                <div class="nested-list" id="itemsContainer"></div>
             </div>
-            <span class="arrow-right">Gör →</span>
-        </div>
-
-        <!-- 2. GÜNCELLEME SATIRI: GLOBAL GÜNDEM (İSTEDİĞİN KADAR ÇOĞALTABİLİRSİN) -->
-        <div class="row-card" onclick="openInfoModal('global-trends')">
-            <div class="row-left">
-                <div class="row-icon">🌍</div>
-                <div>
-                    <div class="row-text-main">Global Gündem Başlıkları</div>
-                    <div class="row-text-sub">26 - 28 Eylül Gündem Özetleri</div>
-                </div>
-            </div>
-            <span class="arrow-right">Gör →</span>
         </div>
 
         <div class="section-label">Sosyal Medya & İletişim</div>
 
-        <!-- INSTAGRAM -->
+        <!-- SOSYAL BAĞLANTILAR -->
         <a href="https://instagram.com/muratsenr" target="_blank" class="row-card">
-            <div class="row-left">
-                <div class="row-icon">📸</div>
-                <div>
-                    <div class="row-text-main">Instagram</div>
-                    <div class="row-text-sub">@muratsenr</div>
-                </div>
-            </div>
+            <div class="row-left"><div class="row-icon">📸</div><div><div class="row-text-main">Instagram</div><div class="row-text-sub">@muratsenr</div></div></div>
             <span class="arrow-right">Takip Et →</span>
         </a>
 
-        <!-- ÖNERİLER İÇİN DM -->
         <a href="https://instagram.com/muratsenr" target="_blank" class="row-card">
-            <div class="row-left">
-                <div class="row-icon">📩</div>
-                <div>
-                    <div class="row-text-main">Önerileriniz İçin DM</div>
-                    <div class="row-text-sub">Doğrudan mesaj göndererek iletişime geçin</div>
-                </div>
-            </div>
+            <div class="row-left"><div class="row-icon">📩</div><div><div class="row-text-main">Önerileriniz İçin DM</div><div class="row-text-sub">Doğrudan mesaj göndererek iletişime geçin</div></div></div>
             <span class="arrow-right">Mesaj Gönder →</span>
         </a>
 
-        <!-- E-POSTA -->
         <a href="mailto:mura7sener@gmail.com" class="row-card">
-            <div class="row-left">
-                <div class="row-icon">✉</div>
-                <div>
-                    <div class="row-text-main">E-posta ile İletişim</div>
-                    <div class="row-text-sub">mura7sener@gmail.com</div>
-                </div>
-            </div>
+            <div class="row-left"><div class="row-icon">✉</div><div><div class="row-text-main">E-posta ile İletişim</div><div class="row-text-sub">mura7sener@gmail.com</div></div></div>
             <span class="arrow-right">Mail At →</span>
         </a>
     </div>
-    <!-- DİNAMİK POP-UP PENCERESİ (MODAL) -->
+
+    <!-- DETAY POP-UP PENCERESİ (MODAL) -->
     <div class="modal-overlay" id="infoModal" onclick="closeInfoModal(event)">
         <div class="modal-box" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeInfoModal(null)">✕</button>
-            <div class="modal-title" id="modalTitle">Başlık Yükleniyor...</div>
+            <div class="modal-title" id="modalTitle">Başlık</div>
             <div class="modal-desc-static">Güncelleme ile ilgili detay için aşağıdaki linke tıklayınız. Teşekkürler :)</div>
-            <div class="modal-content-scroll" id="modalText">İçerik yükleniyor...</div>
+            <div class="modal-content-scroll" id="modalText">İçerik</div>
             <div class="modal-buttons">
                 <button class="btn-modal-primary" onclick="copyContentText()">📋 Metni Kopyala</button>
                 <a href="#" target="_blank" class="btn-modal-secondary" id="modalLink">▷ İlgili Gönderiyi Gör</a>
@@ -431,31 +328,84 @@
         </div>
     </div>
 
-    <!-- BAŞARILI TOST BİLDİRİMİ -->
     <div class="toast" id="toastNotification">Kopyalandı!</div>
 
-    <!-- VERİ MERKEZİ VE TETİKLEYİCİ JAVASCRIPT KODLARI -->
+    <!-- JAVASCRIPT YÖNETİM MOTORU -->
     <script>
-        // Sitedeki pop-up içeriklerini tek bir yerden kolayca yönettiğin alan:
-        const database = {
-            'threads-update': {
-                title: '14-26 Eylül Güncelleme',
-                link: 'https://www.threads.com/share/HGTx2uLJG/', // Kendi Threads gönderi linkini yapıştır
-                text: `[14-26 EYLÜL THREADS GÜNCELLEME NOTLARI]\n\n• Algoritma dağıtım hızı optimize edildi.\n• Görsel sıkıştırma kalitesi artırıldı.\n• Profil içi bento grid entegrasyonu tamamlandı.\n\nTüm detaylar ve parametreler yukarıdaki metindedir.`
+        // --- KONU EKLEME ALANI ---
+        // Buraya istediğin kadar konuyu şablona uyarak alt alta ekleyebilirsin:
+        const database = [
+            {
+                id: 'threads-update-1',
+                title: '14-26 Eylül Güncellemesi',
+                sub: 'Threads güncel algoritma ve ayar parametreleri.',
+                link: 'https://www.threads.com/share/Duir_gLuL/',
+                text: `[14-26 EYLÜL THREADS GÜNCELLEME REHBERİ]\n\n• Canlı Yayın Testleri İçin Sunucular Hazırlandı. Ebevy Denetimleri Güçlendirildi. Spam & Link Hassasiyetleri Arttı. Podcast Yayınları Denendi vb. Detaylar İçin Profilime Baknıız. Teşekkürler :)`
             },
-            'global-trends': {
-                title: '26-28 Eylül Gündem',
-                link: 'https://www.threads.com/share/F0wMl4wW_/', // İlgili gönderi linki
-                text: `[GLOBAL YAPAY ZEKA VE KODLAMA GÜNDEMİ]\n\n1. Web tasarım dünyasında statik Bento şablonları hızla yayılıyor.\n2. GitHub Pages ile ücretsiz barındırma kitleler tarafından daha çok tercih ediliyor.\n3. Mobil öncelikli portfolyo sayfaları dönüşüm oranlarını artırdı.`
+            {
+                id: 'global-trends-2',
+                title: '26-28 Eylül Gündem Başlıkları',
+                sub: 'Global yapay zeka araçları ve kurgu trendleri.',
+                link: 'https://www.threads.com/share/JE-VVy97a/',
+                text: `[GLOBAL YAPAY ZEKA GÜNDEMİ]\n\n• Statik bento altyapıları hız kazandı.\n• Mobil dönüşümler yükselişte.`
+            },
+            {
+                id: 'color-grading-tip',
+                title: 'Threads Çevrimiçi Özelliği',
+                sub: 'Threadsda Çevrimiçi Olma Rehberi.',
+                link: 'https://www.threads.com/share/Q4JD_-bZx/',
+                text: `[THREADS İPUÇLARI]\n\n• Highlights: Çevrimiçi Durumu.`
             }
-        };
+        ];
 
+        // Listeyi Otomatik İnşa Eden Yapı
+        const container = document.getElementById('itemsContainer');
+        function buildList() {
+            container.innerHTML = '';
+            database.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'nested-item';
+                div.setAttribute('onclick', `openInfoModal('${item.id}')`);
+                div.innerHTML = `<div>${item.title}<div class="nested-sub-text">${item.sub}</div></div><span style="color:#00f2fe;">Gör →</span>`;
+                container.appendChild(div);
+            });
+        }
+        buildList();
+
+        // Listeyi Göster/Gizle Fonksiyonu
+        function toggleLibrary() {
+            const panel = document.getElementById('libraryPanel');
+            const btn = document.getElementById('toggleLibraryBtn');
+            if (panel.classList.contains('hidden-content')) {
+                panel.classList.remove('hidden-content');
+                btn.innerText = 'Konu Listesini Gizle ▴';
+            } else {
+                panel.classList.add('hidden-content');
+                btn.innerText = 'Konu Listesini Göster ▾';
+            }
+        }
+
+        // Anlık Arama / Filtreleme
+        function filterLibrary() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const items = container.getElementsByClassName('nested-item');
+            
+            for (let i = 0; i < items.length; i++) {
+                const text = items[i].innerText.toLowerCase();
+                if (text.includes(query)) {
+                    items[i].style.display = 'flex';
+                } else {
+                    items[i].style.display = 'none';
+                }
+            }
+        }
+
+        // Modal Pencereleri Açma/Kapatma
         const modal = document.getElementById('infoModal');
         const toast = document.getElementById('toastNotification');
 
-        // Tıklanan karta göre içeriği doldurup modalı açan fonksiyon
-        function openInfoModal(key) {
-            const data = database[key];
+        function openInfoModal(id) {
+            const data = database.find(x => x.id === id);
             if (data) {
                 document.getElementById('modalTitle').innerText = data.title;
                 document.getElementById('modalText').innerText = data.text;
@@ -474,11 +424,7 @@
             const textToCopy = document.getElementById('modalText').innerText;
             navigator.clipboard.writeText(textToCopy).then(() => {
                 toast.style.opacity = '1';
-                setTimeout(() => {
-                    toast.style.opacity = '0';
-                }, 2000);
-            }).catch(err => {
-                console.error('Kopyalanamadı: ', err);
+                setTimeout(() => toast.style.opacity = '0', 2000);
             });
         }
     </script>
