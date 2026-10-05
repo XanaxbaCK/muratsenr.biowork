@@ -262,7 +262,7 @@
     <div class="toast" id="toastNotification">Kopyalandı!</div>
 
     <script>
-        // 🔑 TARAYICIYI ASLA KİLİTLEMEYEN ARTIK %100 SABİT VE KARARLI VERİ TABANI YAPISI
+        // 🔑 TARAYICI GÜVENLİK DUVARINI AŞAN %100 SABİT VERİ TABANI DİZİSİ
         const database = [
             {
                 id: 'threads-update-1',
@@ -284,12 +284,12 @@
             },
             {
                 id: 'color-grading-tip',
-                title: 'Renk Grading & LUT İpucu',
+                title: 'Rozet Kaldırma',
                 sub: 'Kurgularda sinematik tonlama yakalama rehberi.',
                 time: '1 dk okuma',
                 highlight: '💡 Kritik Not: Shadows alanındaki Teal dengesi izleyicinin videoda kalma süresini etkiler.',
                 link: 'https://threads.net',
-                text: '[RENK ROZET İPUCU]\n\n• Shadows: Teal tonları %5 artırıldı.\n• Highlights: Sıcak ton dengesi korundu.'
+                text: '[RENK GRADING İPUÇLARI]\n\n• Shadows: Teal tonları %5 artırıldı.\n• Highlights: Sıcak ton dengesi korundu.'
             }
         ];
         const hooks = {
@@ -308,7 +308,7 @@
             mizah: ["\n\n'Günde 3 thread atarak milyoner oldum' konseptli yazıları okurken kahvemi püskürttüm. Arkadaşlar burası sakin bir kasaba, yavaş olun.", "\n\nHerkes her konuda o kadar uzman ki, kendi kendime 'acaba ben hayata sadece izleyici olarak mı geldim' diye sorgulatıyor.", "\n\nErişim düşmesin diye kırk takla atıp, en sonunda saçma bir kedi caps'i ile binlerce beğeni alan o algoritmanın adaleti..."],
             ask: ["\n\nKarşılıklı gönderi beğenerek flörtleşme evresi ne zaman biter? Threads beğeni geçmişi dökülse ortalık fena karışacak gibi.", "\n\nBence gerçek bağ; birbirinin uzun metinli sıkıcı düşünce akışlarını bile sonuna kadar sıkılmadan okuyup kaydetmekle başlar.", "\n\nMesaj kutusunda (DM) sabahlayıp, akışta birbirini hiç tanımıyormuş gibi resmi takılan gizli aşıklar burayı doldurmuş bile."],
             fal: ["\n\nÖzellikle Su ve Hava grupları için bugün geçmişten gelen ani bir DM bildirimi her şeyi değiştirebilir. Tetikte kalın.", "\n\nToprak burçları yine mantık kasarken, Ateş burçları akıştaki bir tartışmaya aniden dahil olup ortalığı yangın yerine çevirecek.", "\n\nJüpiter'in olumlu açısı, bu hafta ürettiğiniz metinlerin organik olarak keşfete düşme ihtimalini inanılmaz yükseltiyor."],
-            gundem: ["\n\nTüm platformlar tek bir haberle çalkalanırken, Threads kitlesinin olayı tamamen derinlemesine analiz etmesi harika bir detay.", "\n\nOlayın sadece görünen yüzüne değil, dijital dünyadaki ve algoritmalardaki yansımasına odaklanmak resmi netleştiriyor.", "\n\nHerkesin hızlıca tükettiği bu yapay gündem dalgası bittiğinde, geriye sadece kalıcı ve teknik bilgi üretenler kalacak."]
+            gundem: ["\n\nTüm platformlar tek bir haberle çalkalanırken, Threads kitlesinin olayı tamamen derinlemesine analiz etmesi harika bir detay.", "\n\nOlayın sadece görünen yüzüne değil, dijital dünyadaki ve algoritmalardaki yansımasına odaklanmak resmi netleştiriyor.", "\n\nHerkesin hızlıca tükettiği bu yapay gündem dalgası bittiğinde, geriye sadece kalıcı ve teknik bilgi üretenler kalacak."
         };
 
         const ctas = {
@@ -320,7 +320,7 @@
             fal: ["\n\nBurcunuzu yoruma yazın, bugünkü şans oranınızı analiz edelim 🔮", "\n\nUyum sağlayanlar beğensin, enerji dağılmasın."],
             gundem: ["\n\nSiz bu olay hakkında ne düşünüyorsunuz? Fikirlerinizi alta yazın.", "\n\nGündemin geri kalan analizleri için profili takipte kalın!"]
         };
-        // KESİN ÇÖZÜM: DINAMIK LİSTELEME VE YENİLENMİŞ FİLTRE MOTORU
+        // KESİN ÇÖZÜM: TARAYICININ ÖNCE HTML'İ OKUMASINI SAĞLAYAN GÜVENLİ RENDER MOTORU
         function renderLibraryItems(filterQuery = "") {
             const container = document.getElementById('itemsContainer');
             if(!container) return;
@@ -382,7 +382,8 @@
         function closeInfoModal(event) { if (!event || event.target === modal || event.type === 'click') { modal.classList.remove('active'); } }
         function copyContentText() { const textToCopy = document.getElementById('modalText').innerText; navigator.clipboard.writeText(textToCopy).then(() => { toast.innerText = "Kopyalandı!"; toast.style.opacity = '1'; setTimeout(() => toast.style.opacity = '0', 2000); }); }
 
-        window.onload = function() {
+        // KİLİTLENMEYİ ÖNLEYEN EN GÜVENLİ OYNAK KANCA
+        document.addEventListener('DOMContentLoaded', () => {
             renderLibraryItems();
             try {
                 let localVisits = localStorage.getItem('local_visits') || 144;
@@ -390,7 +391,7 @@
                 localStorage.setItem('local_visits', localVisits);
                 document.getElementById('visitorValue').innerText = localVisits;
             } catch(e) {}
-        };
+        });
     </script>
 </body>
 </html>
