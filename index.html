@@ -29,7 +29,7 @@
             max-width: 480px;
             display: flex;
             flex-direction: column;
-            gap: 20px; /* Elemanların orijinal dikey ferahlık mesafesi */
+            gap: 20px;
         }
 
         /* --- SON DAKİKA HABER BANDI --- */
@@ -120,10 +120,13 @@
         .search-input:focus { border-color: #00f2fe; }
         .nested-list { display: flex; flex-direction: column; gap: 8px; max-height: 320px; overflow-y: auto; padding-right: 4px; }
         
-        .nested-item { background-color: #1c2128; border: 1px solid #30363d; padding: 14px 16px; border-radius: 10px; font-size: 13px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s ease; }
+        .nested-item { background-color: #1c2128; border: 1px solid #30363d; padding: 14px 16px; border-radius: 12px; font-size: 13px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s ease; }
         .nested-item:hover { border-color: #00f2fe; background-color: #222831; transform: translateX(2px); }
         .nested-sub-text { font-size: 11px; color: #8b949e; font-weight: 400; margin-top: 4px; }
         .hidden-content { display: none; }
+        
+        /* Yeni sade sistem için uzun metinleri gizleyen iç sınıf */
+        .modal-body-content { display: none; }
 
         .ai-select { width: 100%; background-color: #090d10; border: 1px solid #30363d; color: #ffffff; padding: 12px 14px; border-radius: 10px; font-size: 13px; outline: none; margin-bottom: 12px; cursor: pointer; }
         .ai-result-box { background-color: #090d10; border: 1px solid #21262d; border-radius: 10px; padding: 14px; font-size: 13px; line-height: 1.5; color: #c9d1d9; margin-top: 14px; white-space: pre-wrap; min-height: 60px; text-align: left; }
@@ -135,7 +138,6 @@
         .footer-info { text-align: center; margin-top: 24px; font-size: 13px; color: #8b949e; display: flex; flex-direction: column; gap: 8px; padding-bottom: 20px; }
         .visitor-count strong { color: #00f2fe; font-size: 14px; }
 
-        /* --- SIFIR HATA POP-UP KODLARI --- */
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(5, 8, 10, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; padding: 20px; z-index: 99999; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
         .modal-box { background-color: #12161a; border: 1px solid #30363d; width: 100%; max-width: 440px; border-radius: 20px; padding: 24px; position: relative; transform: scale(0.95); transition: transform 0.3s ease; }
@@ -169,12 +171,12 @@
         <!-- PROFİL ALANI -->
         <div id="profileSection" class="profile-section">
             <div class="profile-avatar-wrapper">
-            <img src="https://i.ibb.co/WpFWtGpv/11.jpg" alt="11" border"0" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; display: block;">
+                <img src="https://ibb.co" alt="Avatar" class="profile-avatar">
             </div>
             <div class="profile-name">@muratsenr</div>
             <div class="profile-title">Content Creator & SW Dev</div>
             
-            <a href="https://threads.com/@muratsenr" target="_blank" class="threads-profile-btn">
+            <a href="https://threads.net" target="_blank" class="threads-profile-btn">
                 <div class="threads-logo">🧵</div>
                 <div>
                     <div class="threads-btn-title">Threads Profilimi Keşfet</div>
@@ -186,7 +188,7 @@
         <!-- 1. SIRADAKİ KART: AI THREADS ASİSTANI -->
         <div class="bento-card" style="border-color: rgba(191, 85, 236, 0.4);">
             <div class="card-icon-top">🤖</div>
-            <div class="card-title">Threads Asistanı</div>
+            <div class="card-title">AI Threads Asistanı</div>
             <div class="card-desc">Threads'de bugün ne paylaşacağını bilmiyor musun? Paylaşım tarzını seç ve her tıkladığında senin tarzına uygun tamamen benzersiz kancası güçlü bir taslak üret!</div>
             
             <select id="aiStyleSelect" class="ai-select">
@@ -204,7 +206,7 @@
             <div class="ai-result-box" id="aiResultText" onclick="copyAiGeneratedText()" style="display: none; cursor: pointer;" title="Kopyalamak için tıkla"></div>
         </div>
 
-        <!-- 2. SIRADAKİ KART: PAYLAŞILAN BİLGİ VE AYARLAR -->
+        <!-- 2. SIRADAKİ KART: PAYLAŞILAN BİLGİ VE AYARLAR (YENİ SADE SİSTEME GEÇİRİLDİ) -->
         <div id="promptsSection" class="bento-card">
             <div class="card-icon-top">>_</div>
             <div class="card-title">Paylaşılan Bilgi ve Ayarlar</div>
@@ -214,49 +216,79 @@
 
             <!-- AÇILIR PANEL -->
             <div id="libraryPanel" class="search-wrapper hidden-content">
-                <input type="text" id="searchInput" class="search-input" placeholder="Konularda hızlıca ara... (Örn: Eylül, Güncelleme, Bilgi vs.)" oninput="filterLibrary()">
+                <input type="text" id="searchInput" class="search-input" placeholder="Konularda hızlıca ara... (Örn: Eylül, Renk)" oninput="filterLibrary()">
                 
                 <div class="nested-list" id="itemsContainer">
-                    <!-- 1. KONU BLOĞU -->
-                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="14-26 Eylül Güncellemesi"
-                    data-highlight="💡 Kritik Not: Link içeren Threads gönderileri etkileşim dağıtımını %30 düşürmektedir."
-                    data-text="[14-26 EYLÜL THREADS GÜNCELLEME REHBERİ]&#10;&#10;• Erişim ve etkileşim parametreleri yenilendi.&#10;• Profil içi bento entegrasyonu tamamlandı." 
-                    data-link="https://threads.net"><div>14-26 Eylül Güncellemesi
-                    <div class="nested-sub-text">Threads güncel algoritma parametreleri.
-                    </div></div><span class="time-badge">2 dk okuma</span></div>
+                    
+                    <!-- 1. KONU: TAMAMEN DOĞAL YAZIM YAPISI -->
+                    <div class="nested-item" onclick="openEasyModal(this)" 
+                         data-title="14-26 Eylül Güncellemesi" 
+                         data-sub="Threads güncel algoritma ve ayar parametreleri."
+                         data-time="2 dk okuma"
+                         data-highlight="💡 Kritik Not: Link içeren Threads gönderileri etkileşim dağıtımını %30 düşürmektedir." 
+                         data-link="https://threads.net">
+                        <div>
+                            14-26 Eylül Güncellemesi
+                            <div class="nested-sub-text">Threads güncel algoritma ve ayar parametreleri.</div>
+                        </div>
+                        <span class="time-badge">2 dk okuma</span>
+                        <div class="modal-body-content">
+[14-26 EYLÜL THREADS GÜNCELLEME REHBERİ]
 
-                    <!-- 2. KONU BLOĞU -->
-                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="26-28 Eylül Gündem Başlıkları" 
-                    data-highlight="💡 Kritik Not: Mobil cihazlara öncelik verilen dikey metinler okuma süresini artırıyor." 
-                    data-text="[GLOBAL YAPAY ZEKA GÜNDEMİ]&#10;&#10;• Statik bento altyapıları hız kazandı.&#10;• Mobil dönüşümler yükselişte." 
-                    data-link="https://threads.net">
-                     <div>26-28 Eylül Gündem Başlıkları <div class="nested-sub-text">Global yapay zeka araç ve trendleri.
-                    </div></div><span class="time-badge">3 dk okuma</span></div>
-
-                 <!-- EKLEMEK İSTEDİĞİN HER YENİ KONU İÇİN BU BLOĞU KOPYALA VE ALTA YAPIŞTIR -->
-                    <div class="nested-item" onclick="openHtmlModal(this)" 
-                    data-title="İNSTAGRAM DA THREADS ROZETİNİ KALDIR" 
-                    data-highlight="💡 Kritik Not: Rozet Kaldırdıktan Sonra Tekrar Eklediğinizde Senkronizasyon Hatası Olabilir." 
-                    data-text="[REHBER BAŞLIĞI]&#10;&#10;• Threads Rozeti &#10;• Satır başlarına &#10; koyarak alt satıra geçebilirsin." 
-                     data-link="https://www.threads.com/share/D7xa69z3n/">
-                    <div>
-                    BURAYA LİSTEDE GÖRÜNECEK ANA BAŞLIĞI YAZ
-                    <div class="nested-sub-text">IG'DE THREADS ROZETİ KALDIRMA</div>
-                    </div>
-                    <span class="time-badge">10 SN okuma</span> <!-- Okuma süresini buradan değiştirebilirsin -->
+• Erişim ve etkileşim parametreleri yenilendi.
+• Profil içi bento entegrasyonu tamamlandı.
+                        </div>
                     </div>
 
-                   </div>
+                    <!-- 2. KONU: TAMAMEN DOĞAL YAZIM YAPISI -->
+                    <div class="nested-item" onclick="openEasyModal(this)" 
+                         data-title="26-28 Eylül Gündem Başlıkları" 
+                         data-sub="Global yapay zeka araçları ve kurgu trendleri."
+                         data-time="3 dk okuma"
+                         data-highlight="💡 Kritik Not: Mobil cihazlara öncelik verilen dikey metinler okuma süresini artırıyor." 
+                         data-link="https://threads.net">
+                        <div>
+                            26-28 Eylül Gündem Başlıkları
+                            <div class="nested-sub-text">Global yapay zeka araçları ve kurgu trendleri.</div>
+                        </div>
+                        <span class="time-badge">3 dk okuma</span>
+                        <div class="modal-body-content">
+[GLOBAL YAPAY ZEKA GÜNDEMİ]
+
+• Statik bento altyapıları hız kazandı.
+• Mobil dönüşümler yükselişte.
+                        </div>
+                    </div>
+
+                    <!-- 3. KONU: TAMAMEN DOĞAL YAZIM YAPISI -->
+                    <div class="nested-item" onclick="openEasyModal(this)" 
+                         data-title="IG'den Threads Rozet Kaldırma" 
+                         data-sub="Threads Rozetini Kaldırma Rehberi."
+                         data-time="10 sn okuma"
+                         data-highlight="💡 Kritik Not: Kaldırdıktan sonra yine eklediğiniz de senkronizasyon hatası olabilir." 
+                         data-link="https://www.threads.com/share/FB03CeFkd/">
+                        <div>
+                            IG'den Threads Rozet Kaldırma
+                            <div class="nested-sub-text">IG'den Threads Rozet Kaldırma.</div>
+                        </div>
+                        <span class="time-badge">10 sn okuma</span>
+                        <div class="modal-body-content"> [IG'DEN THREADS ROZETİ KALDIRMA]
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
         <div id="contactSection" class="section-label">Sosyal Medya & İletişim</div>
 
         <!-- SOSYAL LİNKLER -->
-        <a href="https://instagram.com" target="_blank" class="row-card">
+        <a href="https://instagram.com/muratsenr" target="_blank" class="row-card">
             <div class="row-left"><div class="row-icon">📸</div><div><div class="row-text-main">Instagram</div><div class="row-text-sub">@muratsenr</div></div></div>
             <span class="arrow-right">Takip Et →</span>
         </a>
 
-        <a href="https://instagram.com" target="_blank" class="row-card">
+        <a href="https://instagram.com/muratsenr" target="_blank" class="row-card">
             <div class="row-left"><div class="row-icon">📩</div><div><div class="row-text-main">Önerileriniz İçin DM</div><div class="row-text-sub">Doğrudan mesaj göndererek iletişime geçin</div></div></div>
             <span class="arrow-right">Mesaj Gönder →</span>
         </a>
@@ -273,7 +305,7 @@
         </div>
     </div>
 
-    <!-- POP-UP MODAL (GİZLİLİĞİ CSS İLE %100 GARANTİLENDİ) -->
+    <!-- POP-UP MODAL -->
     <div class="modal-overlay" id="infoModal" onclick="closeInfoModal(event)">
         <div class="modal-box" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeInfoModal(null)">✕</button>
@@ -379,17 +411,12 @@
         function runIndependentAiEngine() {
             const style = document.getElementById('aiStyleSelect').value;
             const resultBox = document.getElementById('aiResultText');
-            
             const h = hooks[style][Math.floor(Math.random() * hooks[style].length)];
             const b = bodies[style][Math.floor(Math.random() * bodies[style].length)];
             const c = ctas[style][Math.floor(Math.random() * ctas[style].length)];
-            
             resultBox.style.display = 'block';
             resultBox.style.opacity = '0.5';
-            setTimeout(() => {
-                resultBox.innerText = h + b + c;
-                resultBox.style.opacity = '1';
-            }, 150);
+            setTimeout(() => { resultBox.innerText = h + b + c; resultBox.style.opacity = '1'; }, 150);
         }
 
         function copyAiGeneratedText() {
@@ -402,6 +429,20 @@
                     setTimeout(() => toast.style.opacity = '0', 2000);
                 });
             }
+        }
+
+        // YENİ VE BASİTLEŞTİRİLMİŞ AKILLI POP-UP MOTORU
+        // HTML içindeki normal metni yakalar, başındaki ve sonundaki boşlukları temizleyerek modal penceresine pürüzsüz basar.
+        function openEasyModal(element) {
+            document.getElementById('modalTitle').innerText = element.getAttribute('data-title');
+            document.getElementById('modalHighlight').innerText = element.getAttribute('data-highlight');
+            document.getElementById('modalLink').href = element.getAttribute('data-link');
+            
+            // Gizli div içindeki normal Enter'lı yazıyı kusursuzca yakalama kancası
+            const fullText = element.querySelector('.modal-body-content').innerText.trim();
+            document.getElementById('modalText').innerText = fullText;
+            
+            modal.classList.add('active');
         }
 
         function toggleLibrary() {
@@ -432,14 +473,6 @@
 
         const modal = document.getElementById('infoModal');
         const toast = document.getElementById('toastNotification');
-
-        function openHtmlModal(element) {
-            document.getElementById('modalTitle').innerText = element.getAttribute('data-title');
-            document.getElementById('modalHighlight').innerText = element.getAttribute('data-highlight');
-            document.getElementById('modalText').innerText = element.getAttribute('data-text');
-            document.getElementById('modalLink').href = element.getAttribute('data-link');
-            modal.classList.add('active');
-        }
 
         function closeInfoModal(event) {
             if (!event || event.target === modal || event.type === 'click') { modal.classList.remove('active'); }
