@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Murat Şener | Threads Bilgi Bankası</title>
     <style>
-        /* --- GENEL AYARLAR & KARARLI KOYU TEMA --- */
+        /* --- GENEL AYARLAR & ORİJİNAL KOYU TEMA --- */
         * {
             margin: 0;
             padding: 0;
@@ -29,7 +29,7 @@
             max-width: 480px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 20px; /* Elemanların orijinal dikey ferahlık mesafesi */
         }
 
         /* --- SON DAKİKA HABER BANDI --- */
@@ -98,7 +98,7 @@
         .threads-btn-title { font-size: 14px; font-weight: 700; color: #ffffff; }
         .threads-btn-desc { font-size: 12px; color: #8b949e; margin-top: 3px; line-height: 1.3; }
 
-        /* --- BENTO KART YAPISI --- */
+        /* --- BENTO KART YAPISI (ORİJİNAL TAM GENİŞLİK) --- */
         .bento-card { background-color: #12161a; border: 1px solid #21262d; border-radius: 20px; padding: 24px; position: relative; display: flex; flex-direction: column; width: 100%; }
         .card-icon-top { font-size: 22px; color: #8b949e; margin-bottom: 12px; }
         .card-title { font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
@@ -135,7 +135,7 @@
         .footer-info { text-align: center; margin-top: 24px; font-size: 13px; color: #8b949e; display: flex; flex-direction: column; gap: 8px; padding-bottom: 20px; }
         .visitor-count strong { color: #00f2fe; font-size: 14px; }
 
-        /* --- GİZLEME GARANTİLİ POP-UP KODLARI --- */
+        /* --- SIFIR HATA POP-UP KODLARI --- */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -211,7 +211,7 @@
             </a>
         </div>
 
-        <!-- 1. SIRADAKİ KART: AI THREADS ASİSTANI (KESİN OLARAK ÜSTTE) -->
+        <!-- 1. SIRADAKİ KART: AI THREADS ASİSTANI (ORİJİNAL ÜST KONUM) -->
         <div class="bento-card" style="border-color: rgba(191, 85, 236, 0.4);">
             <div class="card-icon-top">🤖</div>
             <div class="card-title">AI Threads Asistanı</div>
@@ -232,7 +232,7 @@
             <div class="ai-result-box" id="aiResultText" onclick="copyAiGeneratedText()" style="display: none; cursor: pointer;" title="Kopyalamak için tıkla"></div>
         </div>
 
-        <!-- 2. SIRADAKİ KART: PAYLAŞILAN BİLGİ VE AYARLAR (ALTTA) -->
+        <!-- 2. SIRADAKİ KART: PAYLAŞILAN BİLGİ VE AYARLAR (ORİJİNAL ALT KONUM) -->
         <div id="promptsSection" class="bento-card">
             <div class="card-icon-top">>_</div>
             <div class="card-title">Paylaşılan Bilgi ve Ayarlar</div>
@@ -245,13 +245,10 @@
                 <input type="text" id="searchInput" class="search-input" placeholder="Konularda hızlıca ara... (Örn: Eylül, Renk)" oninput="filterLibrary()">
                 
                 <div class="nested-list" id="itemsContainer">
-                    <!-- 1. KONU BLOĞU -->
                     <div class="nested-item" onclick="openHtmlModal(this)" data-title="14-26 Eylül Güncellemesi" data-highlight="💡 Kritik Not: Link içeren Threads gönderileri etkileşim dağıtımını %30 düşürmektedir." data-text="[14-26 EYLÜL THREADS GÜNCELLEME REHBERİ]&#10;&#10;• Erişim ve etkileşim parametreleri yenilendi.&#10;• Profil içi bento entegrasyonu tamamlandı." data-link="https://threads.net"><div>14-26 Eylül Güncellemesi<div class="nested-sub-text">Threads güncel algoritma parametreleri.</div></div><span class="time-badge">2 dk okuma</span></div>
 
-                    <!-- 2. KONU BLOĞU -->
                     <div class="nested-item" onclick="openHtmlModal(this)" data-title="26-28 Eylül Gündem Başlıkları" data-highlight="💡 Kritik Not: Mobil cihazlara öncelik verilen dikey metinler okuma süresini artırıyor." data-text="[GLOBAL YAPAY ZEKA GÜNDEMİ]&#10;&#10;• Statik bento altyapıları hız kazandı.&#10;• Mobil dönüşümler yükselişte." data-link="https://threads.net"><div>26-28 Eylül Gündem Başlıkları<div class="nested-sub-text">Global yapay zeka araç ve trendleri.</div></div><span class="time-badge">3 dk okuma</span></div>
 
-                    <!-- 3. KONU BLOĞU -->
                     <div class="nested-item" onclick="openHtmlModal(this)" data-title="Renk Grading & LUT İpucu" data-highlight="💡 Kritik Not: Shadows alanındaki Teal dengesi izleyicinin videoda kalma süresini etkiler." data-text="[RENK GRADING İPUÇLARI]&#10;&#10;• Shadows: Teal tonları %5 artırıldı.&#10;• Highlights: Sıcak ton dengesi korundu." data-link="https://threads.net"><div>Renk Grading & LUT İpucu<div class="nested-sub-text">Kurgularda sinematik tonlama rehberi.</div></div><span class="time-badge">1 dk okuma</span></div>
                 </div>
             </div>
@@ -311,7 +308,7 @@
                 "Son günlerde Threads akışınızda garip bir düşüş fark ettiniz mi?"
             ],
             hikaye: [
-                "Bundan tam 6 ay önce Threads'de sıfır takipçim vardı.",
+                "Bundan tam 6 aka önce Threads'de sıfır takipçim vardı.",
                 "Yazılım ve içerik üreticiliğini birleştirdiğimde bana 'ikisi bir arada yürümez' dediler.",
                 "Büyümek için ne reklam verdim ne de yapay etkileşim gruplarına girdim."
             ],
@@ -370,7 +367,7 @@
             gundem: [
                 "\n\nTüm platformlar tek bir haberle çalkalanırken, Threads kitlesinin olayı tamamen derinlemesine analiz etmesi harika bir detay.",
                 "\n\nOlayın sadece görünen yüzüne değil, dijital dünyadaki ve algoritmalardaki yansımasına odaklanmak resmi netleştiriyor.",
-                "\n\nHerkesin快速tükettiği bu yapay gündem dalgası bittiğinde, geriye sadece kalıcı ve teknik bilgi üretenler kalacak."
+                "\n\nHerkesin hızlıca tükettiği bu yapay gündem dalgası bittiğinde, geriye sadece kalıcı ve teknik bilgi üretenler kalacak."
             ]
         };
 
