@@ -177,7 +177,7 @@
                 <div class="threads-logo">🧵</div>
                 <div>
                     <div class="threads-btn-title">Threads Profilimi Keşfet</div>
-                    <div class="threads-btn-desc">Yapay zeka ipuçları, güncel Threads parametre rehberleri ver kişisel dijital notlarım için tıklayın.</div>
+                    <div class="threads-btn-desc">Yapay zeka ipuçları, güncel Threads parametre rehberleri ve kişisel dijital notlarım için tıklayın.</div>
                 </div>
             </a>
         </div>
@@ -262,7 +262,7 @@
     <div class="toast" id="toastNotification">Kopyalandı!</div>
 
     <script>
-        // 🔑 %100 SABİT VE KARARLI VERİ TABANI YAPISI
+        // 🔑 TARAYICIYI ASLA KİLİTLEMEYEN ARTIK %100 SABİT VE KARARLI VERİ TABANI YAPISI
         const database = [
             {
                 id: 'threads-update-1',
@@ -289,7 +289,7 @@
                 time: '1 dk okuma',
                 highlight: '💡 Kritik Not: Shadows alanındaki Teal dengesi izleyicinin videoda kalma süresini etkiler.',
                 link: 'https://threads.net',
-                text: '[ROZET]\n\n• Shadows: Teal tonları %5 artırıldı.\n• Highlights: Sıcak ton dengesi korundu.'
+                text: '[RENK ROZET İPUCU]\n\n• Shadows: Teal tonları %5 artırıldı.\n• Highlights: Sıcak ton dengesi korundu.'
             }
         ];
         const hooks = {
@@ -320,7 +320,6 @@
             fal: ["\n\nBurcunuzu yoruma yazın, bugünkü şans oranınızı analiz edelim 🔮", "\n\nUyum sağlayanlar beğensin, enerji dağılmasın."],
             gundem: ["\n\nSiz bu olay hakkında ne düşünüyorsunuz? Fikirlerinizi alta yazın.", "\n\nGündemin geri kalan analizleri için profili takipte kalın!"]
         };
-
         // KESİN ÇÖZÜM: DINAMIK LİSTELEME VE YENİLENMİŞ FİLTRE MOTORU
         function renderLibraryItems(filterQuery = "") {
             const container = document.getElementById('itemsContainer');
@@ -328,7 +327,6 @@
             container.innerHTML = "";
             
             database.forEach((item, index) => {
-                // Arama kutusuna yazılan metni başlık veya alt başlıkta kontrol eder
                 const matchTitle = item.title.toLowerCase().includes(filterQuery);
                 const matchSub = item.sub.toLowerCase().includes(filterQuery);
                 
@@ -373,10 +371,9 @@
             if (panel.classList.contains('hidden-content')) { panel.classList.remove('hidden-content'); btn.innerText = 'Konu Listesini Gizle ▴'; } else { panel.classList.add('hidden-content'); btn.innerText = 'Konu Listesini Göster ▾'; }
         }
 
-        // YENİLENEN AKILLI FİLTRELEME TETİKLEYİCİSİ
         function filterLibrary() {
             const query = document.getElementById('searchInput').value.toLowerCase();
-            renderLibraryItems(query); // Listeyi anlık olarak yeniden çizer
+            renderLibraryItems(query);
         }
 
         function scrollToElement(id) { const element = document.getElementById(id); if (element) { element.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }
