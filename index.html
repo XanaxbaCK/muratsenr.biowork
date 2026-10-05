@@ -33,7 +33,7 @@
             gap: 16px;
         }
 
-        /* --- PARILDAYAN KARŞILAMA BANNER'I STİLİ --- */
+        /* --- PARILDAYAN KARŞILAMA BANNER'I --- */
         .welcome-banner {
             background: linear-gradient(45deg, rgba(0, 198, 255, 0.1), rgba(0, 242, 254, 0.1));
             border: 1px solid rgba(0, 242, 254, 0.3);
@@ -99,7 +99,6 @@
             margin-top: 4px;
             font-weight: 600;
         }
-
         .threads-profile-btn {
             display: flex;
             align-items: center;
@@ -200,16 +199,14 @@
         .btn-modal-primary { background: linear-gradient(45deg, #00c6ff, #00f2fe); color: #090d10; border: none; padding: 12px; border-radius: 25px; font-size: 14px; font-weight: 700; cursor: pointer; }
         .btn-modal-secondary { background-color: transparent; color: #ff3366; border: 1px solid rgba(255, 51, 102, 0.3); padding: 12px; border-radius: 25px; font-size: 14px; font-weight: 600; text-align: center; text-decoration: none; display: block; }
         .toast { position: fixed; bottom: 30px; background-color: #00f2fe; color: #090d10; padding: 10px 20px; border-radius: 20px; font-size: 13px; font-weight: 700; opacity: 0; transition: opacity 0.3s ease; z-index: 1100; pointer-events: none; }
-        ### 📦 Parça 2: Arayüz Gövdesi ve Tüm Bento Kartları
-Bu parça en üstteki karşılama banner'ını, profil alanını, arama kutulu bilgi bankası kartını ve alt sosyal medya butonlarını barındırır. **Parça 1'in bittiği yerin hemen altına yapıştırılmalıdır.**
-
-```html
+    </style>
+</head>
 <body>
     <div class="container">
         
         <!-- HOŞ GELDİNİZ BANNER'I -->
         <div class="welcome-banner">
-            ✨ Kişisel BIOWORK Bloguma Hoş Geldiniz!
+            ✨ Kişisel BIOWORK bloguma hoş geldiniz!
         </div>
 
         <!-- PROFİL ALANI -->
@@ -224,7 +221,7 @@ Bu parça en üstteki karşılama banner'ını, profil alanını, arama kutulu b
                 <div class="threads-logo">🧵</div>
                 <div>
                     <div class="threads-btn-title">Threads Profilimi Keşfet</div>
-                    <div class="threads-btn-desc">Yapay zeka ipuçları, güncel Threads parametre rehberleri ve kişisel dijital notlarım için tıklayın.</div>
+                    <div class="threads-btn-desc">Yapay zeka ipuçları, güncel Threads parametre rehberleri ver kişisel dijital notlarım için tıklayın.</div>
                 </div>
             </a>
         </div>
@@ -268,12 +265,6 @@ Bu parça en üstteki karşılama banner'ını, profil alanını, arama kutulu b
             <div class="copyright">muratsenr © 2026</div>
         </div>
     </div>
-```
-
-### 📦 Parça 3: Alt Gezinti Çubuğu, Pop-up Pencereler ve JavaScript Arama Motoru
-Bu parça sayfanın en altındaki sabit hızlı menüyü, kopyalanabilir prompt pencerelerini ve tüm **3 konuyu eksiksiz çalıştıran** JavaScript veri tabanını içerir. **Parça 2'nin hemen altına eklenerek index.html dosyası mühürlenir.**
-
-```html
     <!-- SABİT ALT NAVİGASYON BAR -->
     <div class="bottom-nav">
         <span class="nav-item" onclick="scrollToElement('profileSection')">Profil</span>
@@ -397,4 +388,3 @@ Bu parça sayfanın en altındaki sabit hızlı menüyü, kopyalanabilir prompt 
     </script>
 </body>
 </html>
-```
