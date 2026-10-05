@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Murat Şener | Threads Bilgi Bankası</title>
     <style>
-        /* --- GENEL AYARLAR & KOYU TEMA --- */
+        /* --- GENEL AYARLAR & FERAH KOYU TEMA --- */
         * {
             margin: 0;
             padding: 0;
@@ -20,8 +20,7 @@
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
-            padding: 20px;
-            padding-bottom: 90px;
+            padding: 24px 20px 100px 20px; /* Alt ve üst boşluklar artırıldı */
             overflow-x: hidden;
         }
 
@@ -30,7 +29,7 @@
             max-width: 480px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 24px; /* Kartların arasındaki boğucu alt alta duruş ferahlatıldı */
         }
 
         /* --- SON DAKİKA HABER BANDI --- */
@@ -38,53 +37,46 @@
             width: 100%;
             background-color: #12161a;
             border: 1px solid rgba(0, 242, 254, 0.2);
-            border-radius: 10px;
-            padding: 8px 12px;
+            border-radius: 12px;
+            padding: 10px 14px;
             overflow: hidden;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .news-ticker-label { background-color: #ff3366; color: #ffffff; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; white-space: nowrap; }
+        .news-ticker-label { background-color: #ff3366; color: #ffffff; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; white-space: nowrap; }
         .news-ticker-content { width: 100%; overflow: hidden; white-space: nowrap; position: relative; }
         .news-ticker-text { display: inline-block; font-size: 13px; font-weight: 600; color: #e6edf3; padding-left: 100%; animation: tickerMove 15s linear infinite; }
         @keyframes tickerMove { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
 
         /* --- PARILDAYAN KARŞILAMA BANNER'I --- */
         .welcome-banner {
-            background: linear-gradient(45deg, rgba(0, 198, 255, 0.1), rgba(0, 242, 254, 0.1));
-            border: 1px solid rgba(0, 242, 254, 0.3);
+            background: linear-gradient(45deg, rgba(0, 198, 255, 0.08), rgba(0, 242, 254, 0.08));
+            border: 1px solid rgba(0, 242, 254, 0.25);
             border-radius: 20px;
-            padding: 12px 16px;
+            padding: 14px 18px;
             text-align: center;
             font-size: 13px;
             font-weight: 600;
             color: #00f2fe;
             letter-spacing: 0.3px;
-            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.05);
             margin-bottom: 4px;
             animation: pulseGlow 3s infinite ease-in-out;
         }
 
         @keyframes pulseGlow {
-            0% { border-color: rgba(0, 242, 254, 0.3); box-shadow: 0 4px 15px rgba(0, 242, 254, 0.05); }
-            50% { border-color: rgba(0, 242, 254, 0.6); box-shadow: 0 4px 20px rgba(0, 242, 254, 0.15); }
-            100% { border-color: rgba(0, 242, 254, 0.3); box-shadow: 0 4px 15px rgba(0, 242, 254, 0.05); }
+            0% { border-color: rgba(0, 242, 254, 0.25); box-shadow: 0 4px 15px rgba(0, 242, 254, 0.03); }
+            50% { border-color: rgba(0, 242, 254, 0.5); box-shadow: 0 4px 20px rgba(0, 242, 254, 0.12); }
+            100% { border-color: rgba(0, 242, 254, 0.25); box-shadow: 0 4px 15px rgba(0, 242, 254, 0.03); }
         }
-
-        /* --- INTERAKTIF AI SEÇİM KUTULARI VE METİN ALANI STİLLERİ --- */
-        .ai-select { width: 100%; background-color: #090d10; border: 1px solid #30363d; color: #ffffff; padding: 10px 14px; border-radius: 10px; font-size: 13px; outline: none; margin-bottom: 12px; cursor: pointer; }
-        .ai-result-box { background-color: #090d10; border: 1px solid #21262d; border-radius: 10px; padding: 14px; font-size: 13px; line-height: 1.5; color: #c9d1d9; margin-top: 14px; white-space: pre-wrap; min-height: 60px; transition: opacity 0.2s; }
-        .btn-ai-generate { width: 100%; background: linear-gradient(45deg, #bf55ec, #7209b7); color: #ffffff; border: none; padding: 12px; border-radius: 25px; font-size: 13px; font-weight: 700; cursor: pointer; transition: opacity 0.2s; box-shadow: 0 4px 15px rgba(114, 9, 183, 0.3); }
-        .btn-ai-generate:hover { opacity: 0.9; }
         /* --- PROFİL ALANI --- */
-        .profile-section { text-align: center; padding: 10px 0 5px 0; display: flex; flex-direction: column; align-items: center; }
-        .profile-avatar-wrapper { position: relative; width: 110px; height: 110px; margin: 0 auto 15px auto; display: block; }
+        .profile-section { text-align: center; padding: 10px 0 10px 0; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .profile-avatar-wrapper { position: relative; width: 110px; height: 110px; margin: 0 auto 12px auto; display: block; }
         .profile-avatar { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 2px solid #161b22; display: block; }
         .profile-avatar-wrapper::after { content: ''; position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px; border-radius: 50%; border: 2px solid #00f2fe; box-shadow: 0 0 12px rgba(0, 242, 254, 0.4); pointer-events: none; }
         .profile-name { font-size: 22px; font-weight: 700; color: #ffffff; letter-spacing: -0.5px; width: 100%; }
-        .profile-title { font-size: 13px; color: #00f2fe; margin-top: 4px; font-weight: 600; width: 100%; }
+        .profile-title { font-size: 13px; color: #00f2fe; margin-top: 2px; font-weight: 600; width: 100%; }
 
         .threads-profile-btn {
             display: flex;
@@ -92,9 +84,9 @@
             gap: 14px;
             background-color: #12161a;
             border: 1px solid #21262d;
-            border-radius: 14px;
-            padding: 14px 18px;
-            margin: 14px auto 5px auto;
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin: 16px auto 4px auto;
             width: 100%;
             max-width: 440px;
             text-decoration: none;
@@ -106,41 +98,46 @@
         .threads-profile-btn:hover { border-color: #ffffff; background-color: #161b22; transform: translateY(-1px); }
         .threads-logo { font-size: 24px; display: flex; align-items: center; justify-content: center; background-color: #1c2128; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #30363d; flex-shrink: 0; }
         .threads-btn-title { font-size: 14px; font-weight: 700; color: #ffffff; }
-        .threads-btn-desc { font-size: 12px; color: #8b949e; margin-top: 3px; line-height: 1.3; }
+        .threads-btn-desc { font-size: 12px; color: #8b949e; margin-top: 4px; line-height: 1.4; }
 
-        /* --- BENTO KART YAPISI --- */
-        .bento-card { background-color: #12161a; border: 1px solid #21262d; border-radius: 16px; padding: 24px; position: relative; display: flex; flex-direction: column; }
-        .card-icon-top { font-size: 20px; color: #8b949e; margin-bottom: 12px; }
-        .card-title { font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
-        .card-desc { font-size: 13px; color: #8b949e; line-height: 1.5; margin-bottom: 20px; }
+        /* --- BENTO KART YAPISI (DAHA NEFES ALAN İÇ BOŞLUK) --- */
+        .bento-card { background-color: #12161a; border: 1px solid #21262d; border-radius: 20px; padding: 28px; position: relative; display: flex; flex-direction: column; }
+        .card-icon-top { font-size: 22px; color: #8b949e; margin-bottom: 14px; }
+        .card-title { font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
+        .card-desc { font-size: 13px; color: #8b949e; line-height: 1.6; margin-bottom: 24px; }
 
-        .btn-action { width: 100%; background-color: #1f242c; border: 1px solid #30363d; color: #ffffff; padding: 12px; border-radius: 25px; font-size: 14px; font-weight: 600; text-align: center; cursor: pointer; transition: all 0.2s ease; display: flex; justify-content: center; align-items: center; gap: 8px; border: 1px solid #30363d; }
+        .btn-action { width: 100%; background-color: #1f242c; border: 1px solid #30363d; color: #ffffff; padding: 14px; border-radius: 25px; font-size: 14px; font-weight: 600; text-align: center; cursor: pointer; transition: all 0.2s ease; display: flex; justify-content: center; align-items: center; gap: 8px; border: 1px solid #30363d; }
 
-        /* --- SOSYAL MEDYA KARTLARI --- */
-        .row-card { display: flex; align-items: center; justify-content: space-between; background-color: #12161a; border: 1px solid #21262d; padding: 16px 20px; border-radius: 14px; text-decoration: none; color: inherit; }
+        /* --- SOSYAL MEDYA KARTLARI (YAPILAR ARASI ARTTIRILMIŞ PAY) --- */
+        .row-card { display: flex; align-items: center; justify-content: space-between; background-color: #12161a; border: 1px solid #21262d; padding: 18px 22px; border-radius: 16px; text-decoration: none; color: inherit; margin-bottom: 4px; }
         .row-card:hover { border-color: #30363d; background-color: #161b22; }
-        .row-left { display: flex; align-items: center; gap: 14px; }
-        .row-icon { font-size: 18px; color: #8b949e; }
+        .row-left { display: flex; align-items: center; gap: 16px; }
+        .row-icon { font-size: 20px; color: #8b949e; }
         .row-text-main { font-size: 14px; font-weight: 600; color: #ffffff; }
-        .row-text-sub { font-size: 12px; color: #8b949e; margin-top: 2px; }
-        .section-label { font-size: 12px; font-weight: 600; color: #8b949e; margin-top: 10px; margin-bottom: -4px; padding-left: 4px; }
+        .row-text-sub { font-size: 12px; color: #8b949e; margin-top: 3px; }
+        .section-label { font-size: 12px; font-weight: 700; color: #8b949e; margin-top: 14px; margin-bottom: 2px; padding-left: 6px; letter-spacing: 0.5px; }
 
         /* --- ARAMA PANELİ VE DİNAMİK LİSTE --- */
-        .search-wrapper { margin-top: 16px; display: flex; flex-direction: column; gap: 12px; }
-        .search-input { width: 100%; background-color: #090d10; border: 1px solid #30363d; color: #ffffff; padding: 12px 16px; border-radius: 10px; font-size: 13px; outline: none; }
+        .search-wrapper { margin-top: 20px; display: flex; flex-direction: column; gap: 14px; }
+        .search-input { width: 100%; background-color: #090d10; border: 1px solid #30363d; color: #ffffff; padding: 14px 18px; border-radius: 12px; font-size: 13px; outline: none; }
         .search-input:focus { border-color: #00f2fe; }
-        .nested-list { display: flex; flex-direction: column; gap: 8px; max-height: 320px; overflow-y: auto; padding-right: 4px; }
+        .nested-list { display: flex; flex-direction: column; gap: 10px; max-height: 340px; overflow-y: auto; padding-right: 4px; }
         
-        .nested-item { background-color: #1c2128; border: 1px solid #30363d; padding: 14px 16px; border-radius: 10px; font-size: 13px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s ease; }
+        .nested-item { background-color: #1c2128; border: 1px solid #30363d; padding: 16px 18px; border-radius: 12px; font-size: 13px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s ease; }
         .nested-item:hover { border-color: #00f2fe; background-color: #222831; transform: translateX(2px); }
-        .nested-sub-text { font-size: 11px; color: #8b949e; font-weight: 400; margin-top: 4px; }
+        .nested-sub-text { font-size: 11px; color: #8b949e; font-weight: 400; margin-top: 5px; line-height: 1.4; }
         .hidden-content { display: none; }
 
-        .time-badge { background-color: #1f242c; color: #00f2fe; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; border: 1px solid rgba(0, 242, 254, 0.1); }
-        .highlight-box { background-color: rgba(0, 242, 254, 0.05); border-left: 3px solid #00f2fe; padding: 12px; border-radius: 0 8px 8px 0; font-size: 13px; font-weight: 600; color: #ffffff; margin-bottom: 14px; line-height: 1.4; }
-        .footer-info { text-align: center; margin-top: 24px; font-size: 13px; color: #8b949e; display: flex; flex-direction: column; gap: 8px; padding-bottom: 20px; }
+        .ai-select { width: 100%; background-color: #090d10; border: 1px solid #30363d; color: #ffffff; padding: 12px 16px; border-radius: 12px; font-size: 13px; outline: none; margin-bottom: 14px; cursor: pointer; }
+        .ai-result-box { background-color: #090d10; border: 1px solid #21262d; border-radius: 12px; padding: 16px; font-size: 13px; line-height: 1.6; color: #c9d1d9; margin-top: 18px; white-space: pre-wrap; min-height: 60px; transition: opacity 0.2s; }
+        .btn-ai-generate { width: 100%; background: linear-gradient(45deg, #bf55ec, #7209b7); color: #ffffff; border: none; padding: 14px; border-radius: 25px; font-size: 13px; font-weight: 700; cursor: pointer; transition: opacity 0.2s; box-shadow: 0 4px 15px rgba(114, 9, 183, 0.3); }
+        .btn-ai-generate:hover { opacity: 0.9; }
+
+        .time-badge { background-color: #1f242c; color: #00f2fe; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(0, 242, 254, 0.1); }
+        .highlight-box { background-color: rgba(0, 242, 254, 0.04); border-left: 3px solid #00f2fe; padding: 14px; border-radius: 0 8px 8px 0; font-size: 13px; font-weight: 600; color: #ffffff; margin-bottom: 16px; line-height: 1.5; }
+        .footer-info { text-align: center; margin-top: 32px; font-size: 13px; color: #8b949e; display: flex; flex-direction: column; gap: 10px; padding-bottom: 24px; }
         .visitor-count strong { color: #00f2fe; font-size: 14px; }
-        .bottom-nav { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); max-width: 440px; background-color: rgba(18, 22, 26, 0.85); border: 1px solid #30363d; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 30px; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; z-index: 999; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); }
+        .bottom-nav { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); max-width: 440px; background-color: rgba(18, 22, 26, 0.85); border: 1px solid #30363d; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 30px; padding: 14px 28px; display: flex; justify-content: space-between; align-items: center; z-index: 999; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); }
         .nav-item { color: #8b949e; text-decoration: none; font-size: 13px; font-weight: 600; cursor: pointer; }
         .nav-item:hover { color: #00f2fe; }
 
@@ -191,23 +188,7 @@
             </a>
         </div>
 
-        <!-- BENTO KART: KESİN ÇALIŞAN GERÇEK AI ASİSTANI -->
-        <div class="bento-card" style="border-color: rgba(191, 85, 236, 0.4);">
-            <div class="card-icon-top">🤖</div>
-            <div class="card-title">AI Threads Asistanı</div>
-            <div class="card-desc">Threads'de bugün ne paylaşacağını bilmiyor musun? Paylaşım tarzını seç ve her tıkladığında senin tarzına uygun tamamen benzersiz kancası güçlü bir taslak üret!</div>
-            
-            <select id="aiStyleSelect" class="ai-select">
-                <option value="egitici">💡 Eğitici / Hap Algoritma Bilgisi</option>
-                <option value="etkilesim">🔥 Yüksek Etkileşim / Soru Gönderisi</option>
-                <option value="hikaye">🚀 Girişimcilik / Kişisel Tecrübe Paylaşımı</option>
-            </select>
-            
-            <button class="btn-ai-generate" id="aiBtn" onclick="runIndependentAiEngine()">Fikir Üret ⚡</button>
-            
-            <div class="ai-result-box" id="aiResultText" onclick="copyAiGeneratedText()" style="cursor: pointer;" title="Kopyalamak için tıkla">Tarzınızı seçip butona basın...</div>
-        </div>
-        <!-- BENTO KART: BİLGİ BANKASI VE AÇILIR LİSTE -->
+        <!-- 1. SIRAYA ALINAN BENTO KART: BİLGİ BANKASI VE AÇILIR LİSTE -->
         <div id="promptsSection" class="bento-card">
             <div class="card-icon-top">>_</div>
             <div class="card-title">Paylaşılan Bilgi ve Ayarlar</div>
@@ -232,6 +213,22 @@
             </div>
         </div>
 
+        <!-- 2. SIRAYA ALINAN BENTO KART: AI THREADS ASİSTANI -->
+        <div class="bento-card" style="border-color: rgba(191, 85, 236, 0.4);">
+            <div class="card-icon-top">🤖</div>
+            <div class="card-title">AI Threads Asistanı</div>
+            <div class="card-desc">Threads'de bugün ne paylaşacağını bilmiyor musun? Paylaşım tarzını seç ve her tıkladığında senin tarzına uygun tamamen benzersiz kancası güçlü bir taslak üret!</div>
+            
+            <select id="aiStyleSelect" class="ai-select">
+                <option value="egitici">💡 Eğitici / Hap Algoritma Bilgisi</option>
+                <option value="etkilesim">🔥 Yüksek Etkileşim / Soru Gönderisi</option>
+                <option value="hikaye">🚀 Girişimcilik / Kişisel Tecrübe Paylaşımı</option>
+            </select>
+            
+            <button class="btn-ai-generate" id="aiBtn" onclick="runIndependentAiEngine()">Fikir Üret ⚡</button>
+            
+            <div class="ai-result-box" id="aiResultText" onclick="copyAiGeneratedText()" style="cursor: pointer;" title="Kopyalamak için tıkla">Tarzınızı seçip butona basın...</div>
+        </div>
         <div id="contactSection" class="section-label">Sosyal Medya & İletişim</div>
 
         <!-- SOSYAL LİNKLER -->
@@ -256,12 +253,6 @@
             <div class="copyright">muratsenr © 2026</div>
         </div>
     </div>
-    <!-- SABİT ALT NAVİGASYON BAR -->
-    <div class="bottom-nav">
-        <span class="nav-item" onclick="scrollToElement('profileSection')">Profil</span>
-        <span class="nav-item" onclick="scrollToElement('promptsSection')">Prompts</span>
-        <span class="nav-item" onclick="scrollToElement('contactSection')">İletişim</span>
-    </div>
 
     <!-- POP-UP MODAL -->
     <div class="modal-overlay" id="infoModal" onclick="closeInfoModal(event)">
@@ -279,7 +270,7 @@
 
     <div class="toast" id="toastNotification">Kopyalandı!</div>
 
-    <!-- JAVASCRIPT KUSURSUZ MOTORU -->
+    <!-- JAVASCRIPT YÖNETİM MOTORU -->
     <script>
         const hooks = {
             egitici: [
@@ -323,7 +314,6 @@
             hikaye: ["\n\nSiz de kendi sürecinize odaklanın, başarı er ya da geç gelecektir 🚀", "\n\nBu yolculukta istikrarı koruyanlar kazanacak. Takipte kalın!"]
         };
 
-        // KİLİTLENMEYİ ÖNLEYEN VE ASLA ÇÖKMEYEN BAĞIMSIZ YAPAY ZEKA FONKSİYONU
         function runIndependentAiEngine() {
             const style = document.getElementById('aiStyleSelect').value;
             const resultBox = document.getElementById('aiResultText');
@@ -401,13 +391,12 @@
             });
         }
 
-        // Otomatik sayaç tetikleyici (Dondurma riski kaldırıldı)
         try {
             let localVisits = localStorage.getItem('local_visits') || 144;
             localVisits = parseInt(localVisits) + 1;
             localStorage.setItem('local_visits', localVisits);
             document.getElementById('visitorValue').innerText = localVisits;
-        } catch(e) { console.log(e); }
+        } catch(e) {}
     </script>
 </body>
 </html>
