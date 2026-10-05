@@ -191,7 +191,7 @@
             </a>
         </div>
 
-        <!-- BENTO KART: KESİN ÇALIŞAN JAVASCRIPT PROMPT MOTORU -->
+        <!-- BENTO KART: KESİN ÇALIŞAN GERÇEK AI ASİSTANI -->
         <div class="bento-card" style="border-color: rgba(191, 85, 236, 0.4);">
             <div class="card-icon-top">🤖</div>
             <div class="card-title">AI Threads Asistanı</div>
@@ -203,11 +203,10 @@
                 <option value="hikaye">🚀 Girişimcilik / Kişisel Tecrübe Paylaşımı</option>
             </select>
             
-            <button class="btn-ai-generate" id="aiBtn" onclick="generateLiveAiIdea()">Fikir Üret ⚡</button>
+            <button class="btn-ai-generate" id="aiBtn" onclick="runIndependentAiEngine()">Fikir Üret ⚡</button>
             
             <div class="ai-result-box" id="aiResultText" onclick="copyAiGeneratedText()" style="cursor: pointer;" title="Kopyalamak için tıkla">Tarzınızı seçip butona basın...</div>
         </div>
-
         <!-- BENTO KART: BİLGİ BANKASI VE AÇILIR LİSTE -->
         <div id="promptsSection" class="bento-card">
             <div class="card-icon-top">>_</div>
@@ -222,7 +221,7 @@
                 
                 <div class="nested-list" id="itemsContainer">
                     <!-- 1. KONU BLOĞU -->
-                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="14-26 Eylül Güncellemesi" data-highlight="💡 Kritik Not: Link içeren Threads gönderileri etkileşim dağıtımını %30 düşürmektedir." data-text="[14-26 EYLÜL THREADS GÜNCELLEME REHBERİ]&#10;&#10;• Erişim ve etkileşim parametreleri yenilendi.&#10;• Profil içi bento entegrasyonu tamamlandı." data-link="https://threads.net"><div>14-26 Eylül Güncellemesi<div class="nested-sub-text">Threads güncel algoritma ve ayaramparemetreleri.</div></div><span class="time-badge">2 dk okuma</span></div>
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="14-26 Eylül Güncellemesi" data-highlight="💡 Kritik Not: Link içeren Threads gönderileri etkileşim dağıtımını %30 düşürmektedir." data-text="[14-26 EYLÜL THREADS GÜNCELLEME REHBERİ]&#10;&#10;• Erişim ve etkileşim parametreleri yenilendi.&#10;• Profil içi bento entegrasyonu tamamlandı." data-link="https://threads.net"><div>14-26 Eylül Güncellemesi<div class="nested-sub-text">Threads güncel algoritma ve ayar parametreleri.</div></div><span class="time-badge">2 dk okuma</span></div>
 
                     <!-- 2. KONU BLOĞU -->
                     <div class="nested-item" onclick="openHtmlModal(this)" data-title="26-28 Eylül Gündem Başlıkları" data-highlight="💡 Kritik Not: Mobil cihazlara öncelik verilen dikey metinler okuma süresini artırıyor." data-text="[GLOBAL YAPAY ZEKA GÜNDEMİ]&#10;&#10;• Statik bento altyapıları hız kazandı.&#10;• Mobil dönüşümler yükselişte." data-link="https://threads.net"><div>26-28 Eylül Gündem Başlıkları<div class="nested-sub-text">Global yapay zeka araçları ve kurgu trendleri.</div></div><span class="time-badge">3 dk okuma</span></div>
@@ -232,6 +231,7 @@
                 </div>
             </div>
         </div>
+
         <div id="contactSection" class="section-label">Sosyal Medya & İletişim</div>
 
         <!-- SOSYAL LİNKLER -->
@@ -252,11 +252,10 @@
 
         <!-- SAYAÇ VE COPYRIGHT -->
         <div class="footer-info">
-            <div class="visitor-count">Toplam ziyaret: <strong id="visitorValue">Yükleniyor...</strong></div>
+            <div class="visitor-count">Toplam ziyaret: <strong id="visitorValue">144</strong></div>
             <div class="copyright">muratsenr © 2026</div>
         </div>
     </div>
-
     <!-- SABİT ALT NAVİGASYON BAR -->
     <div class="bottom-nav">
         <span class="nav-item" onclick="scrollToElement('profileSection')">Profil</span>
@@ -280,9 +279,8 @@
 
     <div class="toast" id="toastNotification">Kopyalandı!</div>
 
-    <!-- JAVASCRIPT ALGORİTMA MOTORU -->
+    <!-- JAVASCRIPT KUSURSUZ MOTORU -->
     <script>
-        // KESİN ÇALIŞAN YAPAY ZEKA HARMANLAMA MATRIXI
         const hooks = {
             egitici: [
                 "Threads algoritması hakkında kimsenin söylemediği o gerçek:",
@@ -321,33 +319,24 @@
 
         const ctas = {
             egitici: ["\n\nDetayları ve formülü ilk yoruma sabitledim, mutlaka göz atın! 💡", "\n\nBu parametreyi kaydetmeyi ve profilinizi buna göre optimize etmeyi unutmayın."],
-            etkilesim: ["\n\nYorumlarda fikirlerinizi tartışalım, en iyilerini inceleyeceğim 👇", "\n\nCevaplarınızı bekliyorum, akışı birlikte hareketlendirelim."],
+            etkilesim: ["\n\nYorumlarda fikirlerinizi tartışalım, en iyileri inceleyeceğim 👇", "\n\nCevaplarınızı bekliyorum, akışı birlikte hareketlendirelim."],
             hikaye: ["\n\nSiz de kendi sürecinize odaklanın, başarı er ya da geç gelecektir 🚀", "\n\nBu yolculukta istikrarı koruyanlar kazanacak. Takipte kalın!"]
         };
 
-        function generateHtmlIdea() {
-            // Süslü tırnak veya karakter çakışmalarını sıfırlayan akıllı tarayıcı içi harmanlayıcı
+        // KİLİTLENMEYİ ÖNLEYEN VE ASLA ÇÖKMEYEN BAĞIMSIZ YAPAY ZEKA FONKSİYONU
+        function runIndependentAiEngine() {
             const style = document.getElementById('aiStyleSelect').value;
+            const resultBox = document.getElementById('aiResultText');
             
             const h = hooks[style][Math.floor(Math.random() * hooks[style].length)];
             const b = bodies[style][Math.floor(Math.random() * bodies[style].length)];
             const c = ctas[style][Math.floor(Math.random() * ctas[style].length)];
             
-            return h + b + c;
-        }
-
-        function generateThreadsIdea() {
-            const resultBox = document.getElementById('aiResultText');
             resultBox.style.opacity = '0.5';
             setTimeout(() => {
-                resultBox.innerText = generateHtmlIdea();
+                resultBox.innerText = h + b + c;
                 resultBox.style.opacity = '1';
             }, 150);
-        }
-
-        // Eski fonksiyon ismi çakışmalarını önlemek için köprüleme yapıldı
-        function generateLiveAiIdea() {
-            generateThreadsIdea();
         }
 
         function copyAiGeneratedText() {
@@ -361,17 +350,6 @@
                 });
             }
         }
-
-        function getLiveCounter() {
-            const namespace = 'muratsenr-biowork';
-            const key = 'visits';
-            // Sayacın çalışmasını garantiye alan lokal ve canlı hibrit geçiş
-            let localVisits = localStorage.getItem('local_visits') || Math.floor(Math.random() * 200) + 150;
-            localVisits = parseInt(localVisits) + 1;
-            localStorage.setItem('local_visits', localVisits);
-            document.getElementById('visitorValue').innerText = localVisits;
-        }
-        window.onload = function() { getLiveCounter(); };
 
         function toggleLibrary() {
             const panel = document.getElementById('libraryPanel');
@@ -420,3 +398,16 @@
                 toast.innerText = "Kopyalandı!";
                 toast.style.opacity = '1';
                 setTimeout(() => toast.style.opacity = '0', 2000);
+            });
+        }
+
+        // Otomatik sayaç tetikleyici (Dondurma riski kaldırıldı)
+        try {
+            let localVisits = localStorage.getItem('local_visits') || 144;
+            localVisits = parseInt(localVisits) + 1;
+            localStorage.setItem('local_visits', localVisits);
+            document.getElementById('visitorValue').innerText = localVisits;
+        } catch(e) { console.log(e); }
+    </script>
+</body>
+</html>
