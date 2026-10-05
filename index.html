@@ -168,16 +168,16 @@
         <!-- PROFİL ALANI -->
         <div id="profileSection" class="profile-section">
             <div class="profile-avatar-wrapper">
-                <img src="https://i.ibb.co/WpFWtGpv/11.jpg" alt="11" border"0" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; display: block;">
+                <img src="https://ibb.co" alt="Avatar" class="profile-avatar">
             </div>
-            . <div class="profile-name">@muratsenr</div>
+            <div class="profile-name">@muratsenr</div>
             <div class="profile-title">Content Creator & SW Dev</div>
             
             <a href="https://threads.net" target="_blank" class="threads-profile-btn">
                 <div class="threads-logo">🧵</div>
                 <div>
                     <div class="threads-btn-title">Threads Profilimi Keşfet</div>
-                    <div class="threads-btn-desc">Yapay zeka ipuçları, güncel Threads parametre rehberleri ve kişisel dijital notlarım için tıklayın.</div>
+                    <div class="threads-btn-desc">Yapay zeka ipuçları, güncel Threads parametre rehberleri ver kişisel dijital notlarım için tıklayın.</div>
                 </div>
             </a>
         </div>
@@ -211,6 +211,7 @@
             
             <button class="btn-action" id="toggleLibraryBtn" onclick="toggleLibrary()">Konu Listesini Göster ▾</button>
 
+            <!-- PANEL AÇILDIĞINDA JAVASCRIPT BU ALANI OTOMATİK DOLDURACAK -->
             <div id="libraryPanel" class="search-wrapper hidden-content">
                 <input type="text" id="searchInput" class="search-input" placeholder="Konularda hızlıca ara... (Örn: Eylül, Renk)" oninput="filterLibrary()">
                 
@@ -261,7 +262,7 @@
     <div class="toast" id="toastNotification">Kopyalandı!</div>
 
     <script>
-        // 🔑 TARAYICIYI ASLA KİLİTLEMEYEN ARTIK %100 SABİT VE KARARLI VERİ TABANI YAPISI
+        // 🔑 %100 SABİT VE KARARLI VERİ TABANI YAPISI
         const database = [
             {
                 id: 'threads-update-1',
@@ -283,12 +284,12 @@
             },
             {
                 id: 'color-grading-tip',
-                title: 'ROZET',
+                title: 'Renk Grading & LUT İpucu',
                 sub: 'Kurgularda sinematik tonlama yakalama rehberi.',
                 time: '1 dk okuma',
                 highlight: '💡 Kritik Not: Shadows alanındaki Teal dengesi izleyicinin videoda kalma süresini etkiler.',
                 link: 'https://threads.net',
-                text: '[RENK GRADING İPUÇLARI]\n\n• Shadows: Teal tonları %5 artırıldı.\n• Highlights: Sıcak ton dengesi korundu.'
+                text: '[ROZET]\n\n• Shadows: Teal tonları %5 artırıldı.\n• Highlights: Sıcak ton dengesi korundu.'
             }
         ];
         const hooks = {
@@ -320,16 +321,24 @@
             gundem: ["\n\nSiz bu olay hakkında ne düşünüyorsunuz? Fikirlerinizi alta yazın.", "\n\nGündemin geri kalan analizleri için profili takipte kalın!"]
         };
 
-        function renderLibraryItems() {
+        // KESİN ÇÖZÜM: DINAMIK LİSTELEME VE YENİLENMİŞ FİLTRE MOTORU
+        function renderLibraryItems(filterQuery = "") {
             const container = document.getElementById('itemsContainer');
             if(!container) return;
             container.innerHTML = "";
+            
             database.forEach((item, index) => {
-                const element = document.createElement('div');
-                element.className = 'nested-item';
-                element.setAttribute('onclick', `openDatabaseModal(${index})`);
-                element.innerHTML = "<div>" + item.title + "<div class='nested-sub-text'>" + item.sub + "</div></div><span class='time-badge'>" + item.time + "</span>";
-                container.appendChild(element);
+                // Arama kutusuna yazılan metni başlık veya alt başlıkta kontrol eder
+                const matchTitle = item.title.toLowerCase().includes(filterQuery);
+                const matchSub = item.sub.toLowerCase().includes(filterQuery);
+                
+                if (filterQuery === "" || matchTitle || matchSub) {
+                    const element = document.createElement('div');
+                    element.className = 'nested-item';
+                    element.setAttribute('onclick', `openDatabaseModal(${index})`);
+                    element.innerHTML = "<div>" + item.title + "<div class='nested-sub-text'>" + item.sub + "</div></div><span class='time-badge'>" + item.time + "</span>";
+                    container.appendChild(element);
+                }
             });
         }
 
@@ -364,10 +373,10 @@
             if (panel.classList.contains('hidden-content')) { panel.classList.remove('hidden-content'); btn.innerText = 'Konu Listesini Gizle ▴'; } else { panel.classList.add('hidden-content'); btn.innerText = 'Konu Listesini Göster ▾'; }
         }
 
+        // YENİLENEN AKILLI FİLTRELEME TETİKLEYİCİSİ
         function filterLibrary() {
             const query = document.getElementById('searchInput').value.toLowerCase();
-            const items = document.getElementById('itemsContainer').getElementsByClassName('nested-item');
-            for (let i = 0; i < items.length; i++) { const text = items[i].innerText.toLowerCase(); items[i].style.display = text.includes(query) ? 'flex' : 'none'; }
+            renderLibraryItems(query); // Listeyi anlık olarak yeniden çizer
         }
 
         function scrollToElement(id) { const element = document.getElementById(id); if (element) { element.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }
