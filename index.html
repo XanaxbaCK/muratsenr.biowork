@@ -29,7 +29,7 @@
             max-width: 480px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 20px; /* Elemanların orijinal dikey ferahlık mesafesi */
         }
 
         /* --- SON DAKİKA HABER BANDI --- */
@@ -98,7 +98,7 @@
         .threads-btn-title { font-size: 14px; font-weight: 700; color: #ffffff; }
         .threads-btn-desc { font-size: 12px; color: #8b949e; margin-top: 3px; line-height: 1.3; }
 
-        /* --- BENTO KART YAPISI --- */
+        /* --- BENTO KART YAPISI (ORİJİNAL TAM GENİŞLİK) --- */
         .bento-card { background-color: #12161a; border: 1px solid #21262d; border-radius: 20px; padding: 24px; position: relative; display: flex; flex-direction: column; width: 100%; }
         .card-icon-top { font-size: 22px; color: #8b949e; margin-bottom: 12px; }
         .card-title { font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
@@ -120,7 +120,7 @@
         .search-input:focus { border-color: #00f2fe; }
         .nested-list { display: flex; flex-direction: column; gap: 8px; max-height: 320px; overflow-y: auto; padding-right: 4px; }
         
-        .nested-item { background-color: #1c2128; border: 1px solid #30363d; padding: 14px 16px; border-radius: 12px; font-size: 13px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s ease; }
+        .nested-item { background-color: #1c2128; border: 1px solid #30363d; padding: 14px 16px; border-radius: 10px; font-size: 13px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s ease; }
         .nested-item:hover { border-color: #00f2fe; background-color: #222831; transform: translateX(2px); }
         .nested-sub-text { font-size: 11px; color: #8b949e; font-weight: 400; margin-top: 4px; }
         .hidden-content { display: none; }
@@ -135,9 +135,37 @@
         .footer-info { text-align: center; margin-top: 24px; font-size: 13px; color: #8b949e; display: flex; flex-direction: column; gap: 8px; padding-bottom: 20px; }
         .visitor-count strong { color: #00f2fe; font-size: 14px; }
 
-        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(5, 8, 10, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; padding: 20px; z-index: 99999; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        /* --- SIFIR HATA POP-UP KODLARI --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(5, 8, 10, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 99999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
-        .modal-box { background-color: #12161a; border: 1px solid #30363d; width: 100%; max-width: 440px; border-radius: 20px; padding: 24px; position: relative; transform: scale(0.95); transition: transform 0.3s ease; }
+
+        .modal-box {
+            background-color: #12161a;
+            border: 1px solid #30363d;
+            width: 100%;
+            max-width: 440px;
+            border-radius: 20px;
+            padding: 24px;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        
         .modal-overlay.active .modal-box { transform: scale(1); }
         .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: #8b949e; font-size: 18px; cursor: pointer; }
         .modal-title { font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 8px; text-align: left; }
@@ -146,6 +174,7 @@
         .modal-buttons { display: flex; flex-direction: column; gap: 10px; }
         .btn-modal-primary { background: linear-gradient(45deg, #00c6ff, #00f2fe); color: #090d10; border: none; padding: 12px; border-radius: 25px; font-size: 14px; font-weight: 700; cursor: pointer; }
         .btn-modal-secondary { background-color: transparent; color: #ff3366; border: 1px solid rgba(255, 51, 102, 0.3); padding: 12px; border-radius: 25px; font-size: 14px; font-weight: 600; text-align: center; text-decoration: none; display: block; }
+        
         .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background-color: #00f2fe; color: #090d10; padding: 10px 20px; border-radius: 20px; font-size: 13px; font-weight: 700; opacity: 0; transition: opacity 0.3s ease; z-index: 999999; pointer-events: none; }
     </style>
 </head>
@@ -168,7 +197,7 @@
         <!-- PROFİL ALANI -->
         <div id="profileSection" class="profile-section">
             <div class="profile-avatar-wrapper">
-                <img src="https://ibb.co" alt="Avatar" class="profile-avatar">
+                <img src="https://i.ibb.co/WpFWtGpv/11.jpg" alt="11" border"0" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; display: block;">
             </div>
             <div class="profile-name">@muratsenr</div>
             <div class="profile-title">Content Creator & SW Dev</div>
@@ -182,7 +211,7 @@
             </a>
         </div>
 
-        <!-- 1. SIRADAKİ KART: AI THREADS ASİSTANI -->
+        <!-- 1. SIRADAKİ KART: AI THREADS ASİSTANI (ORİJİNAL ÜST KONUM) -->
         <div class="bento-card" style="border-color: rgba(191, 85, 236, 0.4);">
             <div class="card-icon-top">🤖</div>
             <div class="card-title">AI Threads Asistanı</div>
@@ -203,7 +232,7 @@
             <div class="ai-result-box" id="aiResultText" onclick="copyAiGeneratedText()" style="display: none; cursor: pointer;" title="Kopyalamak için tıkla"></div>
         </div>
 
-        <!-- 2. SIRADAKİ KART: PAYLAŞILAN BİLGİ VE AYARLAR -->
+        <!-- 2. SIRADAKİ KART: PAYLAŞILAN BİLGİ VE AYARLAR (ORİJİNAL ALT KONUM) -->
         <div id="promptsSection" class="bento-card">
             <div class="card-icon-top">>_</div>
             <div class="card-title">Paylaşılan Bilgi ve Ayarlar</div>
@@ -211,12 +240,16 @@
             
             <button class="btn-action" id="toggleLibraryBtn" onclick="toggleLibrary()">Konu Listesini Göster ▾</button>
 
-            <!-- PANEL AÇILDIĞINDA JAVASCRIPT BU ALANI OTOMATİK DOLDURACAK -->
+            <!-- AÇILIR PANEL -->
             <div id="libraryPanel" class="search-wrapper hidden-content">
                 <input type="text" id="searchInput" class="search-input" placeholder="Konularda hızlıca ara... (Örn: Eylül, Renk)" oninput="filterLibrary()">
                 
                 <div class="nested-list" id="itemsContainer">
-                    <!-- Dinamik Konular Buraya Gelecek -->
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="14-26 Eylül Güncellemesi" data-highlight="💡 Kritik Not: Link içeren Threads gönderileri etkileşim dağıtımını %30 düşürmektedir." data-text="[14-26 EYLÜL THREADS GÜNCELLEME REHBERİ]&#10;&#10;• Erişim ve etkileşim parametreleri yenilendi.&#10;• Profil içi bento entegrasyonu tamamlandı." data-link="https://threads.net"><div>14-26 Eylül Güncellemesi<div class="nested-sub-text">Threads güncel algoritma parametreleri.</div></div><span class="time-badge">2 dk okuma</span></div>
+
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="26-28 Eylül Gündem Başlıkları" data-highlight="💡 Kritik Not: Mobil cihazlara öncelik verilen dikey metinler okuma süresini artırıyor." data-text="[GLOBAL YAPAY ZEKA GÜNDEMİ]&#10;&#10;• Statik bento altyapıları hız kazandı.&#10;• Mobil dönüşümler yükselişte." data-link="https://threads.net"><div>26-28 Eylül Gündem Başlıkları<div class="nested-sub-text">Global yapay zeka araç ve trendleri.</div></div><span class="time-badge">3 dk okuma</span></div>
+
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="Rozet Kaldırma" data-highlight="💡 Kritik Not: Shadows alanındaki Teal dengesi izleyicinin videoda kalma süresini etkiler." data-text="[RENK GRADING İPUÇLARI]&#10;&#10;• Shadows: Teal tonları %5 artırıldı.&#10;• Highlights: Sıcak ton dengesi korundu." data-link="https://threads.net"><div>Renk Grading & LUT İpucu<div class="nested-sub-text">Kurgularda sinematik tonlama rehberi.</div></div><span class="time-badge">1 dk okuma</span></div>
                 </div>
             </div>
         </div>
@@ -228,7 +261,7 @@
             <span class="arrow-right">Takip Et →</span>
         </a>
 
-        <a href="https://instagram.com" target="_blank" class="row-card">
+        <a href="https://instagram.com/muratsenr" target="_blank" class="row-card">
             <div class="row-left"><div class="row-icon">📩</div><div><div class="row-text-main">Önerileriniz İçin DM</div><div class="row-text-sub">Doğrudan mesaj göndererek iletişime geçin</div></div></div>
             <span class="arrow-right">Mesaj Gönder →</span>
         </a>
@@ -261,56 +294,83 @@
 
     <div class="toast" id="toastNotification">Kopyalandı!</div>
 
+    <!-- JAVASCRIPT YÖNETİM MOTORU -->
     <script>
-        // 🔑 KORUNAN MERKEZİ VERİ TABANI DİZİSİ
-        const database = [
-            {
-                id: 'threads-update-1',
-                title: '14-26 Eylül Güncellemesi',
-                sub: 'Threads güncel algoritma ve ayar parametreleri.',
-                time: '2 dk okuma',
-                highlight: '💡 Kritik Not: Link içeren Threads gönderileri etkileşim dağıtımını %30 düşürmektedir.',
-                link: 'https://threads.net',
-                text: '[14-26 EYLÜL THREADS GÜNCELLEME REHBERİ]\n\n• Erişim ve etkileşim parametreleri yenilendi.\n• Profil içi bento entegrasyonu tamamlandı.'
-            },
-            {
-                id: 'global-trends-2',
-                title: '26-28 Eylül Gündem Başlıkları',
-                sub: 'Global yapay zeka araçları ve kurgu trendleri.',
-                time: '3 dk okuma',
-                highlight: '💡 Kritik Not: Mobil cihazlara öncelik verilen dikey metinler okuma süresini artırıyor.',
-                link: 'https://threads.net',
-                text: '[GLOBAL YAPAY ZEKA GÜNDEMİ]\n\n• Statik bento altyapıları hız kazandı.\n• Mobil dönüşümler yükselişte.'
-            },
-            {
-                id: 'color-grading-tip',
-                title: 'Rozet',
-                sub: 'Kurgularda sinematik tonlama yakalama rehberi.',
-                time: '1 dk okuma',
-                highlight: '💡 Kritik Not: Shadows alanındaki Teal dengesi izleyicinin videoda kalma süresini etkiler.',
-                link: 'https://threads.net',
-                text: '[RENK GRADING İPUÇLARI]\n\n• Shadows: Teal tonları %5 artırıldı.\n• Highlights: Sıcak ton dengesi korundu.'
-            }
-        ];
         const hooks = {
-            egitici: ["Threads algoritması hakkında kimsenin söylemediği o gerçek:", "Eğer Threads'de büyümek istiyorsanız şu kuralları hemen unutun:", "Son 48 saatlik Threads etkileşim analizlerimde çok garip bir veri fark ettim:"],
-            etkilesim: ["Threads kitlesine çok ciddi bir sorum var:", "Dürüst olalım, aranızda Threads erişimlerinden tamamen memnun olan var mı?", "Son günlerde Threads akışınızda garip bir düşüş fark ettiniz mi?"],
-            hikaye: ["Bundan tam 6 ay önce Threads'de sıfır takipçim vardı.", "Yazılım ve içerik üreticiliğini birleştirdiğimde bana \'ikisi bir arada yürümez\' dediler.", "Büyümek için ne reklam verdim ne de yapay etkileşim gruplarına girdim."],
-            mizah: ["Threads'de ciddi ciddi içerik stratejisi kasanları izlerken ben:", "Millet Threads'de evrenin sırrını çözmüş gibi yazıyor, benim ana sayfa:", "X'ten kaçıp Threads'e gelenlerin girdikleri o aşırı entelektüel şok:"],
-            ask: ["Threads'de herkes algoritma konuşuyor ama asıl şu konuyu çözelim:", "Doğru insanı bulmanın Threads algoritmasını çözmekten daha zor olduğu o an:", "Biriyle saatlerce kesintisiz Threads üzerinden mesajlaşmak da sevdaya dahil mi?"],
-            fal: ["Gökyüzü hareketleri ve Merkür retrosu bugün Threads akışınızı fena vuracak:", "Bugün hangi burcun ana sayfası tamamen kaosa teslim olacak söylüyorum:", "Yıldız haritanıza göre Threads etkileşimlerinizin tavan yapacağı o döneme girdik:"],
-            gundem: ["Son saatlerde sosyal medyada dönen o devasa tartışmayı gördünüz mü?", "Gündemi yakından takip edenlerin Threads'de fark ettiği o büyük değişim:", "Herkes şu an bu konuyu konuşuyor, peki arka plandaki asıl gerçek ne?"]
+            egitici: [
+                "Threads algoritması hakkında kimsenin söylemediği o gerçek:",
+                "Eğer Threads'de büyümek istiyorsanız şu kuralları hemen unutun:",
+                "Son 48 saatlik Threads etkileşim analizlerimde çok garip bir veri fark ettim:"
+            ],
+            etkilesim: [
+                "Threads kitlesine çok ciddi bir sorum var:",
+                "Dürüst olalım, aranızda Threads erişimlerinden tamamen memnun olan var mı?",
+                "Son günlerde Threads akışınızda garip bir düşüş fark ettiniz mi?"
+            ],
+            hikaye: [
+                "Bundan tam 6 aka önce Threads'de sıfır takipçim vardı.",
+                "Yazılım ve içerik üreticiliğini birleştirdiğimde bana 'ikisi bir arada yürümez' dediler.",
+                "Büyümek için ne reklam verdim ne de yapay etkileşim gruplarına girdim."
+            ],
+            mizah: [
+                "Threads'de ciddi ciddi içerik stratejisi kasanları izlerken ben:",
+                "Millet Threads'de evrenin sırrını çözmüş gibi yazıyor, benim ana sayfa:",
+                "X'ten kaçıp Threads'e gelenlerin girdikleri o aşırı entelektüel şok:"
+            ],
+            ask: [
+                "Threads'de herkes algoritma konuşuyor ama asıl şu konuyu çözelim:",
+                "Doğru insanı bulmanın Threads algoritmasını çözmekten daha zor olduğu o an:",
+                "Biriyle saatlerce kesintisiz Threads üzerinden mesajlaşmak da sevdaya dahil mi?"
+            ],
+            fal: [
+                "Gökyüzü hareketleri ve Merkür retrosu bugün Threads akışınızı fena vuracak:",
+                "Bugün hangi burcun ana sayfası tamamen kaosa teslim olacak söylüyorum:",
+                "Yıldız haritanıza göre Threads etkileşimlerinizin tavan yapacağı o döneme girdik:"
+            ],
+            gundem: [
+                "Son saatlerde sosyal medyada dönen o devasa tartışmayı gördünüz mü?",
+                "Gündemi yakından takip edenlerin Threads'de fark ettiği o büyük değişim:",
+                "Herkes şu an bu konuyu konuşuyor, peki arka plandaki asıl gerçek ne?"
+            ]
+        };
+        const bodies = {
+            egitici: [
+                "\n\nMetin içi link paylaşımları erişimi %30 oranında baskılıyor. Algoritma kullanıcıyı dışarı göndermek istemiyor.",
+                "\n\nHer saat başı paylaşım yapmak yerine, günde sadece 1 adet kancası güçlü metin akışı (thread) oluşturmak erişimi katlıyor.",
+                "\n\nProfil içi kurulan bento kütüphane sistemleri, takipçileri akıştan çekip kalıcı hale getirmenin en organik yolu."
+            ],
+            etkilesim: [
+                "\n\nBurayı sadece içerik tüketmek için mi kullanıyorsunuz, yoksa kendi dijital kütüphanenizi kurmaya başladınız mı?",
+                "\n\nSon algoritma dalgası sizi yukarı mı taşıdı yoksa etkileşimleriniz tamamen durdu mu? Durumunuzu yazın, analiz edelim.",
+                "\n\nMetin gönderiler mi yoksa anketli paylaşımlar mı profilinizde daha çok erişim alıyor? Deneyimlerinizi merak ediyorum."
+            ],
+            hikaye: [
+                "\n\nSadece her gün öğrendiğim tek bir teknik bilgiyi düzenli ve sabırla paylaştım. Sürece güvenmek en büyük anahtardı.",
+                "\n\nBugün kurduğum bu BIOWORK yapısı sayesinde tüm kitlemi kalıcı bir havuzda toplayabiliyorum. Dijital varlık budur.",
+                "\n\nOrganik büyüme zaman alır ancak kalıcıdır. Kısa yolları aramayı bıraktığım gün profilim kendi kendine büyümeye başladı."
+            ],
+            mizah: [
+                "\n\n'Günde 3 thread atarak milyoner oldum' konseptli yazıları okurken kahvemi püskürttüm. Arkadaşlar burası sakin bir kasaba, yavaş olun.",
+                "\n\nHerkes her konuda o kadar uzman ki, kendi kendime 'acaba ben hayata sadece izleyici olarak mı geldim' diye sorgulatıyor.",
+                "\n\nErişim düşmesin diye kırk takla atıp, en sonunda saçma bir kedi caps'i ile binlerce beğeni alan o algoritmanın adaleti..."
+            ],
+            ask: [
+                "\n\nKarşılıklı gönderi beğenerek flörtleşme evresi ne zaman biter? Threads beğeni geçmişi dökülse ortalık fena karışacak gibi.",
+                "\n\nBence gerçek bağ; birbirinin uzun metinli sıkıcı düşünce akışlarını bile sonuna kadar sıkılmadan okuyup kaydetmekle başlar.",
+                "\n\nMesaj kutusunda (DM) sabahlayıp, akışta birbirini hiç tanımıyormuş gibi resmi takılan gizli aşıklar burayı doldurmuş bile."
+            ],
+            fal: [
+                "\n\nÖzellikle Su ve Hava grupları için bugün geçmişten gelen ani bir DM bildirimi her şeyi değiştirebilir. Tetikte kalın.",
+                "\n\nToprak burçları yine mantık kasarken, Ateş burçları akıştaki bir tartışmaya aniden dahil olup ortalığı yangın yerine çevirecek.",
+                "\n\nJüpiter'in olumlu açısı, bu hafta ürettiğiniz metinlerin organik olarak keşfete düşme ihtimalini inanılmaz yükseltiyor."
+            ],
+            gundem: [
+                "\n\nTüm platformlar tek bir haberle çalkalanırken, Threads kitlesinin olayı tamamen derinlemesine analiz etmesi harika bir detay.",
+                "\n\nOlayın sadece görünen yüzüne değil, dijital dünyadaki ve algoritmalardaki yansımasına odaklanmak resmi netleştiriyor.",
+                "\n\nHerkesin hızlıca tükettiği bu yapay gündem dalgası bittiğinde, geriye sadece kalıcı ve teknik bilgi üretenler kalacak."
+            ]
         };
 
-        const bodies = {
-            egitici: ["\n\nMetin içi link paylaşımları erişimi %30 oranında baskılıyor. Algoritma kullanıcıyı dışarı göndermek istemiyor.", "\n\nHer saat başı paylaşım yapmak yerine, günde sadece 1 adet kancası güçlü metin akışı (thread) oluşturmak erişimi katlıyor.", "\n\nProfil içi kurulan bento kütüphane sistemleri, takipçileri akıştan çekip kalıcı hale getirmenin en organik yolu."],
-            etkilesim: ["\n\nBurayı sadece içerik tüketmek için mi kullanıyorsunuz, yoksa kendi dijital kütüphanenizi kurmaya başladınız mı?", "\n\nSon algoritma dalgası sizi yukarı mı taşıdı yoksa etkileşimleriniz tamamen durdu mu? Durumunuzu yazın, analiz edelim.", "\n\nMetin gönderiler mi yoksa anketli paylaşımlar mı profilinizde daha çok erişim alıyor? Deneyimlerinizi merak ediyorum."],
-            hikaye: ["\n\nSadece her gün öğrendiğim tek bir teknik bilgiyi düzenli ve sabırla paylaştım. Sürece güvenmek en büyük anahtardı.", "\n\nBugün kurduğum bu BIOWORK yapısı sayesinde tüm kitlemi kalıcı bir havuzda toplayabiliyorum. Dijital varlık budur.", "\n\nOrganik büyüme zaman alır ancak kalıcıdır. Kısa yolları aramayı bıraktığım gün profilim kendi kendine büyümeye başladı."],
-            mizah: ["\n\n\'Günde 3 thread atarak milyoner oldum\' konseptli yazıları okurken kahvemi püskürttüm. Arkadaşlar burası sakin bir kasaba, yavaş olun.", "\n\nHerkes her konuda o kadar uzman ki, kendi kendime \'acaba ben hayata sadece izleyici olarak mı geldim\' diye sorgulatıyor.", "\n\nErişim düşmesin diye kırk takla atıp, en sonunda saçma bir kedi caps\'i ile binlerce beğeni alan o algoritmanın adaleti..."],
-            ask: ["\n\nKarşılıklı gönderi beğenerek flörtleşme evresi ne zaman biter? Threads beğeni geçmişi dökülse ortalık fena karışacak gibi.", "\n\nBence gerçek bağ; birbirinin uzun metinli sıkıcı düşünce akışlarını bile sonuna kadar sıkılmadan okuyup kaydetmekle başlar.", "\n\nMesaj kutusunda (DM) sabahlayıp, akışta birbirini hiç tanımıyormuş gibi resmi takılan gizli aşıklar burayı doldurmuş bile."],
-            fal: ["\n\nÖzellikle Su ve Hava grupları için bugün geçmişten gelen ani bir DM bildirimi her şeyi değiştirebilir. Tetikte kalın.", "\n\nToprak burçları yine mantık kasarken, Ateş burçları akıştaki bir tartışmaya aniden dahil olup ortalığı yangın yerine çevirecek.", "\n\nJüpiter'in olumlu açısı, bu hafta ürettiğiniz metinlerin organik olarak keşfete düşme ihtimalini inanılmaz yükseltiyor."],
-            gundem: ["\n\nTüm platformlar tek bir haberle çalkalanırken, Threads kitlesinin olayı tamamen derinlemesine analiz etmesi harika bir detay.", "\n\nOlayın sadece görünen yüzüne değil, dijital dünyadaki ve algoritmalardaki yansımasına odaklanmak resmi netleştiriyor.", "\n\nHerkesin hızlıca tükettiği bu yapay gündem dalgası bittiğinde, geriye sadece kalıcı ve teknik bilgi üretenler kalacak."]
-        };
         const ctas = {
             egitici: ["\n\nDetayları ve formülü ilk yoruma sabitledim, mutlaka göz atın! 💡", "\n\nBu parametreyi kaydetmeyi ve profilinizi buna göre optimize etmeyi unutmayın."],
             etkilesim: ["\n\nYorumlarda fikirlerinizi tartışalım, en iyileri inceleyeceğim 👇", "\n\nCevaplarınızı bekliyorum, akışı birlikte hareketlendirelim."],
@@ -321,77 +381,90 @@
             gundem: ["\n\nSiz bu olay hakkında ne düşünüyorsunuz? Fikirlerinizi alta yazın.", "\n\nGündemin geri kalan analizleri için profili takipte kalın!"]
         };
 
-        function renderLibraryItems(filterQuery = "") {
-            const container = document.getElementById('itemsContainer');
-            if(!container) return;
-            container.innerHTML = "";
-            
-            database.forEach((item, index) => {
-                const matchTitle = item.title.toLowerCase().includes(filterQuery);
-                const matchSub = item.sub.toLowerCase().includes(filterQuery);
-                
-                if (filterQuery === "" || matchTitle || matchSub) {
-                    const element = document.createElement('div');
-                    element.className = 'nested-item';
-                    element.setAttribute('onclick', `openDatabaseModal(${index})`);
-                    element.innerHTML = "<div>" + item.title + "<div class='nested-sub-text'>" + item.sub + "</div></div><span class='time-badge'>" + item.time + "</span>";
-                    container.appendChild(element);
-                }
-            });
-        }
-
-        function openDatabaseModal(index) {
-            const item = database[index];
-            document.getElementById('modalTitle').innerText = item.title;
-            document.getElementById('modalHighlight').innerText = item.highlight;
-            document.getElementById('modalText').innerText = item.text;
-            document.getElementById('modalLink').href = item.link;
-            modal.classList.add('active');
-        }
-
         function runIndependentAiEngine() {
             const style = document.getElementById('aiStyleSelect').value;
             const resultBox = document.getElementById('aiResultText');
+            
             const h = hooks[style][Math.floor(Math.random() * hooks[style].length)];
             const b = bodies[style][Math.floor(Math.random() * bodies[style].length)];
             const c = ctas[style][Math.floor(Math.random() * ctas[style].length)];
+            
             resultBox.style.display = 'block';
             resultBox.style.opacity = '0.5';
-            setTimeout(() => { resultBox.innerText = h + b + c; resultBox.style.opacity = '1'; }, 150);
+            setTimeout(() => {
+                resultBox.innerText = h + b + c;
+                resultBox.style.opacity = '1';
+            }, 150);
         }
 
         function copyAiGeneratedText() {
             const text = document.getElementById('aiResultText').innerText;
-            if(text) { navigator.clipboard.writeText(text).then(() => { const toast = document.getElementById('toastNotification'); toast.innerText = "Öneri Kopyalandı! 🤖"; toast.style.opacity = '1'; setTimeout(() => toast.style.opacity = '0', 2000); }); }
+            if(text) {
+                navigator.clipboard.writeText(text).then(() => {
+                    const toast = document.getElementById('toastNotification');
+                    toast.innerText = "Öneri Kopyalandı! 🤖";
+                    toast.style.opacity = '1';
+                    setTimeout(() => toast.style.opacity = '0', 2000);
+                });
+            }
         }
 
         function toggleLibrary() {
             const panel = document.getElementById('libraryPanel');
             const btn = document.getElementById('toggleLibraryBtn');
-            if (panel.classList.contains('hidden-content')) { panel.classList.remove('hidden-content'); btn.innerText = 'Konu Listesini Gizle ▴'; } else { panel.classList.add('hidden-content'); btn.innerText = 'Konu Listesini Göster ▾'; }
+            if (panel.classList.contains('hidden-content')) {
+                panel.classList.remove('hidden-content');
+                btn.innerText = 'Konu Listesini Gizle ▴';
+            } else {
+                panel.classList.add('hidden-content');
+                btn.innerText = 'Konu Listesini Göster ▾';
+            }
         }
 
         function filterLibrary() {
             const query = document.getElementById('searchInput').value.toLowerCase();
-            renderLibraryItems(query);
+            const items = document.getElementById('itemsContainer').getElementsByClassName('nested-item');
+            for (let i = 0; i < items.length; i++) {
+                const text = items[i].innerText.toLowerCase();
+                items[i].style.display = text.includes(query) ? 'flex' : 'none';
+            }
         }
 
-        function scrollToElement(id) { const element = document.getElementById(id); if (element) { element.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }
+        function scrollToElement(id) {
+            const element = document.getElementById(id);
+            if (element) { element.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        }
+
         const modal = document.getElementById('infoModal');
         const toast = document.getElementById('toastNotification');
-        function closeInfoModal(event) { if (!event || event.target === modal || event.type === 'click') { modal.classList.remove('active'); } }
-        function copyContentText() { const textToCopy = document.getElementById('modalText').innerText; navigator.clipboard.writeText(textToCopy).then(() => { toast.innerText = "Kopyalandı!"; toast.style.opacity = '1'; setTimeout(() => toast.style.opacity = '0', 2000); }); }
 
-        // KİLİTLENMEYİ ÖNLEYEN VE RE-RENDER TETİKLEYEN HATA ÖNLEYİCİ KANCA
-        window.addEventListener('load', () => {
-            renderLibraryItems();
-            try {
-                let localVisits = localStorage.getItem('local_visits') || 144;
-                localVisits = parseInt(localVisits) + 1;
-                localStorage.setItem('local_visits', localVisits);
-                document.getElementById('visitorValue').innerText = localVisits;
-            } catch(e) {}
-        });
+        function openHtmlModal(element) {
+            document.getElementById('modalTitle').innerText = element.getAttribute('data-title');
+            document.getElementById('modalHighlight').innerText = element.getAttribute('data-highlight');
+            document.getElementById('modalText').innerText = element.getAttribute('data-text');
+            document.getElementById('modalLink').href = element.getAttribute('data-link');
+            modal.classList.add('active');
+        }
+
+        function closeInfoModal(event) {
+            if (!event || event.target === modal || event.type === 'click') { modal.classList.remove('active'); }
+        }
+
+        function copyContentText() {
+            const textToCopy = document.getElementById('modalText').innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                toast.innerText = "Kopyalandı!";
+                toast.style.opacity = '1';
+                setTimeout(() => toast.style.opacity = '0', 2000);
+            });
+        }
+
+        try {
+            let localVisits = localStorage.getItem('local_visits') || 144;
+            localVisits = parseInt(localVisits) + 1;
+            localStorage.setItem('local_visits', localVisits);
+            document.getElementById('visitorValue').innerText = localVisits;
+        } catch(e) {}
     </script>
 </body>
 </html>
