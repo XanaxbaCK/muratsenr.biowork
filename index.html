@@ -33,6 +33,50 @@
             gap: 16px;
         }
 
+        /* --- YENI: KAYAN SON DAKİKA HABER BANDI STİLİ --- */
+        .news-ticker-wrapper {
+            width: 100%;
+            background-color: #12161a;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            border-radius: 10px;
+            padding: 8px 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .news-ticker-label {
+            background-color: #ff3366;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .news-ticker-content {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .news-ticker-text {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #e6edf3;
+            padding-left: 100%;
+            animation: tickerMove 15s linear infinite;
+        }
+
+        @keyframes tickerMove {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
         /* --- PARILDAYAN KARŞILAMA BANNER'I --- */
         .welcome-banner {
             background: linear-gradient(45deg, rgba(0, 198, 255, 0.1), rgba(0, 242, 254, 0.1));
@@ -63,6 +107,7 @@
             flex-direction: column;
             align-items: center;
         }
+
         .profile-avatar-wrapper {
             position: relative;
             width: 110px;
@@ -90,21 +135,8 @@
             pointer-events: none;
         }
 
-        .profile-name {
-            font-size: 22px;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: -0.5px;
-            width: 100%;
-        }
-
-        .profile-title {
-            font-size: 13px;
-            color: #00f2fe;
-            margin-top: 4px;
-            font-weight: 600;
-            width: 100%;
-        }
+        .profile-name { font-size: 22px; font-weight: 700; color: #ffffff; letter-spacing: -0.5px; width: 100%; }
+        .profile-title { font-size: 13px; color: #00f2fe; margin-top: 4px; font-weight: 600; width: 100%; }
 
         .threads-profile-btn {
             display: flex;
@@ -127,7 +159,6 @@
         .threads-logo { font-size: 24px; display: flex; align-items: center; justify-content: center; background-color: #1c2128; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #30363d; flex-shrink: 0; }
         .threads-btn-title { font-size: 14px; font-weight: 700; color: #ffffff; }
         .threads-btn-desc { font-size: 12px; color: #8b949e; margin-top: 3px; line-height: 1.3; }
-
         /* --- BENTO KART YAPISI --- */
         .bento-card {
             background-color: #12161a;
@@ -146,6 +177,7 @@
         .card-icon-top { font-size: 20px; color: #8b949e; margin-bottom: 12px; }
         .card-title { font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
         .card-desc { font-size: 13px; color: #8b949e; line-height: 1.5; margin-bottom: 20px; }
+
         .btn-action {
             width: 100%;
             background-color: #1f242c;
@@ -186,6 +218,29 @@
         .nested-sub-text { font-size: 11px; color: #8b949e; font-weight: 400; margin-top: 4px; }
         .hidden-content { display: none; }
 
+        /* YENI: OKUMA SÜRESİ ROZET STİLİ */
+        .time-badge {
+            background-color: #1f242c;
+            color: #00f2fe;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 242, 254, 0.1);
+        }
+
+        /* YENI: POP-UP İÇİ KRİTİK BİLGİ VURGU KUTUSU STİLİ */
+        .highlight-box {
+            background-color: rgba(0, 242, 254, 0.05);
+            border-left: 3px solid #00f2fe;
+            padding: 12px;
+            border-radius: 0 8px 8px 0;
+            font-size: 13px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 14px;
+            line-height: 1.4;
+        }
         /* --- SAYAÇ VE ALT MENÜ --- */
         .footer-info { text-align: center; margin-top: 24px; font-size: 13px; color: #8b949e; display: flex; flex-direction: column; gap: 8px; padding-bottom: 20px; }
         .visitor-count strong { color: #ffffff; }
@@ -199,18 +254,31 @@
         .modal-box { background-color: #12161a; border: 1px solid #30363d; width: 100%; max-width: 440px; border-radius: 20px; padding: 24px; position: relative; transform: scale(0.9); transition: transform 0.3s ease; }
         .modal-overlay.active .modal-box { transform: scale(1); }
         .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: #8b949e; font-size: 18px; cursor: pointer; }
-        .modal-title { font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 12px; }
+        .modal-title { font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
         .modal-desc-static { font-size: 13px; color: #8b949e; margin-bottom: 14px; }
         .modal-content-scroll { background-color: #090d10; border: 1px solid #21262d; border-radius: 10px; padding: 14px; max-height: 180px; overflow-y: auto; font-family: monospace; font-size: 13px; color: #c9d1d9; line-height: 1.5; margin-bottom: 20px; white-space: pre-wrap; }
         .modal-buttons { display: flex; flex-direction: column; gap: 10px; }
         .btn-modal-primary { background: linear-gradient(45deg, #00c6ff, #00f2fe); color: #090d10; border: none; padding: 12px; border-radius: 25px; font-size: 14px; font-weight: 700; cursor: pointer; }
         .btn-modal-secondary { background-color: transparent; color: #ff3366; border: 1px solid rgba(255, 51, 102, 0.3); padding: 12px; border-radius: 25px; font-size: 14px; font-weight: 600; text-align: center; text-decoration: none; display: block; }
+        
+        /* YENI: THREADS PAYLAŞ BUTONU STİLİ */
+        .btn-modal-share { background-color: #ffffff; color: #090d10; border: none; padding: 12px; border-radius: 25px; font-size: 14px; font-weight: 700; text-align: center; text-decoration: none; display: block; cursor: pointer; transition: opacity 0.2s; }
+        .btn-modal-share:hover { opacity: 0.9; }
+
         .toast { position: fixed; bottom: 30px; background-color: #00f2fe; color: #090d10; padding: 10px 20px; border-radius: 20px; font-size: 13px; font-weight: 700; opacity: 0; transition: opacity 0.3s ease; z-index: 1100; pointer-events: none; }
     </style>
 </head>
 <body>
     <div class="container">
         
+        <!-- YENI: FLAŞ HABER BANDI (Yazıyı dilediğin gibi değiştirebilirsin) -->
+        <div class="news-ticker-wrapper">
+            <div class="news-ticker-label">Gündem</div>
+            <div class="news-ticker-content">
+                <div class="news-ticker-text">Threads algoritmasında metin gönderilerin erişim önceliği güncellendi! Detaylar bilgi bankasında.</div>
+            </div>
+        </div>
+
         <!-- HOŞ GELDİNİZ BANNER'I -->
         <div class="welcome-banner">
             ✨ Kişisel BIOWORK bloguma hoş geldiniz!
@@ -219,12 +287,12 @@
         <!-- PROFİL ALANI -->
         <div id="profileSection" class="profile-section">
             <div class="profile-avatar-wrapper">
-                <img src="https://i.ibb.co/WpFWtGpv/11.jpg" alt="11" border"0" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; display: block;">
+               <img src="https://i.ibb.co/WpFWtGpv/11.jpg" alt="11" border"0" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; display: block;">
             </div>
             <div class="profile-name">@muratsenr</div>
             <div class="profile-title">Content Creator & SW Dev</div>
             
-            <a href="https://threads.net" target="_blank" class="threads-profile-btn">
+            <a href="https://threads.com/@muratsenr" target="_blank" class="threads-profile-btn">
                 <div class="threads-logo">🧵</div>
                 <div>
                     <div class="threads-btn-title">Threads Profilimi Keşfet</div>
@@ -242,7 +310,7 @@
 
             <!-- AÇILIR PANEL -->
             <div id="libraryPanel" class="search-wrapper hidden-content">
-                <input type="text" id="searchInput" class="search-input" placeholder="Konularda hızlıca ara... (Örn: Eylül, Renk)" oninput="filterLibrary()">
+                <input type="text" id="searchInput" class="search-input" placeholder="Konularda hızlıca ara... (Örn: Güncelleme, Spam vb.)" oninput="filterLibrary()">
                 <div class="nested-list" id="itemsContainer"></div>
             </div>
         </div>
@@ -250,12 +318,12 @@
         <div id="contactSection" class="section-label">Sosyal Medya & İletişim</div>
 
         <!-- SOSYAL LİNKLER -->
-        <a href="https://instagram.com" target="_blank" class="row-card">
+        <a href="https://instagram.com/muratsenr" target="_blank" class="row-card">
             <div class="row-left"><div class="row-icon">📸</div><div><div class="row-text-main">Instagram</div><div class="row-text-sub">@muratsenr</div></div></div>
             <span class="arrow-right">Takip Et →</span>
         </a>
 
-        <a href="https://instagram.com" target="_blank" class="row-card">
+        <a href="https://instagram.com/muratsenr" target="_blank" class="row-card">
             <div class="row-left"><div class="row-icon">📩</div><div><div class="row-text-main">Önerileriniz İçin DM</div><div class="row-text-sub">Doğrudan mesaj göndererek iletişime geçin</div></div></div>
             <span class="arrow-right">Mesaj Gönder →</span>
         </a>
@@ -279,36 +347,48 @@
         <span class="nav-item" onclick="scrollToElement('contactSection')">İletişim</span>
     </div>
 
-    <!-- POP-UP MODAL -->
+    <!-- POP-UP MODAL (YENİ YAPILARI İÇERECEK ŞEKİLDE GÜNCELLENDİ) -->
     <div class="modal-overlay" id="infoModal" onclick="closeInfoModal(event)">
         <div class="modal-box" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeInfoModal(null)">✕</button>
             <div class="modal-title" id="modalTitle">Başlık</div>
-            <div class="modal-desc-static">Güncelleme ile ilgili detay için aşağıdaki linke tıklayınız. Teşekkürler :)</div>
+            
+            <!-- YENI: KRİTİK BİLGİ KUTUSU -->
+            <div class="highlight-box" id="modalHighlight">Önemli bilgi kutusu yükleniyor...</div>
+            
             <div class="modal-content-scroll" id="modalText">İçerik</div>
             <div class="modal-buttons">
                 <button class="btn-modal-primary" onclick="copyContentText()">📋 Metni Kopyala</button>
+                
+                <!-- YENI: BENI THREADS'DE PAYLAŞ BUTONU -->
+                <a href="#" target="_blank" class="btn-modal-share" id="modalShareBtn">🧵 Beni Threads'de Paylaş</a>
+                
                 <a href="#" target="_blank" class="btn-modal-secondary" id="modalLink">▷ İlgili Gönderiyi Gör</a>
             </div>
         </div>
     </div>
 
     <div class="toast" id="toastNotification">Kopyalandı!</div>
-
-    <!-- JAVASCRIPT YÖNETİM MOTORU -->
     <script>
+        // Veritabanı (Okuma süresi, kritik bilgi ve Threads paylaşım cümleleri entegre edildi)
         const database = [
             {
                 id: 'threads-update-1',
                 title: '14-26 Eylül Güncellemesi',
                 sub: 'Threads güncel algoritma ve ayar parametreleri.',
-                link: 'https://threads.net',
+                time: '2 dk okuma',
+                highlight: '💡 Kritik Not: Link içeren Threads gönderileri etkileşim dağıtımını %30 düşürmektedir.',
+                shareText: 'Murat Sener Bilgi Bankasındaki 14-26 Eylul Threads algoritma taktiklerine goz attiniz mi?',
+                link: 'https://www.threads.com/share/K9HBGNUur/',
                 text: `[14-26 EYLÜL THREADS GÜNCELLEME REHBERİ]\n\n• Erişim ve etkileşim parametreleri yenilendi.\n• Profil içi bento entegrasyonu tamamlandı.`
             },
             {
                 id: 'global-trends-2',
                 title: '26-28 Eylül Gündem Başlıkları',
                 sub: 'Global yapay zeka araçları ve kurgu trendleri.',
+                time: '3 dk okuma',
+                highlight: '💡 Kritik Not: Mobil cihazlara öncelik verilen dikey metinler okuma süresini artırıyor.',
+                shareText: 'Threads uzerinde kitle buyutme ve global kurgu trendleri ozetini mutlaka okuyun!',
                 link: 'https://threads.net',
                 text: `[GLOBAL YAPAY ZEKA GÜNDEMİ]\n\n• Statik bento altyapıları hız kazandı.\n• Mobil dönüşümler yükselişte.`
             },
@@ -316,6 +396,9 @@
                 id: 'color-grading-tip',
                 title: 'Renk Grading & LUT İpucu',
                 sub: 'Kurgularda sinematik tonlama yakalama rehberi.',
+                time: '1 dk okuma',
+                highlight: '💡 Kritik Not: Shadows alanındaki Teal dengesi izleyicinin videoda kalma süresini etkiler.',
+                shareText: 'Sinematik kurgular icin cok pratik bir renk grading tuyosu buldum, goz atin!',
                 link: 'https://threads.net',
                 text: `[RENK GRADING İPUÇLARI]\n\n• Shadows: Teal tonları %5 artırıldı.\n• Highlights: Sıcak ton dengesi korundu.`
             }
@@ -328,7 +411,7 @@
                 const div = document.createElement('div');
                 div.className = 'nested-item';
                 div.setAttribute('onclick', `openInfoModal('${item.id}')`);
-                div.innerHTML = `<div>${item.title}<div class="nested-sub-text">${item.sub}</div></div><span style="color:#00f2fe;">Gör →</span>`;
+                div.innerHTML = `<div>${item.title}<div class="nested-sub-text">${item.sub}</div></div><span class="time-badge">${item.time}</span>`;
                 container.appendChild(div);
             });
         }
@@ -345,8 +428,6 @@
                 btn.innerText = 'Konu Listesini Göster ▾';
             }
         }
-
-        document.getElementById('mura7sener@gmail.com');
 
         function filterLibrary() {
             const query = document.getElementById('searchInput').value.toLowerCase();
@@ -375,8 +456,14 @@
             const data = database.find(x => x.id === id);
             if (data) {
                 document.getElementById('modalTitle').innerText = data.title;
+                document.getElementById('modalHighlight').innerText = data.highlight;
                 document.getElementById('modalText').innerText = data.text;
                 document.getElementById('modalLink').href = data.link;
+                
+                // Otomatik Threads Paylaşım Linki Oluşturma (Türkçe karakter uyumlu)
+                const encodedText = encodeURIComponent(data.shareText + ' ' + window.location.href);
+                document.getElementById('modalShareBtn').href = `https://threads.com/{encodedText}`;
+                
                 modal.classList.add('active');
             }
         }
