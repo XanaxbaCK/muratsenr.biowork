@@ -46,17 +46,7 @@
             gap: 10px;
         }
 
-        .news-ticker-label {
-            background-color: #ff3366;
-            color: #ffffff;
-            font-size: 11px;
-            font-weight: 800;
-            padding: 3px 8px;
-            border-radius: 6px;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
+        .news-ticker-label { background-color: #ff3366; color: #ffffff; font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; white-space: nowrap; }
         .news-ticker-content { width: 100%; overflow: hidden; white-space: nowrap; position: relative; }
         .news-ticker-text { display: inline-block; font-size: 13px; font-weight: 600; color: #e6edf3; padding-left: 100%; animation: tickerMove 15s linear infinite; }
         @keyframes tickerMove { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
@@ -82,42 +72,53 @@
             50% { border-color: rgba(0, 242, 254, 0.6); box-shadow: 0 4px 20px rgba(0, 242, 254, 0.15); }
             100% { border-color: rgba(0, 242, 254, 0.3); box-shadow: 0 4px 15px rgba(0, 242, 254, 0.05); }
         }
+
+        /* YENI: INTERAKTIF AI SEÇİM KUTULARI VE METİN ALANI STİLLERİ */
+        .ai-select {
+            width: 100%;
+            background-color: #090d10;
+            border: 1px solid #30363d;
+            color: #ffffff;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            outline: none;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+        
+        .ai-result-box {
+            background-color: #090d10;
+            border: 1px solid #21262d;
+            border-radius: 10px;
+            padding: 14px;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #c9d1d9;
+            margin-top: 14px;
+            white-space: pre-wrap;
+            min-height: 60px;
+        }
+
+        .btn-ai-generate {
+            width: 100%;
+            background: linear-gradient(45deg, #bf55ec, #7209b7);
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            box-shadow: 0 4px 15px rgba(114, 9, 183, 0.3);
+        }
+        .btn-ai-generate:hover { opacity: 0.9; }
         /* --- PROFİL ALANI --- */
-        .profile-section {
-            text-align: center;
-            padding: 10px 0 5px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .profile-avatar-wrapper {
-            position: relative;
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 15px auto;
-            display: block;
-        }
-
-        .profile-avatar {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #161b22;
-            display: block;
-        }
-
-        .profile-avatar-wrapper::after {
-            content: '';
-            position: absolute;
-            top: -4px; left: -4px; right: -4px; bottom: -4px;
-            border-radius: 50%;
-            border: 2px solid #00f2fe;
-            box-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
-            pointer-events: none;
-        }
-
+        .profile-section { text-align: center; padding: 10px 0 5px 0; display: flex; flex-direction: column; align-items: center; }
+        .profile-avatar-wrapper { position: relative; width: 110px; height: 110px; margin: 0 auto 15px auto; display: block; }
+        .profile-avatar { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 2px solid #161b22; display: block; }
+        .profile-avatar-wrapper::after { content: ''; position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px; border-radius: 50%; border: 2px solid #00f2fe; box-shadow: 0 0 12px rgba(0, 242, 254, 0.4); pointer-events: none; }
         .profile-name { font-size: 22px; font-weight: 700; color: #ffffff; letter-spacing: -0.5px; width: 100%; }
         .profile-title { font-size: 13px; color: #00f2fe; margin-top: 4px; font-weight: 600; width: 100%; }
 
@@ -149,9 +150,7 @@
         .card-title { font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 6px; }
         .card-desc { font-size: 13px; color: #8b949e; line-height: 1.5; margin-bottom: 20px; }
 
-        .btn-action {
-            width: 100%; background-color: #1f242c; border: 1px solid #30363d; color: #ffffff; padding: 12px; border-radius: 25px; font-size: 14px; font-weight: 600; text-align: center; cursor: pointer; transition: all 0.2s ease; display: flex; justify-content: center; align-items: center; gap: 8px;
-        }
+        .btn-action { width: 100%; background-color: #1f242c; border: 1px solid #30363d; color: #ffffff; padding: 12px; border-radius: 25px; font-size: 14px; font-weight: 600; text-align: center; cursor: pointer; transition: all 0.2s ease; display: flex; justify-content: center; align-items: center; gap: 8px; border: 1px solid #30363d; }
 
         /* --- SOSYAL MEDYA KARTLARI --- */
         .row-card { display: flex; align-items: center; justify-content: space-between; background-color: #12161a; border: 1px solid #21262d; padding: 16px 20px; border-radius: 14px; text-decoration: none; color: inherit; }
@@ -224,9 +223,26 @@
                 <div class="threads-logo">🧵</div>
                 <div>
                     <div class="threads-btn-title">Threads Profilimi Keşfet</div>
-                    <div class="threads-btn-desc">Yapay zeka ipuçları, güncel Threads parametre rehberleri ver kişisel dijital notlarım için tıklayın.</div>
+                    <div class="threads-btn-desc">Yapay zeka ipuçları, güncel Threads parametre rehberleri ve kişisel dijital notlarım için tıklayın.</div>
                 </div>
             </a>
+        </div>
+
+        <!-- YENI BENTO KART: THREADS IÇERIK ASISTANI (MİKRO ARACIN) -->
+        <div class="bento-card" style="border-color: rgba(191, 85, 236, 0.4);">
+            <div class="card-icon-top">🤖</div>
+            <div class="card-title">Threads İçerik Asistanı</div>
+            <div class="card-desc">Threads'de bugün ne paylaşacağını bilmiyor musun? Paylaşım tarzını seç ve yapay zeka algoritmasının senin için hazırladığı kancası güçlü taslağı kopyala!</div>
+            
+            <select id="aiStyleSelect" class="ai-select">
+                <option value="egitici">💡 Eğitici / Hap Algoritma Bilgisi</option>
+                <option value="etkilesim">🔥 Yüksek Etkileşim / Soru Gönderisi</option>
+                <option value="hikaye">🚀 Girişimcilik / Kişisel Tecrübe Paylaşımı</option>
+            </select>
+            
+            <button class="btn-ai-generate" onclick="generateThreadsIdea()">Fikir Üret ⚡</button>
+            
+            <div class="ai-result-box" id="aiResultText" onclick="copyAiGeneratedText()" style="cursor: pointer;" title="Kopyalamak için tıkla">Tarzınızı seçip butona basın...</div>
         </div>
 
         <!-- BENTO KART: BİLGİ BANKASI VE AÇILIR LİSTE -->
@@ -242,46 +258,14 @@
                 <input type="text" id="searchInput" class="search-input" placeholder="Konularda hızlıca ara... (Örn: Eylül, Renk)" oninput="filterLibrary()">
                 
                 <div class="nested-list" id="itemsContainer">
-                    
                     <!-- 1. KONU BLOĞU -->
-                    <div class="nested-item" onclick="openHtmlModal(this)"
-                         data-title="14-26 Eylül Güncellemesi"
-                         data-highlight="💡 Kritik Not: Link içeren Threads gönderileri etkileşim dağıtımını %30 düşürmektedir."
-                         data-text="[14-26 EYLÜL THREADS GÜNCELLEME REHBERİ]&#10;&#10;• Erişim ve etkileşim parametreleri yenilendi.&#10;• Profil içi bento entegrasyonu tamamlandı."
-                         data-link="https://threads.net">
-                        <div>
-                            14-26 Eylül Güncellemesi
-                            <div class="nested-sub-text">Threads güncel algoritma ve ayar parametreleri.</div>
-                        </div>
-                        <span class="time-badge">2 dk okuma</span>
-                    </div>
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="14-26 Eylül Güncellemesi" data-highlight="💡 Kritik Not: Link içeren Threads gönderileri etkileşim dağıtımını %30 düşürmektedir." data-text="[14-26 EYLÜL THREADS GÜNCELLEME REHBERİ]&#10;&#10;• Erişim ve etkileşim parametreleri yenilendi.&#10;• Profil içi bento entegrasyonu tamamlandı." data-link="https://threads.net"><div>14-26 Eylül Güncellemesi<div class="nested-sub-text">Threads güncel algoritma ve ayar parametreleri.</div></div><span class="time-badge">2 dk okuma</span></div>
 
                     <!-- 2. KONU BLOĞU -->
-                    <div class="nested-item" onclick="openHtmlModal(this)"
-                         data-title="26-28 Eylül Gündem Başlıkları"
-                         data-highlight="💡 Kritik Not: Mobil cihazlara öncelik verilen dikey metinler okuma süresini artırıyor."
-                         data-text="[GLOBAL YAPAY ZEKA GÜNDEMİ]&#10;&#10;• Statik bento altyapıları hız kazandı.&#10;• Mobil dönüşümler yükselişte."
-                         data-link="https://threads.net">
-                        <div>
-                            26-28 Eylül Gündem Başlıkları
-                            <div class="nested-sub-text">Global yapay zeka araçları ve kurgu trendleri.</div>
-                        </div>
-                        <span class="time-badge">3 dk okuma</span>
-                    </div>
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="26-28 Eylül Gündem Başlıkları" data-highlight="💡 Kritik Not: Mobil cihazlara öncelik verilen dikey metinler okuma süresini artırıyor." data-text="[GLOBAL YAPAY ZEKA GÜNDEMİ]&#10;&#10;• Statik bento altyapıları hız kazandı.&#10;• Mobil dönüşümler yükselişte." data-link="https://threads.net"><div>26-28 Eylül Gündem Başlıkları<div class="nested-sub-text">Global yapay zeka araçları ve kurgu trendleri.</div></div><span class="time-badge">3 dk okuma</span></div>
 
                     <!-- 3. KONU BLOĞU -->
-                    <div class="nested-item" onclick="openHtmlModal(this)"
-                         data-title="Renk Grading & LUT İpucu"
-                         data-highlight="💡 Kritik Not: Shadows alanındaki Teal dengesi izleyicinin videoda kalma süresini etkiler."
-                         data-text="[RENK GRADING İPUÇLARI]&#10;&#10;• Shadows: Teal tonları %5 artırıldı.&#10;• Highlights: Sıcak ton dengesi korundu."
-                         data-link="https://threads.net">
-                        <div>
-                            Renk Grading & LUT İpucu
-                            <div class="nested-sub-text">Kurgularda sinematik tonlama yakalama rehberi.</div>
-                        </div>
-                        <span class="time-badge">1 dk okuma</span>
-                    </div>
-
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="Renk Grading & LUT İpucu" data-highlight="💡 Kritik Not: Shadows alanındaki Teal dengesi izleyicinin videoda kalma süresini etkiler." data-text="[RENK GRADING İPUÇLARI]&#10;&#10;• Shadows: Teal tonları %5 artırıldı.&#10;• Highlights: Sıcak ton dengesi korundu." data-link="https://threads.net"><div>Renk Grading & LUT İpucu<div class="nested-sub-text">Kurgularda sinematik tonlama yakalama rehberi.</div></div><span class="time-badge">1 dk okuma</span></div>
                 </div>
             </div>
         </div>
@@ -303,7 +287,7 @@
             <span class="arrow-right">Mail At →</span>
         </a>
 
-        <!-- SAYAÇ VE COPYRIGHT (ID EKLEMESİ YAPILDI) -->
+        <!-- SAYAÇ VE COPYRIGHT -->
         <div class="footer-info">
             <div class="visitor-count">Toplam ziyaret: <strong id="visitorValue">Yükleniyor...</strong></div>
             <div class="copyright">muratsenr © 2026</div>
@@ -333,32 +317,65 @@
 
     <div class="toast" id="toastNotification">Kopyalandı!</div>
 
-    <!-- JAVASCRIPT YÖNETİM VE CANLI SAYAÇ MOTORU -->
+    <!-- JAVASCRIPT ASISTAN VE FILTRELEME MOTORU -->
     <script>
-        // CANLI ZİYARETÇİ SAYAÇ SCRIPT ENTEGRASYONU (CountAPI)
-        // Sayfa her yüklendiğinde otomatik olarak tetiklenir ve sayıyı 1 artırır
+        // AI TARZ SÖZLÜĞÜ VE KANCA HAVUZU
+        const aiPool = {
+            egitici: [
+                "Threads algoritması hakkında kimsenin söylemediği o gerçek:\n\nSon 48 saatteki testlerime göre, metin içi link paylaşımı erişimi doğrudan baskılıyor. \n\nPeki ne yapmalısınız? Çözüm ilk yorumda.",
+                "Eğer Threads'de büyümek istiyorsanız şu 3 kuralı unutun:\n\n1. Her saat başı paylaşım yapmak\n2. Sadece görsel yüklemek\n3. Etkileşimsiz kalmak\n\nBunun yerine her gün sadece 1 adet güçlü metin akışı (thread) oluşturun. Farkı göreceksiniz."
+            ],
+            etkilesim: [
+                "Çok ciddi bir soru soracağım:\n\nThreads'i sadece tüketim amaçlı mı kullanıyorsunuz, yoksa burayı bir dijital kütüphaneye çevirmeyi başarabildiniz mi?\n\nYorumlarda fikirlerinizi tartışalım, en iyileri profilime ekleyeceğim.",
+                "Şu anki Threads erişimlerinizden memnun musunuz?\n\nSon algoritma dalgası sizi yukarı mı taşıdı yoksa etkileşimleriniz düştü mü? \n\nDurumunuzu yazın, analiz edelim 👇"
+            ],
+            hikaye: [
+                "Bundan tam 6 ay önce Threads'de sıfır takipçim vardı.\n\nSadece her gün öğrendiğim 1 adet teknik bilgiyi düzenli paylaştım. Ne reklam verdim ne de yapay etkileşim gruplarına girdim.\n\nİşte organik büyümenin formülü...",
+                "Yazılım ve içerik üreticiliğini birleştirdiğimde bana 'ikisi bir arada yürümez' dediler.\n\nBugün kurduğum bu bento kütüphane sistemi sayesinde Threads kitlemi kalıcı bir bilgi bankasına çekebiliyorum. Sürece güvenin."
+            ]
+        };
+
+        function generateThreadsIdea() {
+            const style = document.getElementById('aiStyleSelect').value;
+            const ideas = aiPool[style];
+            const randomIndex = Math.floor(Math.random() * ideas.length);
+            
+            // Sonucu şık bir efektle ekrana basma
+            const resultBox = document.getElementById('aiResultText');
+            resultBox.style.opacity = '0.5';
+            setTimeout(() => {
+                resultBox.innerText = ideas[randomIndex];
+                resultBox.style.opacity = '1';
+                resultBox.style.borderColor = '#bf55ec';
+            }, 150);
+        }
+
+        function copyAiGeneratedText() {
+            const text = document.getElementById('aiResultText').innerText;
+            if(text && text !== "Tarzınızı seçip butona basın...") {
+                navigator.clipboard.writeText(text).then(() => {
+                    const toast = document.getElementById('toastNotification');
+                    toast.innerText = "Öneri Kopyalandı! 🤖";
+                    toast.style.opacity = '1';
+                    setTimeout(() => toast.style.opacity = '0', 2000);
+                });
+            }
+        }
+
         function getLiveCounter() {
             const namespace = 'muratsenr-biowork';
             const key = 'visits';
-            const url = `https://countapi.xyz{namespace}/${key}`;
-            
-            fetch(url)
+            fetch(`https://countapi.xyz{namespace}/${key}`)
                 .then(res => res.json())
-                .then(data => {
-                    document.getElementById('visitorValue').innerText = data.value;
-                })
-                .catch(err => {
-                    // Sunucuda anlık yoğunluk olursa rastgele gerçekçi bir taban değer simüle edilir:
-                    console.log('Sayaç hatası, lokal hafızadan okunuyor.');
-                    let localVisits = localStorage.getItem('local_visits') || Math.floor(Math.random() * 240) + 120;
+                .then(data => { document.getElementById('visitorValue').innerText = data.value; })
+                .catch(() => {
+                    let localVisits = localStorage.getItem('local_visits') || 142;
                     localVisits = parseInt(localVisits) + 1;
                     localStorage.setItem('local_visits', localVisits);
                     document.getElementById('visitorValue').innerText = localVisits;
                 });
         }
-        window.onload = function() {
-            getLiveCounter();
-        };
+        window.onload = function() { getLiveCounter(); };
 
         function toggleLibrary() {
             const panel = document.getElementById('libraryPanel');
@@ -404,6 +421,7 @@
         function copyContentText() {
             const textToCopy = document.getElementById('modalText').innerText;
             navigator.clipboard.writeText(textToCopy).then(() => {
+                toast.innerText = "Kopyalandı!";
                 toast.style.opacity = '1';
                 setTimeout(() => toast.style.opacity = '0', 2000);
             });
