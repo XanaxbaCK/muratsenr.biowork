@@ -193,7 +193,6 @@
         .modal-buttons { display: flex; flex-direction: column; gap: 10px; }
         .btn-modal-primary { background: linear-gradient(45deg, #00c6ff, #00f2fe); color: #090d10; border: none; padding: 12px; border-radius: 25px; font-size: 14px; font-weight: 700; cursor: pointer; }
         .btn-modal-secondary { background-color: transparent; color: #ff3366; border: 1px solid rgba(255, 51, 102, 0.3); padding: 12px; border-radius: 25px; font-size: 14px; font-weight: 600; text-align: center; text-decoration: none; display: block; }
-        .btn-modal-share { background-color: #ffffff; color: #090d10; border: none; padding: 12px; border-radius: 25px; font-size: 14px; font-weight: 700; text-align: center; text-decoration: none; display: block; cursor: pointer; }
         .toast { position: fixed; bottom: 30px; background-color: #00f2fe; color: #090d10; padding: 10px 20px; border-radius: 20px; font-size: 13px; font-weight: 700; opacity: 0; transition: opacity 0.3s ease; z-index: 1100; pointer-events: none; }
     </style>
 </head>
@@ -238,7 +237,7 @@
             
             <button class="btn-action" id="toggleLibraryBtn" onclick="toggleLibrary()">Konu Listesini Göster ▾</button>
 
-            <!-- AÇILIR PANEL (TÜM LİNK VE VERİLER HTML BLOKLARINA İŞLENDİ) -->
+            <!-- AÇILIR PANEL -->
             <div id="libraryPanel" class="search-wrapper hidden-content">
                 <input type="text" id="searchInput" class="search-input" placeholder="Konularda hızlıca ara... (Örn: Eylül, Renk)" oninput="filterLibrary()">
                 
@@ -248,8 +247,7 @@
                     <div class="nested-item" onclick="openHtmlModal(this)"
                          data-title="14-26 Eylül Güncellemesi"
                          data-time="2 dk okuma"
-                         data-link="https://www.threads.com/share/BlUCNUmtTk/"
-                         data-share="Murat Sener Bilgi Bankasındaki 14-26 Eylul Threads algoritma taktiklerine goz attiniz mi?"
+                         data-link="https://www.threads.com/share/Dokxe8CNc/"
                          data-highlight="💡 Kritik Not: Link içeren Threads gönderileri etkileşim dağıtımını %30 düşürmektedir."
                          data-text="[14-26 EYLÜL THREADS GÜNCELLEME REHBERİ]&#10;&#10;• Erişim ve etkileşim parametreleri yenilendi.&#10;• Profil içi bento entegrasyonu tamamlandı.">
                         <div>
@@ -264,7 +262,6 @@
                          data-title="26-28 Eylül Gündem Başlıkları"
                          data-time="3 dk okuma"
                          data-link="https://threads.net"
-                         data-share="Threads uzerinde kitle buyutme ve global kurgu trendleri ozetini mutlaka okuyun!"
                          data-highlight="💡 Kritik Not: Mobil cihazlara öncelik verilen dikey metinler okuma süresini artırıyor."
                          data-text="[GLOBAL YAPAY ZEKA GÜNDEMİ]&#10;&#10;• Statik bento altyapıları hız kazandı.&#10;• Mobil dönüşümler yükselişte.">
                         <div>
@@ -279,7 +276,6 @@
                          data-title="Renk Grading & LUT İpucu"
                          data-time="1 dk okuma"
                          data-link="https://threads.net"
-                         data-share="Sinematik kurgular icin cok pratik bir renk grading tuyosu buldum, goz atin!"
                          data-highlight="💡 Kritik Not: Shadows alanındaki Teal dengesi izleyicinin videoda kalma süresini etkiler."
                          data-text="[RENK GRADING İPUÇLARI]&#10;&#10;• Shadows: Teal tonları %5 artırıldı.&#10;• Highlights: Sıcak ton dengesi korundu.">
                         <div>
@@ -295,12 +291,12 @@
         <div id="contactSection" class="section-label">Sosyal Medya & İletişim</div>
 
         <!-- SOSYAL LİNKLER -->
-        <a href="https://instagram.com" target="_blank" class="row-card">
+        <a href="https://instagram.com/muratsenr" target="_blank" class="row-card">
             <div class="row-left"><div class="row-icon">📸</div><div><div class="row-text-main">Instagram</div><div class="row-text-sub">@muratsenr</div></div></div>
             <span class="arrow-right">Takip Et →</span>
         </a>
 
-        <a href="https://instagram.com" target="_blank" class="row-card">
+        <a href="https://instagram.com/muratsenr" target="_blank" class="row-card">
             <div class="row-left"><div class="row-icon">📩</div><div><div class="row-text-main">Önerileriniz İçin DM</div><div class="row-text-sub">Doğrudan mesaj göndererek iletişime geçin</div></div></div>
             <span class="arrow-right">Mesaj Gönder →</span>
         </a>
@@ -324,7 +320,7 @@
         <span class="nav-item" onclick="scrollToElement('contactSection')">İletişim</span>
     </div>
 
-    <!-- POP-UP MODAL -->
+    <!-- POP-UP MODAL (THREADS PAYLAŞ BUTONU KALDIRILDI) -->
     <div class="modal-overlay" id="infoModal" onclick="closeInfoModal(event)">
         <div class="modal-box" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeInfoModal(null)">✕</button>
@@ -333,7 +329,6 @@
             <div class="modal-content-scroll" id="modalText">İçerik</div>
             <div class="modal-buttons">
                 <button class="btn-modal-primary" onclick="copyContentText()">📋 Metni Kopyala</button>
-                <a href="#" target="_blank" class="btn-modal-share" id="modalShareBtn">🧵 Beni Threads'de Paylaş</a>
                 <a href="#" target="_blank" class="btn-modal-secondary" id="modalLink">▷ İlgili Gönderiyi Gör</a>
             </div>
         </div>
@@ -372,17 +367,11 @@
         const modal = document.getElementById('infoModal');
         const toast = document.getElementById('toastNotification');
 
-        // Tıklanan HTML elementinin içindeki tüm özel verileri (data-*) modal pencerelerine eşleyen akıllı motor
         function openHtmlModal(element) {
             document.getElementById('modalTitle').innerText = element.getAttribute('data-title');
             document.getElementById('modalHighlight').innerText = element.getAttribute('data-highlight');
             document.getElementById('modalText').innerText = element.getAttribute('data-text');
             document.getElementById('modalLink').href = element.getAttribute('data-link');
-            
-            const shareText = element.getAttribute('data-share');
-            const encodedText = encodeURIComponent(shareText + ' ' + window.location.href);
-            document.getElementById('modalShareBtn').href = `https://threads.com/{encodedText}`;
-            
             modal.classList.add('active');
         }
 
