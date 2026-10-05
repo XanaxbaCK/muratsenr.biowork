@@ -105,8 +105,8 @@
         .card-desc { font-size: 13px; color: #8b949e; line-height: 1.5; margin-bottom: 18px; }
         .btn-action { width: 100%; background-color: #1f242c; border: 1px solid #30363d; color: #ffffff; padding: 12px; border-radius: 25px; font-size: 13px; font-weight: 600; text-align: center; cursor: pointer; transition: all 0.2s ease; display: flex; justify-content: center; align-items: center; gap: 8px; border: 1px solid #30363d; }
 
-        /* --- QUIZ & SEÇİM ALANLARI --- */
-        .quiz-option { background-color: #090d10; border: 1px solid #30363d; color: #ffffff; padding: 10px 14px; border-radius: 10px; font-size: 12px; cursor: pointer; text-align: left; transition: all 0.2s; margin-bottom: 8px; width: 100%; }
+        /* --- QUIZ SEÇENEK BUTONLARI --- */
+        .quiz-option { background-color: #090d10; border: 1px solid #30363d; color: #ffffff; padding: 11px 14px; border-radius: 10px; font-size: 12px; cursor: pointer; text-align: left; transition: all 0.2s; margin-bottom: 8px; width: 100%; display: block; }
         .quiz-option:hover { border-color: #00f2fe; background-color: #161b22; }
         .quiz-score-box { background-color: rgba(0, 242, 254, 0.05); border: 1px solid rgba(0, 242, 254, 0.2); border-radius: 12px; padding: 14px; text-align: center; font-size: 13px; font-weight: 600; display: none; margin-top: 10px; }
 
@@ -133,14 +133,13 @@
         .ai-select { width: 100%; background-color: #090d10; border: 1px solid #30363d; color: #ffffff; padding: 12px 14px; border-radius: 10px; font-size: 13px; outline: none; margin-bottom: 12px; cursor: pointer; }
         .ai-result-box { background-color: #090d10; border: 1px solid #21262d; border-radius: 10px; padding: 14px; font-size: 13px; line-height: 1.5; color: #c9d1d9; margin-top: 14px; white-space: pre-wrap; min-height: 60px; text-align: left; }
         .btn-ai-generate { width: 100%; background: linear-gradient(45deg, #bf55ec, #7209b7); color: #ffffff; border: none; padding: 12px; border-radius: 25px; font-size: 13px; font-weight: 700; cursor: pointer; transition: opacity 0.2s; box-shadow: 0 4px 15px rgba(114, 9, 183, 0.2); }
-        .btn-ai-generate:hover { opacity: 0.9; }
 
         .time-badge { background-color: #1f242c; color: #00f2fe; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; border: 1px solid rgba(0, 242, 254, 0.1); }
         .highlight-box { background-color: rgba(0, 242, 254, 0.04); border-left: 3px solid #00f2fe; padding: 14px; border-radius: 0 8px 8px 0; font-size: 13px; font-weight: 600; color: #ffffff; margin-bottom: 14px; line-height: 1.4; }
         .footer-info { text-align: center; margin-top: 24px; font-size: 13px; color: #8b949e; display: flex; flex-direction: column; gap: 8px; padding-bottom: 20px; }
         .visitor-count strong { color: #00f2fe; font-size: 14px; }
 
-        /* --- SIFIR HATA POP-UP GİZLİLİK KODLARI --- */
+        /* --- POP-UP MODAL GÖRÜNÜRLÜK KATMANI --- */
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(5, 8, 10, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; padding: 20px; z-index: 99999; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
         .modal-box { background-color: #12161a; border: 1px solid #30363d; width: 100%; max-width: 440px; border-radius: 20px; padding: 24px; position: relative; transform: scale(0.95); transition: transform 0.3s ease; }
@@ -183,12 +182,12 @@
                 <div class="threads-logo">🧵</div>
                 <div>
                     <div class="threads-btn-title">Threads Profilimi Keşfet</div>
-                    <div class="threads-btn-desc">Yapay zeka ipuçları, güncel Threads parametre rehberleri ve kişisel dijital notlarım için tıklayın.</div>
+                    <div class="threads-btn-desc">Yapay zeka ipuçları, güncel Threads parametre rehberleri ver kişisel dijital notlarım için tıklayın.</div>
                 </div>
             </a>
         </div>
 
-        <!-- 1. SIRADAKİ KART: AI THREADS ASİSTANI (ORİJİNAL ÜST KONUM) -->
+        <!-- 1. KART: AI THREADS ASİSTANI -->
         <div class="bento-card" style="border-color: rgba(191, 85, 236, 0.4);">
             <div class="card-icon-top">🤖</div>
             <div class="card-title">AI Threads Asistanı</div>
@@ -208,7 +207,7 @@
             
             <div class="ai-result-box" id="aiResultText" onclick="copyAiGeneratedText()" style="display: none; cursor: pointer;" title="Kopyalamak için tıkla"></div>
         </div>
-        <!-- INTERAKTIF PROFIL KARNESI MINI QUIZ KARTI -->
+        <!-- 2. KART: THREADS PROFIL KARNESI MINI QUIZ (SAYFADA KESİN GÖRÜNÜR) -->
         <div class="bento-card" style="border-color: rgba(0, 242, 254, 0.3);">
             <div class="card-icon-top">🎯</div>
             <div class="card-title">Threads Profil Karnesi</div>
@@ -235,7 +234,7 @@
             <div class="quiz-score-box" id="quizScoreResult"></div>
         </div>
 
-        <!-- 2. SIRADAKİ KART: PAYLAŞILAN BİLGİ VE AYARLAR (ALT KONUM) -->
+        <!-- 3. KART: PAYLAŞILAN BİLGİ VE AYARLAR -->
         <div id="promptsSection" class="bento-card">
             <div class="card-icon-top">>_</div>
             <div class="card-title">Paylaşılan Bilgi ve Ayarlar</div>
@@ -243,8 +242,10 @@
             
             <button class="btn-action" id="toggleLibraryBtn" onclick="toggleLibrary()">Konu Listesini Göster ▾</button>
 
+            <!-- AÇILIR PANEL -->
             <div id="libraryPanel" class="search-wrapper hidden-content">
                 <input type="text" id="searchInput" class="search-input" placeholder="Konularda hızlıca ara... (Örn: Eylül, Renk)" oninput="filterLibrary()">
+                
                 <div class="nested-list" id="itemsContainer">
                     <div class="nested-item" onclick="openHtmlModal(this)" data-title="14-26 Eylül Güncellemesi" data-highlight="💡 Kritik Not: Link içeren Threads gönderileri etkileşim dağıtımını %30 düşürmektedir." data-text="[14-26 EYLÜL THREADS GÜNCELLEME REHBERİ]&#10;&#10;• Erişim ve etkileşim parametreleri yenilendi.&#10;• Profil içi bento entegrasyonu tamamlandı." data-link="https://threads.net"><div>14-26 Eylül Güncellemesi<div class="nested-sub-text">Threads güncel algoritma parametreleri.</div></div><span class="time-badge">2 dk okuma</span></div>
 
@@ -256,6 +257,7 @@
         </div>
         <div id="contactSection" class="section-label">Sosyal Medya & İletişim</div>
 
+        <!-- SOSYAL LİNKLER -->
         <a href="https://instagram.com" target="_blank" class="row-card">
             <div class="row-left"><div class="row-icon">📸</div><div><div class="row-text-main">Instagram</div><div class="row-text-sub">@muratsenr</div></div></div>
             <span class="arrow-right">Takip Et →</span>
@@ -271,12 +273,14 @@
             <span class="arrow-right">Mail At →</span>
         </a>
 
+        <!-- SAYAÇ VE COPYRIGHT -->
         <div class="footer-info">
             <div class="visitor-count">Toplam ziyaret: <strong id="visitorValue">144</strong></div>
             <div class="copyright">muratsenr © 2026</div>
         </div>
     </div>
 
+    <!-- POP-UP MODAL -->
     <div class="modal-overlay" id="infoModal" onclick="closeInfoModal(event)">
         <div class="modal-box" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeInfoModal(null)">✕</button>
@@ -318,12 +322,13 @@
             hikaye: ["\n\nSiz de kendi sürecinize odaklanın, başarı er ya da geç gelecektir 🚀", "\n\nBu yolculukta istikrarı koruyanlar kazanacak. Takipte kalın!"],
             mizah: ["\n\nLinç etmeden önce lütfen çayınızdan bir yudum alın, tamamen ironidir 😂", "\n\nBu durumu yaşayan tek ben miyim, alta yazın gülüşelim."],
             ask: ["\n\nSizce dijital flörtün en net belirtisi nedir? Alta bırakın konuşalım 👇", "\n\nBu gönderiyi hemen o gizli kişiye göndermelik bir işaret olarak bırakıyorum."],
-            fal: ["\n\nBurcunuzu yoruma yazın, bugünkü şans oranınızı analiz edelim 🔮", "\n\ Uyum sağlayanlar beğensin, enerji dağılmasın."],
+            fal: ["\n\nBurcunuzu yoruma yazın, bugünkü şans oranınızı analiz edelim 🔮", "\n\nUyum sağlayanlar beğensin, enerji dağılmasın."],
             gundem: ["\n\nSiz bu olay hakkında ne düşünüyorsunuz? Fikirlerinizi alta yazın.", "\n\nGündemin geri kalan analizleri için profili takipte kalın!"]
         };
 
         let currentScore = 0;
         function nextQuizStep(step, scoreToAdd) { currentScore += scoreToAdd; document.getElementById(`q${step}`).style.display = 'none'; document.getElementById(`q${step+1}`).style.display = 'block'; }
+        
         function finishQuiz(scoreToAdd) {
             currentScore += scoreToAdd; if(currentScore < 0) currentScore = 10; document.getElementById('q3').style.display = 'none'; const resultBox = document.getElementById('quizScoreResult'); resultBox.style.display = 'block';
             let advice = "";
@@ -362,14 +367,16 @@
         }
 
         function triggerFlashNotification() {
-            document.getElementById('modalTitle').innerText = "🚨 FLAŞ GÜNCELLEME"; document.getElementById('modalHighlight').innerText = "Threads Metin Algoritmasında Yeni Dağıtım Dalgası Başladı!"; document.getElementById('modalText').innerText = "[SON DAKİKA GELİŞMESİ]\n\nThreads mühendisleri bugün akış algoritmasını tamamen güncelledi. Artık anketli metinler %20 daha fazla organik keşfet trafiği alıyor. Bilgi bankasındaki 14-26 Eylül taktiklerini hemen profilinize uygulayın!"; document.getElementById('modalLink').href = "https://threads.net"; modal.classList.add('active');
+            document.getElementById('modalTitle').innerText = "🚨 FLAŞ GÜNCELLEME"; document.getElementById('modalHighlight').innerText = "Threads Metin Algoritmasında Yeni Dağıtım Dalgası Başladı!"; document.getElementById('modalText').innerText = "[SON DAKİKA GELİŞMESİ]\n\nThreads mühendisleri bugün akış algoritmasını tamamen güncelledi. Artık anketli metinler %20 daha fazla organik keşfet trafiği alıyor. Bilgi bankadaki 14-26 Eylül taktiklerini hemen profilinize uygulayın!"; document.getElementById('modalLink').href = "https://threads.net"; modal.classList.add('active');
         }
 
         function closeInfoModal(event) { if (!event || event.target === modal || event.type === 'click') { modal.classList.remove('active'); } }
         function copyContentText() { const textToCopy = document.getElementById('modalText').innerText; navigator.clipboard.writeText(textToCopy).then(() => { toast.innerText = "Kopyalandı!"; toast.style.opacity = '1'; setTimeout(() => toast.style.opacity = '0', 2000); }); }
 
         try { let localVisits = localStorage.getItem('local_visits') || 144; localVisits = parseInt(localVisits) + 1; localStorage.setItem('local_visits', localVisits); document.getElementById('visitorValue').innerText = localVisits; } catch(e) {}
-        window.addEventListener('DOMContentLoaded', () => { setTimeout(triggerFlashNotification, 800); });
+        
+        // Tetikleyicinin kesin çalışmasını sağlayan kararlı olay kancası
+        window.addEventListener('DOMContentLoaded', () => { setTimeout(triggerFlashNotification, 600); });
     </script>
 </body>
 </html>
