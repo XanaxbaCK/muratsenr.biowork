@@ -49,6 +49,7 @@
         .news-ticker-content { width: 100%; overflow: hidden; white-space: nowrap; position: relative; }
         .news-ticker-text { display: inline-block; font-size: 13px; font-weight: 600; color: #e6edf3; padding-left: 100%; animation: tickerMove 15s linear infinite; }
         @keyframes tickerMove { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+
         /* --- PARILDAYAN KARŞILAMA BANNER'I --- */
         .welcome-banner {
             background: linear-gradient(45deg, rgba(0, 198, 255, 0.08), rgba(0, 242, 254, 0.08));
@@ -68,7 +69,6 @@
             50% { border-color: rgba(0, 242, 254, 0.5); box-shadow: 0 4px 20px rgba(0, 242, 254, 0.12); }
             100% { border-color: rgba(0, 242, 254, 0.25); box-shadow: 0 4px 15px rgba(0, 242, 254, 0.03); }
         }
-
         /* --- PROFİL ALANI --- */
         .profile-section { text-align: center; padding: 10px 0 5px 0; display: flex; flex-direction: column; align-items: center; }
         .profile-avatar-wrapper { position: relative; width: 110px; height: 110px; margin: 0 auto 12px auto; display: block; }
@@ -97,6 +97,7 @@
         .threads-logo { font-size: 24px; display: flex; align-items: center; justify-content: center; background-color: #1c2128; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #30363d; flex-shrink: 0; }
         .threads-btn-title { font-size: 14px; font-weight: 700; color: #ffffff; }
         .threads-btn-desc { font-size: 12px; color: #8b949e; margin-top: 3px; line-height: 1.3; }
+
         /* --- BENTO KART YAPISI --- */
         .bento-card { background-color: #12161a; border: 1px solid #21262d; border-radius: 20px; padding: 24px; position: relative; display: flex; flex-direction: column; width: 100%; }
         .card-icon-top { font-size: 22px; color: #8b949e; margin-bottom: 12px; }
@@ -104,7 +105,6 @@
         .card-desc { font-size: 13px; color: #8b949e; line-height: 1.5; margin-bottom: 18px; }
 
         .btn-action { width: 100%; background-color: #1f242c; border: 1px solid #30363d; color: #ffffff; padding: 12px; border-radius: 25px; font-size: 13px; font-weight: 600; text-align: center; cursor: pointer; transition: all 0.2s ease; display: flex; justify-content: center; align-items: center; gap: 8px; border: 1px solid #30363d; }
-
         /* --- SOSYAL MEDYA KARTLARI --- */
         .row-card { display: flex; align-items: center; justify-content: space-between; background-color: #12161a; border: 1px solid #21262d; padding: 16px 20px; border-radius: 14px; text-decoration: none; color: inherit; }
         .row-card:hover { border-color: #30363d; background-color: #161b22; }
@@ -262,7 +262,7 @@
     <div class="toast" id="toastNotification">Kopyalandı!</div>
 
     <script>
-        // 🔑 TARAYICI GÜVENLİK DUVARINI AŞAN %100 SABİT VERİ TABANI DİZİSİ
+        // 🔑 KORUNAN MERKEZİ VERİ TABANI DİZİSİ
         const database = [
             {
                 id: 'threads-update-1',
@@ -284,7 +284,7 @@
             },
             {
                 id: 'color-grading-tip',
-                title: 'Rozet Kaldırma',
+                title: 'Rozet',
                 sub: 'Kurgularda sinematik tonlama yakalama rehberi.',
                 time: '1 dk okuma',
                 highlight: '💡 Kritik Not: Shadows alanındaki Teal dengesi izleyicinin videoda kalma süresini etkiler.',
@@ -295,22 +295,22 @@
         const hooks = {
             egitici: ["Threads algoritması hakkında kimsenin söylemediği o gerçek:", "Eğer Threads'de büyümek istiyorsanız şu kuralları hemen unutun:", "Son 48 saatlik Threads etkileşim analizlerimde çok garip bir veri fark ettim:"],
             etkilesim: ["Threads kitlesine çok ciddi bir sorum var:", "Dürüst olalım, aranızda Threads erişimlerinden tamamen memnun olan var mı?", "Son günlerde Threads akışınızda garip bir düşüş fark ettiniz mi?"],
-            hikaye: ["Bundan tam 6 ay önce Threads'de sıfır takipçim vardı.", "Yazılım ve içerik üreticiliğini birleştirdiğimde bana 'ikisi bir arada yürümez' dediler.", "Büyümek için ne reklam verdim ne de yapay etkileşim gruplarına girdim."],
+            hikaye: ["Bundan tam 6 ay önce Threads'de sıfır takipçim vardı.", "Yazılım ve içerik üreticiliğini birleştirdiğimde bana \'ikisi bir arada yürümez\' dediler.", "Büyümek için ne reklam verdim ne de yapay etkileşim gruplarına girdim."],
             mizah: ["Threads'de ciddi ciddi içerik stratejisi kasanları izlerken ben:", "Millet Threads'de evrenin sırrını çözmüş gibi yazıyor, benim ana sayfa:", "X'ten kaçıp Threads'e gelenlerin girdikleri o aşırı entelektüel şok:"],
             ask: ["Threads'de herkes algoritma konuşuyor ama asıl şu konuyu çözelim:", "Doğru insanı bulmanın Threads algoritmasını çözmekten daha zor olduğu o an:", "Biriyle saatlerce kesintisiz Threads üzerinden mesajlaşmak da sevdaya dahil mi?"],
             fal: ["Gökyüzü hareketleri ve Merkür retrosu bugün Threads akışınızı fena vuracak:", "Bugün hangi burcun ana sayfası tamamen kaosa teslim olacak söylüyorum:", "Yıldız haritanıza göre Threads etkileşimlerinizin tavan yapacağı o döneme girdik:"],
             gundem: ["Son saatlerde sosyal medyada dönen o devasa tartışmayı gördünüz mü?", "Gündemi yakından takip edenlerin Threads'de fark ettiği o büyük değişim:", "Herkes şu an bu konuyu konuşuyor, peki arka plandaki asıl gerçek ne?"]
         };
+
         const bodies = {
             egitici: ["\n\nMetin içi link paylaşımları erişimi %30 oranında baskılıyor. Algoritma kullanıcıyı dışarı göndermek istemiyor.", "\n\nHer saat başı paylaşım yapmak yerine, günde sadece 1 adet kancası güçlü metin akışı (thread) oluşturmak erişimi katlıyor.", "\n\nProfil içi kurulan bento kütüphane sistemleri, takipçileri akıştan çekip kalıcı hale getirmenin en organik yolu."],
             etkilesim: ["\n\nBurayı sadece içerik tüketmek için mi kullanıyorsunuz, yoksa kendi dijital kütüphanenizi kurmaya başladınız mı?", "\n\nSon algoritma dalgası sizi yukarı mı taşıdı yoksa etkileşimleriniz tamamen durdu mu? Durumunuzu yazın, analiz edelim.", "\n\nMetin gönderiler mi yoksa anketli paylaşımlar mı profilinizde daha çok erişim alıyor? Deneyimlerinizi merak ediyorum."],
             hikaye: ["\n\nSadece her gün öğrendiğim tek bir teknik bilgiyi düzenli ve sabırla paylaştım. Sürece güvenmek en büyük anahtardı.", "\n\nBugün kurduğum bu BIOWORK yapısı sayesinde tüm kitlemi kalıcı bir havuzda toplayabiliyorum. Dijital varlık budur.", "\n\nOrganik büyüme zaman alır ancak kalıcıdır. Kısa yolları aramayı bıraktığım gün profilim kendi kendine büyümeye başladı."],
-            mizah: ["\n\n'Günde 3 thread atarak milyoner oldum' konseptli yazıları okurken kahvemi püskürttüm. Arkadaşlar burası sakin bir kasaba, yavaş olun.", "\n\nHerkes her konuda o kadar uzman ki, kendi kendime 'acaba ben hayata sadece izleyici olarak mı geldim' diye sorgulatıyor.", "\n\nErişim düşmesin diye kırk takla atıp, en sonunda saçma bir kedi caps'i ile binlerce beğeni alan o algoritmanın adaleti..."],
+            mizah: ["\n\n\'Günde 3 thread atarak milyoner oldum\' konseptli yazıları okurken kahvemi püskürttüm. Arkadaşlar burası sakin bir kasaba, yavaş olun.", "\n\nHerkes her konuda o kadar uzman ki, kendi kendime \'acaba ben hayata sadece izleyici olarak mı geldim\' diye sorgulatıyor.", "\n\nErişim düşmesin diye kırk takla atıp, en sonunda saçma bir kedi caps\'i ile binlerce beğeni alan o algoritmanın adaleti..."],
             ask: ["\n\nKarşılıklı gönderi beğenerek flörtleşme evresi ne zaman biter? Threads beğeni geçmişi dökülse ortalık fena karışacak gibi.", "\n\nBence gerçek bağ; birbirinin uzun metinli sıkıcı düşünce akışlarını bile sonuna kadar sıkılmadan okuyup kaydetmekle başlar.", "\n\nMesaj kutusunda (DM) sabahlayıp, akışta birbirini hiç tanımıyormuş gibi resmi takılan gizli aşıklar burayı doldurmuş bile."],
             fal: ["\n\nÖzellikle Su ve Hava grupları için bugün geçmişten gelen ani bir DM bildirimi her şeyi değiştirebilir. Tetikte kalın.", "\n\nToprak burçları yine mantık kasarken, Ateş burçları akıştaki bir tartışmaya aniden dahil olup ortalığı yangın yerine çevirecek.", "\n\nJüpiter'in olumlu açısı, bu hafta ürettiğiniz metinlerin organik olarak keşfete düşme ihtimalini inanılmaz yükseltiyor."],
-            gundem: ["\n\nTüm platformlar tek bir haberle çalkalanırken, Threads kitlesinin olayı tamamen derinlemesine analiz etmesi harika bir detay.", "\n\nOlayın sadece görünen yüzüne değil, dijital dünyadaki ve algoritmalardaki yansımasına odaklanmak resmi netleştiriyor.", "\n\nHerkesin hızlıca tükettiği bu yapay gündem dalgası bittiğinde, geriye sadece kalıcı ve teknik bilgi üretenler kalacak."
+            gundem: ["\n\nTüm platformlar tek bir haberle çalkalanırken, Threads kitlesinin olayı tamamen derinlemesine analiz etmesi harika bir detay.", "\n\nOlayın sadece görünen yüzüne değil, dijital dünyadaki ve algoritmalardaki yansımasına odaklanmak resmi netleştiriyor.", "\n\nHerkesin hızlıca tükettiği bu yapay gündem dalgası bittiğinde, geriye sadece kalıcı ve teknik bilgi üretenler kalacak."]
         };
-
         const ctas = {
             egitici: ["\n\nDetayları ve formülü ilk yoruma sabitledim, mutlaka göz atın! 💡", "\n\nBu parametreyi kaydetmeyi ve profilinizi buna göre optimize etmeyi unutmayın."],
             etkilesim: ["\n\nYorumlarda fikirlerinizi tartışalım, en iyileri inceleyeceğim 👇", "\n\nCevaplarınızı bekliyorum, akışı birlikte hareketlendirelim."],
@@ -320,7 +320,7 @@
             fal: ["\n\nBurcunuzu yoruma yazın, bugünkü şans oranınızı analiz edelim 🔮", "\n\nUyum sağlayanlar beğensin, enerji dağılmasın."],
             gundem: ["\n\nSiz bu olay hakkında ne düşünüyorsunuz? Fikirlerinizi alta yazın.", "\n\nGündemin geri kalan analizleri için profili takipte kalın!"]
         };
-        // KESİN ÇÖZÜM: TARAYICININ ÖNCE HTML'İ OKUMASINI SAĞLAYAN GÜVENLİ RENDER MOTORU
+
         function renderLibraryItems(filterQuery = "") {
             const container = document.getElementById('itemsContainer');
             if(!container) return;
@@ -382,8 +382,8 @@
         function closeInfoModal(event) { if (!event || event.target === modal || event.type === 'click') { modal.classList.remove('active'); } }
         function copyContentText() { const textToCopy = document.getElementById('modalText').innerText; navigator.clipboard.writeText(textToCopy).then(() => { toast.innerText = "Kopyalandı!"; toast.style.opacity = '1'; setTimeout(() => toast.style.opacity = '0', 2000); }); }
 
-        // KİLİTLENMEYİ ÖNLEYEN EN GÜVENLİ OYNAK KANCA
-        document.addEventListener('DOMContentLoaded', () => {
+        // KİLİTLENMEYİ ÖNLEYEN VE RE-RENDER TETİKLEYEN HATA ÖNLEYİCİ KANCA
+        window.addEventListener('load', () => {
             renderLibraryItems();
             try {
                 let localVisits = localStorage.getItem('local_visits') || 144;
