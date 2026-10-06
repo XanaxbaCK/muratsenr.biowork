@@ -277,6 +277,117 @@
             <div class="copyright">muratsenr © 2026</div>
         </div>
     </div>
+<!-- Güvenli Yönetici Konu Paneli -->
+<div id="admin-panel" style="margin: 40px auto; padding: 20px; max-width: 500px; border: 1px solid #333; background: #111; color: #fff; border-radius: 12px; text-align: center; font-family: sans-serif;">
+    <h3 style="font-size: 16px; margin-bottom: 15px; color: #0084ff;">🔒 Güvenli Yönetici Paneli</h3>
+    
+    <!-- Giriş Ekranı (Artık Token'ı da buraya elle güvenle giriyorsunuz, koda yazılmıyor) -->
+    <div id="admin-giris-alani">
+        <input type="password" id="admin-sifre" placeholder="Yönetici Giriş Şifreniz" style="padding: 10px; border-radius: 6px; border: 1px solid #333; background: #222; color: #fff; width: 80%; margin-bottom: 10px;"><br>
+        <input type="password" id="admin-token" placeholder="GitHub Erişim Token (ghp_...)" style="padding: 10px; border-radius: 6px; border: 1px solid #333; background: #222; color: #fff; width: 80%; margin-bottom: 10px;"><br>
+        <button onclick="adminPaneliniAc()" style="padding: 10px 20px; border-radius: 6px; background: #0084ff; color: #fff; border: none; cursor: pointer; font-weight: bold;">Giriş Yap</button>
+    </div>
+
+    <!-- Konu Ekleme Ekranı -->
+    <div id="admin-islem-alani" style="display: none;">
+        <input type="text" id="yeni-konu-input" placeholder="Eklenecek yeni konu başlığı..." style="padding: 10px; width: 80%; border-radius: 6px; border: 1px solid #333; background: #222; color: #fff; margin-bottom: 12px;"><br>
+        <button id="btn-konu-ekle" onclick="githubaKonuEkle()" style="padding: 10px 25px; border-radius: 6px; background: #25d366; color: #fff; border: none; cursor: pointer; font-weight: bold;">Sitede Doğrudan Yayınla</button>
+        <p id="admin-durum" style="margin-top: 10px; font-size: 13px; color: #aaa;"></p>
+    </div>
+</div>
+
+<script>
+const GITHUB_CONFIG = {
+    username: "XanaxbaCK", 
+    repo: "muratsenr.biowork", 
+    path: "konular.json"
+};
+
+// Tarayıcı oturumunda geçici tutulacak değişken
+let AKTIF_GITHUB_TOKEN = "";
+
+function adminPaneliniAc() {
+    const girilenSifre = document.getElementById("admin-sifre").value;
+    const girilenToken = document.getElementById("admin-token").value.trim();
+    
+    if (girilenSifre === "Murat123!" && girilenToken.startsWith("ghp_")) { 
+        AKTIF_GITHUB_TOKEN = girilenToken; // Token tarayıcı hafızasına alındı
+        document.getElementById("admin-giris-alani").style.display = "none";
+        document.getElementById("admin-islem-alani").style.display = "block";
+        alert("Yönetici Girişi Başarılı!");
+    } else {
+        alert("Hatalı şifre veya geçersiz GitHub Token!");
+    }
+}
+
+async function githubaKonuEkle() {
+    const yeniKonu = document.getElementById("yeni-konu-input").value.trim();
+    const durumYazisi = document.getElementById("admin-durum");
+    const buton = document.getElementById("btn-konu-ekle");
+
+    if (!yeniKonu) {
+        alert("Lütfen bir konu başlığı yazın!");
+        return;
+    }
+
+    if (!AKTIF_GITHUB_TOKEN) {
+        alert("Oturum süresi dolmuş veya Token bulunamadı. Lütfen sayfayı yenileyip tekrar giriş yapın.");
+        return;
+    }
+
+    buton.disabled = true;
+    durumYazisi.innerText = "🔄 GitHub ile güvenli bağlantı kuruluyor...";
+
+    const url = `https://github.com{GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.path}`;
+    const headers = {
+        "Authorization": `token ${AKTIF_GITHUB_TOKEN}`,
+        "Accept": "application/vnd.github.v3+json"
+    };
+
+    try {
+        const getResponse = await fetch(url, { headers });
+        if (!getResponse.ok) throw new Error("Mevcut konular dosyası bulunamadı.");
+        
+        const fileData = await getResponse.json();
+        const mevcutKonular = JSON.parse(atob(fileData.content));
+
+        if (mevcutKonular.includes(yeniKonu)) {
+            alert("Bu konu zaten sitenizde ekli!");
+            buton.disabled = false;
+            durumYazisi.innerText = "";
+            return;
+        }
+
+        mevcutKonular.push(yeniKonu);
+
+        const putBody = {
+            message: `Web Arayüzünden Yeni Konu Eklendi: ${yeniKonu}`,
+            content: btoa(unescape(encodeURIComponent(JSON.stringify(mevcutKonular, null, 2)))),
+            sha: fileData.sha
+        };
+
+        const putResponse = await fetch(url, {
+            method: "PUT",
+            headers,
+            body: JSON.stringify(putBody)
+        });
+
+        if (putResponse.ok) {
+            durumYazisi.innerHTML = "✅ **Başarılı!** Konu sisteme işlendi. Siteniz 1 dakika içinde güncellenecektir.";
+            document.getElementById("yeni-konu-input").value = "";
+        } else {
+            throw new Error("Dosya güncellenirken hata oluştu.");
+        }
+
+    } catch (error) {
+        console.error(error);
+        durumYazisi.innerText = "❌ Hata: Güncelleme yapılamadı. Girdiğiniz Token'ı veya yetkilerini kontrol edin.";
+    } finally {
+        buton.disabled = false;
+    }
+}
+</script>
+
 
     <!-- POP-UP MODAL -->
     <div class="modal-overlay" id="infoModal" onclick="closeInfoModal(event)">
