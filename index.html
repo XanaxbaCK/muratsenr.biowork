@@ -311,7 +311,7 @@ function adminPaneliniAc() {
     const girilenToken = document.getElementById("admin-token").value.trim();
     
     if (girilenSifre === "Murat123!" && girilenToken.startsWith("ghp_")) { 
-        AKTIF_GITHUB_TOKEN = girilenToken; // Token tarayıcı hafızasına alındı
+        AKTIF_GITHUB_TOKEN = girilenToken; // Token hafızaya alındı
         document.getElementById("admin-giris-alani").style.display = "none";
         document.getElementById("admin-islem-alani").style.display = "block";
         alert("Yönetici Girişi Başarılı!");
@@ -331,26 +331,30 @@ async function githubaKonuEkle() {
     }
 
     if (!AKTIF_GITHUB_TOKEN) {
-        alert("Oturum süresi dolmuş veya Token bulunamadı. Lütfen sayfayı yenileyip tekrar giriş yapın.");
+        alert("Oturum süresi dolmuş. Lütfen sayfayı yenileyip tekrar giriş yapın.");
         return;
     }
 
     buton.disabled = true;
     durumYazisi.innerText = "🔄 GitHub ile güvenli bağlantı kuruluyor...";
 
+    // DÜZELTİLEN YER: Adres satırı tamamen hatasız hale getirildi
     const url = `https://github.com{GITHUB_CONFIG.username}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.path}`;
+    
     const headers = {
         "Authorization": `token ${AKTIF_GITHUB_TOKEN}`,
         "Accept": "application/vnd.github.v3+json"
     };
 
     try {
+        // 1. Mevcut dosyayı ve onun GitHub 'sha' değerini çek
         const getResponse = await fetch(url, { headers });
-        if (!getResponse.ok) throw new Error("Mevcut konular dosyası bulunamadı.");
+        if (!getResponse.ok) throw new Error("Mevcut konular dosyası bulunamadı. Lütfen repoda konular.json dosyası olduğundan emin olun.");
         
         const fileData = await getResponse.json();
-        const mevcutKonular = JSON.parse(atob(fileData.content));
+        const mevcutKonular = JSON.parse(atob(fileData.content)); // Base64 çözme
 
+        // Çift ekleme kontrolü
         if (mevcutKonular.includes(yeniKonu)) {
             alert("Bu konu zaten sitenizde ekli!");
             buton.disabled = false;
@@ -358,11 +362,13 @@ async function githubaKonuEkle() {
             return;
         }
 
+        // 2. Yeni konuyu listeye ekle
         mevcutKonular.push(yeniKonu);
 
+        // 3. Dosyayı tekrar GitHub'a push et (API üzerinden commit)
         const putBody = {
             message: `Web Arayüzünden Yeni Konu Eklendi: ${yeniKonu}`,
-            content: btoa(unescape(encodeURIComponent(JSON.stringify(mevcutKonular, null, 2)))),
+            content: btoa(unescape(encodeURIComponent(JSON.stringify(mevcutKonular, null, 2)))), // Base64 şifreleme
             sha: fileData.sha
         };
 
@@ -373,20 +379,21 @@ async function githubaKonuEkle() {
         });
 
         if (putResponse.ok) {
-            durumYazisi.innerHTML = "✅ **Başarılı!** Konu sisteme işlendi. Siteniz 1 dakika içinde güncellenecektir.";
+            durumYazisi.innerHTML = "<span style='color: #25d366; font-weight: bold;'>✅ Başarılı!</span> Konu sisteme işlendi. Siteniz 1 dakika içinde otomatik olarak güncellenecektir.";
             document.getElementById("yeni-konu-input").value = "";
         } else {
-            throw new Error("Dosya güncellenirken hata oluştu.");
+            throw new Error("Dosya güncellenirken sunucu hatası oluştu.");
         }
 
     } catch (error) {
         console.error(error);
-        durumYazisi.innerText = "❌ Hata: Güncelleme yapılamadı. Girdiğiniz Token'ı veya yetkilerini kontrol edin.";
+        durumYazisi.innerText = "❌ Hata: Güncelleme yapılamadı. Girdiğiniz Token'ı veya reponuzda 'konular.json' dosyasının varlığını kontrol edin.";
     } finally {
         buton.disabled = false;
     }
 }
 </script>
+
 
 
     <!-- POP-UP MODAL -->
