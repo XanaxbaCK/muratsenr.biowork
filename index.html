@@ -277,24 +277,6 @@
             <div class="copyright">muratsenr © 2026</div>
         </div>
     </div>
-<!-- Güvenli Yönetici Konu Paneli -->
-<div id="admin-panel" style="margin: 40px auto; padding: 20px; max-width: 500px; border: 1px solid #333; background: #111; color: #fff; border-radius: 12px; text-align: center; font-family: sans-serif;">
-    <h3 style="font-size: 16px; margin-bottom: 15px; color: #0084ff;">🔒 Güvenli Yönetici Paneli</h3>
-    
-    <!-- Giriş Ekranı (Artık Token'ı da buraya elle güvenle giriyorsunuz, koda yazılmıyor) -->
-    <div id="admin-giris-alani">
-        <input type="password" id="admin-sifre" placeholder="Yönetici Giriş Şifreniz" style="padding: 10px; border-radius: 6px; border: 1px solid #333; background: #222; color: #fff; width: 80%; margin-bottom: 10px;"><br>
-        <input type="password" id="admin-token" placeholder="GitHub Erişim Token (ghp_...)" style="padding: 10px; border-radius: 6px; border: 1px solid #333; background: #222; color: #fff; width: 80%; margin-bottom: 10px;"><br>
-        <button onclick="adminPaneliniAc()" style="padding: 10px 20px; border-radius: 6px; background: #0084ff; color: #fff; border: none; cursor: pointer; font-weight: bold;">Giriş Yap</button>
-    </div>
-
-    <!-- Konu Ekleme Ekranı -->
-    <div id="admin-islem-alani" style="display: none;">
-        <input type="text" id="yeni-konu-input" placeholder="Eklenecek yeni konu başlığı..." style="padding: 10px; width: 80%; border-radius: 6px; border: 1px solid #333; background: #222; color: #fff; margin-bottom: 12px;"><br>
-        <button id="btn-konu-ekle" onclick="githubaKonuEkle()" style="padding: 10px 25px; border-radius: 6px; background: #25d366; color: #fff; border: none; cursor: pointer; font-weight: bold;">Sitede Doğrudan Yayınla</button>
-        <p id="admin-durum" style="margin-top: 10px; font-size: 13px; color: #aaa;"></p>
-    </div>
-</div>
 
     <!-- POP-UP MODAL -->
     <div class="modal-overlay" id="infoModal" onclick="closeInfoModal(event)">
