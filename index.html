@@ -242,30 +242,91 @@
 
             <!-- AÇILIR PANEL -->
             <div id="libraryPanel" class="search-wrapper hidden-content">
-                <input type="text" id="searchInput" class="search-input" placeholder="Konularda hızlıca ara... (Örn: Eylül, Renk)" oninput="filterLibrary()">
+                <input type="text" id="searchInput" class="search-input" placeholder="Konularda hızlıca ara... (Örn: Eylül, Güncelleme, Bilgi, İpuçları vb.)" oninput="filterLibrary()">
                 
                 <div class="nested-list" id="itemsContainer">
                     <div class="nested-item" onclick="openHtmlModal(this)" 
                     data-title="14-26 Eylül Güncellemesi" 
-                    data-highlight="💡 Kritik Not: Link içeren Threads gönderileri etkileşim dağıtımını %30 düşürmektedir." 
-                    data-text="[14-26 EYLÜL THREADS GÜNCELLEME REHBERİ]&#10;&#10;• Erişim ve etkileşim parametreleri yenilendi.&#10;• Profil içi bento entegrasyonu tamamlandı." 
+                    data-text="[14-26 EYLÜL THREADS GÜNCELLEME REHBERİ]&#10;&#10;• Erişim ve etkileşim parametreleri yenilendi.&#10;• Detaylara aşağıdan konuya giderek erişebilirsiniz." 
                     data-link="https://www.threads.com/share/D7LTFtStE/"><div>14-26 Eylül Güncellemesi<div class="nested-sub-text">Threads güncel algoritma parametreleri.
                     </div></div><span class="time-badge">3 dk okuma</span></div>
 
                     <div class="nested-item" onclick="openHtmlModal(this)" 
                     data-title="26-28 Eylül Gündem Başlıkları" 
-                    data-highlight="💡 Podcast Yayınları Üzerinde Derlemeler Oldu."
-                    data-text="[GLOBAL YAPAY ZEKA GÜNDEMİ]&#10;&#10;• Statik bento altyapıları hız kazandı.&#10;• Mobil dönüşümler yükselişte."
-                    data-link="https://www.threads.com/share/CKN4FK3rsn/"><div>26-28 Eylül Gündem Başlıkları<div class="nested-sub-text">Global yapay zeka araç ve trendleri.</div>
-                    </div><span class="time-badge">3 dk okuma</span></div>
+                    data-text="[THREADS GÜNDEMİ]&#10;&#10;• Ebevy Kontrolleri Arttı.&#10;• Detaylara aşağıdan konuya giderek erişebilirsiniz."
+                    data-link="https://www.threads.com/share/CKN4FK3rsn/"><div>26-28 Eylül Gündem Başlıkları<div class="nested-sub-text">Globalgündem.</div>
+                    </div><span class="time-badge">2 dk okuma</span></div>
 
-                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="Rozet Kaldırma Adımları"
-                    data-text="[RENK GRADING İPUÇLARI]&#10;&#10;• Shadows: Teal tonları %5 artırıldı.&#10;• Highlights: Sıcak ton dengesi korundu."
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="IGde Rozet Kaldırma Adımları"
+                    data-text="[IGde rozet Kaldırma]&#10;&#10;• Kaldırdıktan sonra senk sorunu olabilir.&#10;• Detaylara aşağıdan konuya giderek erişebilirsiniz."
                     data-link="https://threads.net"><div>IGde Rozet Görülmemesi<div class="nested-sub-text">Kurgularda sinematik tonlama rehberi.</div>
                     </div><span class="time-badge">1 dk okuma</span></div>
-                </div>
-            </div>
-        </div>
+
+                     <div class="nested-item" onclick="openHtmlModal(this)" data-title="Threads da Çemriçi Modu Ayarları"
+                    data-text="[Threads da Yeşillenmek]&#10;&#10;• Birçok profilde mevcuttu ancak olmayanlar için bir ipucu.&#10;• Detaylara aşağıdan konuya giderek erişebilirsiniz."
+                    data-link="https://www.threads.com/share/F8Rq6uz9G/"><div>Threads Çemrimiçi Durumu<div class="nested-sub-text">Çemrimiçi rehberi.</div>
+                    </div><span class="time-badge">10 sn okuma</span></div>
+                    
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="Threads da Eylül Başı Güncellemesi"
+                    data-text="[Threads da Eylül Başı Günc. ]&#10;&#10;• Eylülün ilk haftasında gelen güncelleme .&#10;• Detaylara aşağıdan konuya giderek erişebilirsiniz."
+                    data-link="https://www.threads.com/share/IYFDPSPIJ/"><div>Threads Eylül Başı Güncelleme <div class="nested-sub-text">Eylül Başı Gelen Bazı Güncellemeler.</div>
+                    </div><span class="time-badge">2 dk okuma</span></div>  
+
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="Threads da Eylül Testleri"
+                    data-text="[Threads da Eylül Testleri ]&#10;&#10;• Eylülün ilk haftasında gelen testler .&#10;• Detaylara aşağıdan konuya giderek erişebilirsiniz."
+                    data-link="https://www.threads.com/share/JfZBw5qJl/"><div>Threads Eylülİlk Testler <div class="nested-sub-text">Eylül Başı Gelen Testler.</div>
+                    </div><span class="time-badge">3 dk okuma</span></div>
+
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="Threads da Spam Mantığı"
+                    data-text="[Threads da Spam Algısı ]&#10;&#10;• Threadsde Dönen Spam Algısı .&#10;• Detaylara aşağıdan konuya giderek erişebilirsiniz."
+                    data-link="https://www.threads.com/share/ILFqCcNtC/"><div>Threads Spam Algısı <div class="nested-sub-text">Threads da Spam.</div>
+                    </div><span class="time-badge">5 dk okuma</span></div>
+
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="Threads da Spam Mantığı"
+                    data-text="[Threads da Yasaklı Kelime ]&#10;&#10;• Threadsde Yorumum Neden Bazen Kalkıyor? .&#10;• Detaylara aşağıdan konuya giderek erişebilirsiniz."
+                    data-link="https://www.threads.com/share/EBs18BlE_/"><div>Threads Engellenen Kelime Örnekleri <div class="nested-sub-text">Threads da Kaldırılan Yorum Kelimeleri.</div>
+                    </div><span class="time-badge">5 dk okuma</span></div>
+
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="Threads da Görüntülenmeler"
+                    data-text="[Threads da Görüntülenme Durumu ]&#10;&#10;• Threadsde Görüntülenmeler Neden Bazen Kalkıyor? Ya da Düşüyor .&#10;• Detaylara aşağıdan konuya giderek erişebilirsiniz."
+                    data-link="https://www.threads.com/share/HShfBi4ps/"><div>Threadsda Görüntülenme Sayıları <div class="nested-sub-text">Threads da Görüntülenmeler Neden Düşüyor?.</div>
+                    </div><span class="time-badge">4 dk okuma</span></div>
+
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="Threadsda Usulsüzlük"
+                    data-text="[Threads da Uygunsuz Usulsüzlük ]&#10;&#10;• Threadsde toplu organizasyon .&#10;• Detaylara aşağıdan konuya giderek erişebilirsiniz."
+                    data-link="https://www.threads.com/share/D9hlkUqiq/"><div>Threadsda Uygunsuz Algılar <div class="nested-sub-text">Threads da Usulsüzlük ve Sonuçları?.</div>
+                    </div><span class="time-badge">7 dk okuma</span></div>
+
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="Threadsda 28 Ağustos Gündem"
+                    data-text="[Threads da Gündem ]&#10;&#10;• Threadsde gündem haberleri.&#10;• Detaylara aşağıdan konuya giderek erişebilirsiniz."
+                    data-link="https://www.threads.com/share/DLkmsaTQI/"><div>Threadsda 28 Ağustos Gündem <div class="nested-sub-text">Threads da 28 Ağustos Global Gündem.</div>
+                    </div><span class="time-badge">2 dk okuma</span></div>
+
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="Spam Nedir?"
+                    data-text="[Threads spam nedir? ]&#10;&#10;• Threadsde spam oluşturan durumlar ve sonuçları.&#10;• Detaylara aşağıdan konuya giderek erişebilirsiniz."
+                    data-link="https://www.threads.com/share/E-VMJZ1wv/"><div>Threadsda Spam ve Sonuçları? <div class="nested-sub-text">SPAM NEDİR?</div>
+                    </div><span class="time-badge">9 dk okuma</span></div>
+
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="Görüntülenmeler?"
+                    data-text="[Threads görüntülenme mantığı nasıldır? ]&#10;&#10;• Threadsde görüntülenme olayı.&#10;• Detaylara aşağıdan konuya giderek erişebilirsiniz."
+                    data-link="https://www.threads.com/share/D8lI_ZUDp/"><div>Threadsda görüntülenme mantığı <div class="nested-sub-text">Görüntülenme Mantığı Naıl İşler?</div>
+                    </div><span class="time-badge">1 dk okuma</span></div>
+
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="Güncenleme sonrası?"
+                    data-text="[Threads güncelleme sonrası? ]&#10;&#10;• Threadsde güncellemelerin ardından &#10;• Detaylara aşağıdan konuya giderek erişebilirsiniz."
+                    data-link="https://www.threads.com/share/BlNSBcQ1Wu/"><div>Threadsda ufak güncellemeler sonrası <div class="nested-sub-text">Güncellemelerden sonra ki hatalar?</div>
+                    </div><span class="time-badge">40 sn okuma</span></div>
+
+                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="Threads da aynı kişiler"
+                    data-text="[Threads da aynı kişiler mi önünüze çıkıyor]&#10;&#10;• Threadsde sürekli aynı kişileri görmek biraz sıkıcı &#10;• Detaylara aşağıdan konuya giderek erişebilirsiniz."
+                    data-link="https://www.threads.com/share/FU2EOzrYG/"><div>Threadsda sürekli aynı kişileri mi görüyorsunuz? <div class="nested-sub-text">Feed Özgürlüğü</div>
+                    </div><span class="time-badge">1 dk okuma</span></div>
+
+                    
+
+
+                    
+             
         <div id="contactSection" class="section-label">Sosyal Medya & İletişim</div>
 
         <!-- SOSYAL LİNKLER -->
