@@ -480,74 +480,94 @@
         </div>
     </div>
 
-            <!-- SUPABASE SCRIPT MOTORU (UYUŞMAZLIKLAR TAMAMEN GİDERİLDİ 🛠️) -->
+                <!-- SUPABASE SCRIPT MOTORU - SADECE FORM VE LİSTELEME İÇİN GÜVENLİ SÜRÜM -->
     <script src="https://unpkg.com"></script>
     <script>
+        // Supabase bağlantı bilgilerini buraya tırnakları silmeden ekle
         const SB_URL = "https://tplpivnsxngeekqbbgyh.supabase.co";
         const SB_KEY = "sb_publishable_aG3JTIwogS3J9hmtetax4Q_5itN5cJ5";
-        
-        // Değişken adını doğrudan 'supabaseQAManager' olarak sabitledik
         const supabaseQAManager = supabase.createClient(SB_URL, SB_KEY);
 
+        // 1. ONAYLANAN MESAJLARI GERİ GETİRME
         async function fetchQAData() {
             try {
-                const { data, error } = await supabaseQAManager.from('messages').select('*').eq('is_approved', true).order('created_at', { ascending: false });
+                const { data, error } = await supabaseQAManager
+                    .from('messages')
+                    .select('*')
+                    .eq('is_approved', true)
+                    .order('created_at', { ascending: false });
+
                 if (error) throw error;
                 const container = document.getElementById('approvedMessagesContainer');
                 const noTxt = document.getElementById('noMessageTxt');
-                container.innerHTML = '';
-                if (data && data.length > 0) {
-                    if(noTxt) noTxt.remove();
-                    data.forEach(msg => {
-                        const card = document.createElement('div');
-                        card.style.cssText = "background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 15px; text-align: left; margin-bottom: 15px;";
-                        card.innerHTML = `<div style="color: #00f2fe; font-weight: 600; font-size: 15px; margin-bottom: 8px;">📌 Başlık: ${msg.title}</div><div style="color: #c9d1d9; font-size: 14px; margin-bottom: 12px; line-height: 1.4;">💬 Gelen Soru: ${msg.content}</div><div style="background: #0d1117; border-left: 3px solid #00f2fe; padding: 10px; border-radius: 0 4px 4px 0;"><div style="color: #8b949e; font-size: 13px; font-weight: 600; margin-bottom: 4px;">👤 Murat Şener'in Cevabı:</div><div style="color: #fff; font-size: 14px; line-height: 1.4;">${msg.reply || 'Yanıt bekleniyor...'}</div></div>`;
-                        container.appendChild(card);
-                    });
-                } else if(!noTxt) {
-                    const p = document.createElement('p');
-                    p.id = 'noMessageTxt';
-                    p.style.cssText = "color: #555; font-size: 14px; font-style: italic;";
-                    p.innerText = "Henüz yanıtlanan bir soru bulunmuyor.";
-                    container.appendChild(p);
+                
+                if (container) {
+                    container.innerHTML = '';
+                    if (data && data.length > 0) {
+                        if(noTxt) noTxt.remove();
+                        data.forEach(msg => {
+                            const card = document.createElement('div');
+                            card.style.cssText = "background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 15px; text-align: left; margin-bottom: 15px;";
+                            card.innerHTML = `
+                                <div style="color: #00f2fe; font-weight: 600; font-size: 15px; margin-bottom: 8px;">📌 Başlık: ${msg.title}</div>
+                                <div style="color: #c9d1d9; font-size: 14px; margin-bottom: 12px; line-height: 1.4;">💬 Gelen Soru: ${msg.content}</div>
+                                <div style="background: #0d1117; border-left: 3px solid #00f2fe; padding: 10px; border-radius: 0 4px 4px 0;">
+                                    <div style="color: #8b949e; font-size: 13px; font-weight: 600; margin-bottom: 4px;">👤 Murat Şener'in Cevabı:</div>
+                                    <div style="color: #fff; font-size: 14px; line-height: 1.4;">${msg.reply || 'Yanıt bekleniyor...'}</div>
+                                </div>
+                            `;
+                            container.appendChild(card);
+                        });
+                    } else if(!noTxt) {
+                        const p = document.createElement('p');
+                        p.id = 'noMessageTxt';
+                        p.style.cssText = "color: #555; font-size: 14px; font-style: italic;";
+                        p.innerText = "Henüz yanıtlanan bir soru bulunmuyor.";
+                        container.appendChild(p);
+                    }
                 }
-            } catch (err) { console.error("Veri hatası:", err); }
+            } catch (err) { console.error("Veri listeleme hatası:", err); }
         }
 
         document.addEventListener('DOMContentLoaded', fetchQAData);
 
-        // FORM GÖNDERİMİNDEKİ İSİM ÇAKIŞMALARI DÜZELTİLDİ
-        document.getElementById('qaForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const title = document.getElementById('qaTitle').value;
-            const content = document.getElementById('qaContent').value;
-            const statusSpan = document.getElementById('formStatus');
-            
-            if (statusSpan) {
-                statusSpan.style.color = '#888';
-                statusSpan.innerText = 'Gönderiliyor...';
-            }
-
-            try {
-                // Burada 'supabaseQAManager' ismiyle veri tabanına güvenli erişim sağlıyoruz
-                const { error } = await supabaseQAManager.from('messages').insert([{ title: title, content: content, is_approved: false }]);
-                if (error) throw error;
+        // 2. FORM GÖNDERME MOTORU (HTML ELEMANLARIYLA %100 UYUMLU SÜRÜM)
+        const qaFormElement = document.getElementById('qaForm');
+        if (qaFormElement) {
+            qaFormElement.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const titleVal = document.getElementById('qaTitle').value;
+                const contentVal = document.getElementById('qaContent').value;
+                const statusSpan = document.getElementById('formStatus');
 
                 if (statusSpan) {
-                    statusSpan.style.color = '#00ffcc';
-                    statusSpan.innerText = 'Sorunuz başarıyla iletildi!';
+                    statusSpan.style.color = '#888';
+                    statusSpan.innerText = 'Gönderiliyor...';
                 }
-                document.getElementById('qaForm').reset();
-            } catch (err) {
-                if (statusSpan) {
-                    statusSpan.style.color = '#ff6b6b';
-                    statusSpan.innerText = 'Hata oluştu, tekrar dene.';
+
+                try {
+                    const { error } = await supabaseQAManager
+                        .from('messages')
+                        .insert([{ title: titleVal, content: contentVal, is_approved: false }]);
+
+                    if (error) throw error;
+
+                    if (statusSpan) {
+                        statusSpan.style.color = '#00ffcc';
+                        statusSpan.innerText = 'Sorunuz başarıyla iletildi!';
+                    }
+                    qaFormElement.reset();
+                } catch (err) {
+                    if (statusSpan) {
+                        statusSpan.style.color = '#ff6b6b';
+                        statusSpan.innerText = 'Hata oluştu, tekrar dene.';
+                    }
+                    console.error("Supabase insert hatası:", err);
                 }
-                console.error("Gönderim hatası:", err);
-            }
-        });
+            });
+        }
     </script>
-
 
 
     <!-- SAYAÇ VE COPYRIGHT -->
