@@ -481,11 +481,12 @@
     </div>
 
     <!-- SUPABASE SCRIPT MOTORU (ASİSTAN KODLARINIZA ZARAR VERMEZ) -->
-    <script src="https://jsdelivr.net"></script>
+    <script src="https://unpkg.com"></script>
     <script>
         const SB_URL = "https://tplpivnsxngeekqbbgyh.supabase.co/rest/v1/";
         const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRwbHBpdm5zeG5nZWVrcWJiZ3loIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE0NDcxODYsImV4cCI6MjEwNzAyMzE4Nn0.LssqKallOoDKWR9Q-zVjW_oFIFcBcnwaZ4YOtfhQvBE";
-        const supabaseQAManager = supabase.createClient(SB_URL, SB_KEY);
+        const supabase = supabase.createClient(SB_URL, SB_KEY);
+
 
         async function fetchQAData() {
             try {
