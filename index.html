@@ -480,15 +480,17 @@
         </div>
     </div>
 
-       <!-- DOĞRUDAN HTTP API MOTORU - ARINDIRILMIŞ KESİN SÜRÜM 🛡️ -->
+           <!-- DOĞRUDAN HTTP API MOTORU - ONAYSIZ ANLIK YAYINLAMA SÜRÜMÜ 🛡️ -->
     <script>
         const SB_URL = "https://tplpivnsxngeekqbbgyh.supabase.co";
         const SB_KEY = "sb_publishable_aG3JTIwogS3J9hmtetax4Q_5itN5cJ5"; // Ekranındaki o uzun publishable key'in tamamını yapıştır
 
-        // 1. ONAYLANAN MESAJLARI HTTP GET İSTEĞİ İLE ÇEKME
+        // 1. TÜM SORULARI (ONAY ŞARTI OLMADAN) ANINDA ÇEKME FONKSİYONU
         async function fetchQAData() {
             try {
-                const response = await fetch(`${SB_URL}/rest/v1/messages?is_approved=eq.true&order=created_at.desc`, {
+                // 🎯 DEĞİŞİKLİK: 'is_approved=eq.true' filtresini kaldırdık. 
+                // Artık veri tabanındaki tüm sorular onay beklemeden doğrudan kronolojik sırayla listelenir.
+                const response = await fetch(`${SB_URL}/rest/v1/messages?order=created_at.desc`, {
                     method: "GET",
                     headers: {
                         "apikey": SB_KEY,
@@ -516,7 +518,7 @@
                                 <div style="color: #c9d1d9; font-size: 14px; margin-bottom: 12px; line-height: 1.4;">💬 Gelen Soru: ${msg.content || ''}</div>
                                 <div style="background: #0d1117; border-left: 3px solid #00f2fe; padding: 10px; border-radius: 0 4px 4px 0;">
                                     <div style="color: #8b949e; font-size: 13px; font-weight: 600; margin-bottom: 4px;">👤 Murat Şener'in Cevabı:</div>
-                                    <div style="color: #fff; font-size: 14px; line-height: 1.4;">${msg.reply || 'Yanıt bekleniyor...'}</div>
+                                    <div style="color: #fff; font-size: 14px; line-height: 1.4;">${msg.reply || '👉 Yanıt bekleniyor, Murat Şener kısa süre içinde değerlendirecektir...'}</div>
                                 </div>
                             `;
                             container.appendChild(card);
@@ -525,7 +527,7 @@
                         const p = document.createElement('p');
                         p.id = 'noMessageTxt';
                         p.style.cssText = "color: #555; font-size: 14px; font-style: italic;";
-                        p.innerText = "Henüz yanıtlanan bir soru bulunmuyor.";
+                        p.innerText = "Henüz gönderilen bir soru bulunmuyor.";
                         container.appendChild(p);
                     }
                 }
@@ -534,7 +536,7 @@
 
         document.addEventListener('DOMContentLoaded', fetchQAData);
 
-        // 2. FORM GÖNDERME MOTORU (SADECE DOĞRULANMIŞ SÜTUNLAR)
+        // 2. FORM GÖNDERME MOTORU
         const qaFormElement = document.getElementById('qaForm');
         if (qaFormElement) {
             qaFormElement.addEventListener('submit', async (e) => {
@@ -549,12 +551,10 @@
                     statusSpan.innerText = 'Gönderiliyor...';
                 }
 
-                // 🎯 KİLİT NOKTA: 'baslik', 'icerik' gibi tüm hatalı alternatif kelimeler paketten tamamen temizlendi.
-                // Sadece panelde düzelttiğin 'title' ve 'content' sütunlarına saf veri gider.
                 const cleanPayload = {
                     title: titleVal,
                     content: contentVal,
-                    is_approved: false
+                    is_approved: true // 🎯 DEĞİŞİKLİK: Doğrudan true olarak gönderiyoruz
                 };
 
                 try {
@@ -576,9 +576,12 @@
 
                     if (statusSpan) {
                         statusSpan.style.color = '#00ffcc';
-                        statusSpan.innerText = 'Sorunuz başarıyla iletildi!';
+                        statusSpan.innerText = 'Sorunuz anında listeye eklendi!';
                     }
                     qaFormElement.reset();
+                    
+                    // 🚀 Listeyi anlık olarak yenileyerek sorunun hemen sayfada belirmesini sağlıyoruz
+                    fetchQAData();
                 } catch (err) {
                     if (statusSpan) {
                         statusSpan.style.color = '#ff6b6b';
@@ -589,9 +592,6 @@
             });
         }
     </script>
-
-
-
 
     <!-- SAYAÇ VE COPYRIGHT -->
     <div class="footer-info" style="margin-top: 60px; text-align: center; opacity: 0.7; padding-bottom: 20px;">
