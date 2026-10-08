@@ -400,10 +400,10 @@
                     data-link="https://www.threads.com/share/Hr_Qn9KrJ/"><div> Spoiler Yapımı <div class="nested-sub-text">Spoiler ile yorum yada resminizi gizleyin..</div>
                     </div><span class="time-badge">1 dk okuma</span></div>
 
-                    <div class="nested-item" onclick="openHtmlModal(this)" data-title="17-19?"
-                    data-text="[Erişim sorunu]&#10;&#10;• Takipçiniz çok ama erişiminiz az mı? &#10;• Detaylara aşağıdan konuya giderek erişebilirsiniz."
-                    data-link="https://www.threads.com/share/DzphSKh8O/"><div> Erişim Sorununa Bir Göz Atalım.. <div class="nested-sub-text">Erişim ile aklınıza takılan şeyler.. </div>
-                    </div><span class="time-badge">1 dk okuma</span></div>
+                    
+
+       
+
 
        
 
@@ -448,113 +448,89 @@
         </div>
         <span class="arrow-right">Mail At →</span>
     </a>
+    
+        <!-- ================================================================= -->
+    <!-- 💬 SADECE BU ARADAKİ GİRİŞSİZ SUPABASE FORM ALANINI EKLEYİN      -->
     <!-- ================================================================= -->
-    <!-- ZİYARETÇİ DEFTERİ & SUPABASE DIŞ ALAN (HER ZAMAN GÖRÜNÜR)         -->
-    <!-- ================================================================= -->
-    <div class="supabase-qa-section" style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: left; width: 100%;">
-        <h3 style="color: #00f2fe; margin-bottom: 8px; font-family: inherit; font-size: 1.2rem; font-weight: 600;">💬 Soru Sor & Sorun Bildir</h3>
-        <p style="color: #888; font-size: 0.9rem; margin-bottom: 25px; font-family: inherit; line-height: 1.4;">
+    <div class="supabase-qa-section" style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: left; width: 100%;">
+        <h3 style="color: #00f2fe; margin-bottom: 8px; font-size: 1.2rem; font-weight: 600;">💬 Soru Sor & Sorun Bildir</h3>
+        <p style="color: #888; font-size: 0.9rem; margin-bottom: 25px; line-height: 1.5;">
             Threads rehberleri veya siteyle ilgili yaşadığın sorunları üye olmadan veya giriş yapmadan anında iletebilirsin. 
             Gönderdiğin sorular arka plana düşer; sadece yanıtladığım mesajlar burada listelenir.
         </p>
         
-        <!-- SORU GÖNDERME FORMU -->
+        <!-- FORM ALANI -->
         <form id="qaForm" style="background: #161b22; padding: 20px; border-radius: 8px; border: 1px solid #30363d; margin-bottom: 30px;">
             <div style="margin-bottom: 15px;">
                 <label style="display: block; color: #fff; font-size: 14px; margin-bottom: 5px; font-weight: 600;">📌 Konu Başlığı:</label>
-                <input type="text" id="qaTitle" required placeholder="Erişim Sorunu, Algoritma Hatası vb." style="width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #fff; font-family: inherit; font-size: 14px; box-sizing: border-box;">
+                <input type="text" id="qaTitle" required placeholder="Erişim Sorunu, Algoritma Hatası vb." style="width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #fff; box-sizing: border-box; font-family: inherit;">
             </div>
             <div style="margin-bottom: 15px;">
                 <label style="display: block; color: #fff; font-size: 14px; margin-bottom: 5px; font-weight: 600;">💬 Sorununuz veya Görüşünüz:</label>
-                <textarea id="qaContent" required placeholder="Yaşadığın problemi buraya detaylıca yazabilirsin..." rows="4" style="width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #fff; font-family: inherit; font-size: 14px; box-sizing: border-box; resize: vertical;"></textarea>
+                <textarea id="qaContent" required placeholder="Yaşadığın problemi buraya detaylıca yazabilirsin..." rows="4" style="width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #fff; box-sizing: border-box; resize: vertical; font-family: inherit;"></textarea>
             </div>
-            <button type="submit" style="background: #00f2fe; color: #0d1117; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; font-family: inherit; font-size: 14px; transition: opacity 0.2s;">Soruyu Gönder →</button>
+            <button type="submit" style="background: #00f2fe; color: #0d1117; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; font-family: inherit;">Soruyu Gönder →</button>
             <span id="formStatus" style="margin-left: 15px; font-size: 14px; font-weight: 600;"></span>
         </form>
 
-        <!-- CEVAPLANAN SORULARIN LİSTELENECEĞİ ALAN -->
+        <!-- YANITLANAN SORULARIN GÖRÜNECEĞİ YER -->
         <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 15px; font-weight: 600;">📥 Yanıtlanan Sorular</h4>
         <div id="approvedMessagesContainer" style="display: grid; gap: 15px;">
-            <!-- Sorular buraya JavaScript ile otomatik dolacak -->
             <p id="noMessageTxt" style="color: #555; font-size: 14px; font-style: italic;">Henüz yanıtlanan bir soru bulunmuyor.</p>
         </div>
     </div>
 
-    <!-- SUPABASE KÜTÜPHANESİ VE MOTORU -->
+    <!-- SUPABASE SCRIPT MOTORU (ASİSTAN KODLARINIZA ZARAR VERMEZ) -->
     <script src="https://jsdelivr.net"></script>
     <script>
-        // Burayı kendi Supabase bilgilerinle dolduracaksın
-        const SUPABASE_URL = "https://tplpivnsxngeekqbbgyh.supabase.co/rest/v1/";
-        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRwbHBpdm5zeG5nZWVrcWJiZ3loIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE0NDcxODYsImV4cCI6MjEwNzAyMzE4Nn0.LssqKallOoDKWR9Q-zVjW_oFIFcBcnwaZ4YOtfhQvBE";
+        const SB_URL = "https://tplpivnsxngeekqbbgyh.supabase.co/rest/v1/";
+        const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRwbHBpdm5zeG5nZWVrcWJiZ3loIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE0NDcxODYsImV4cCI6MjEwNzAyMzE4Nn0.LssqKallOoDKWR9Q-zVjW_oFIFcBcnwaZ4YOtfhQvBE";
+        const supabaseQAManager = supabase.createClient(SB_URL, SB_KEY);
 
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-        // 1. ONAYLANAN VE CEVAPLANAN SORULARI EKRA NA BASMA FONKSİYONU
-        async function loadApprovedMessages() {
-            const { data, error } = await supabase
-                .from('messages')
-                .select('*')
-                .eq('is_approved', true)
-                .order('created_at', { ascending: false });
-
-            if (error) {
-                console.error("Veriler alınırken hata oluştu:", error);
-                return;
-            }
-
-            const container = document.getElementById('approvedMessagesContainer');
-            const noMessageTxt = document.getElementById('noMessageTxt');
-            
-            // Temizle
-            container.innerHTML = '';
-
-            if (data && data.length > 0) {
-                if(noMessageTxt) noMessageTxt.remove();
-                data.forEach(msg => {
-                    const card = document.createElement('div');
-                    card.className = 'qa-card';
-                    card.style.cssText = "background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 15px; text-align: left;";
-                    card.innerHTML = `
-                        <div style="color: #00f2fe; font-weight: 600; font-size: 15px; margin-bottom: 8px;">📌 Başlık: ${msg.title}</div>
-                        <div style="color: #c9d1d9; font-size: 14px; margin-bottom: 12px; line-height: 1.4;">💬 Gelen Soru: ${msg.content}</div>
-                        <div style="background: #0d1117; border-left: 3px solid #00f2fe; padding: 10px; border-radius: 0 4px 4px 0;">
-                            <div style="color: #8b949e; font-size: 13px; font-weight: 600; margin-bottom: 4px;">👤 Murat Şener'in Cevabı:</div>
-                            <div style="color: #fff; font-size: 14px; line-height: 1.4;">${msg.reply || 'Yanıt bekleniyor...'}</div>
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
-            } else {
-                container.appendChild(noMessageTxt || document.createElement('p'));
-            }
+        async function fetchQAData() {
+            try {
+                const { data, error } = await supabaseQAManager.from('messages').select('*').eq('is_approved', true).order('created_at', { ascending: false });
+                if (error) throw error;
+                const container = document.getElementById('approvedMessagesContainer');
+                const noTxt = document.getElementById('noMessageTxt');
+                container.innerHTML = '';
+                if (data && data.length > 0) {
+                    if(noTxt) noTxt.remove();
+                    data.forEach(msg => {
+                        const card = document.createElement('div');
+                        card.style.cssText = "background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 15px; text-align: left; margin-bottom: 15px;";
+                        card.innerHTML = `<div style="color: #00f2fe; font-weight: 600; font-size: 15px; margin-bottom: 8px;">📌 Başlık: ${msg.title}</div><div style="color: #c9d1d9; font-size: 14px; margin-bottom: 12px; line-height: 1.4;">💬 Gelen Soru: ${msg.content}</div><div style="background: #0d1117; border-left: 3px solid #00f2fe; padding: 10px; border-radius: 0 4px 4px 0;"><div style="color: #8b949e; font-size: 13px; font-weight: 600; margin-bottom: 4px;">👤 Murat Şener'in Cevabı:</div><div style="color: #fff; font-size: 14px; line-height: 1.4;">${msg.reply || 'Yanıt bekleniyor...'}</div></div>`;
+                        container.appendChild(card);
+                    });
+                } else if(!noTxt) {
+                    const p = document.createElement('p');
+                    p.id = 'noMessageTxt';
+                    p.style.cssText = "color: #555; font-size: 14px; font-style: italic;";
+                    p.innerText = "Henüz yanıtlanan bir soru bulunmuyor.";
+                    container.appendChild(p);
+                }
+            } catch (err) { console.error("Veri hatası:", err); }
         }
 
-        // 2. FORM GÖNDERME FONKSİYONU (GİRİŞSİZ - ANONİM)
+        document.addEventListener('DOMContentLoaded', fetchQAData);
         document.getElementById('qaForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const title = document.getElementById('qaTitle').value;
             const content = document.getElementById('qaContent').value;
             const statusSpan = document.getElementById('formStatus');
-
             statusSpan.style.color = '#888';
             statusSpan.innerText = 'Gönderiliyor...';
-
-            const { error } = await supabase
-                .from('messages')
-                .insert([{ title: title, content: content, is_approved: false }]);
-
+            const { error } = await supabaseQAManager.from('messages').insert([{ title: title, content: content, is_approved: false }]);
             if (error) {
                 statusSpan.style.color = '#ff6b6b';
                 statusSpan.innerText = 'Hata oluştu, tekrar dene.';
-                console.error(error);
             } else {
                 statusSpan.style.color = '#00ffcc';
-                statusSpan.innerText = 'Sorunuz başarıyla iletildi! Onaylandıktan sonra yayınlanacaktır.';
+                statusSpan.innerText = 'Sorunuz başarıyla iletildi!';
                 document.getElementById('qaForm').reset();
             }
-        }
-
-
+        });
+    </script>
 
     <!-- SAYAÇ VE COPYRIGHT -->
     <div class="footer-info" style="margin-top: 60px; text-align: center; opacity: 0.7; padding-bottom: 20px;">
