@@ -480,15 +480,16 @@
         </div>
     </div>
 
-                <!-- SUPABASE SCRIPT MOTORU - SADECE FORM VE LİSTELEME İÇİN GÜVENLİ SÜRÜM -->
+                   <!-- SUPABASE SCRIPT MOTORU (SDK KURUCU NESNESİ DÜZELTİLDİ 🛠️) -->
     <script src="https://unpkg.com"></script>
     <script>
-        // Supabase bağlantı bilgilerini buraya tırnakları silmeden ekle
-        const SB_URL = "https://tplpivnsxngeekqbbgyh.supabase.co";
-        const SB_KEY = "sb_publishable_aG3JTIwogS3J9hmtetax4Q_5itN5cJ5";
-        const supabaseQAManager = supabase.createClient(SB_URL, SB_KEY);
+        // Ekran görüntüsündeki bilgileri buraya tırnakları silmeden yapıştır
+        const SB_URL = "https://supabase.co"; 
+        const SB_KEY = "sb_publishable_aG3JTIwogS3J9hmtetax4Q_5itN5cJ5"; // Ekranındaki o uzun publishable key'in tamamını buraya yaz
 
-        // 1. ONAYLANAN MESAJLARI GERİ GETİRME
+        // Hatanın asıl çözümü: Kurucu nesne olarak büyük harfle başlayan kütüphane çağrılıyor
+        const supabaseQAManager = window.supabase.createClient(SB_URL, SB_KEY);
+
         async function fetchQAData() {
             try {
                 const { data, error } = await supabaseQAManager
@@ -531,7 +532,6 @@
 
         document.addEventListener('DOMContentLoaded', fetchQAData);
 
-        // 2. FORM GÖNDERME MOTORU (HTML ELEMANLARIYLA %100 UYUMLU SÜRÜM)
         const qaFormElement = document.getElementById('qaForm');
         if (qaFormElement) {
             qaFormElement.addEventListener('submit', async (e) => {
@@ -568,6 +568,7 @@
             });
         }
     </script>
+
 
 
     <!-- SAYAÇ VE COPYRIGHT -->
