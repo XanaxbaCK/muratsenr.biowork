@@ -480,11 +480,13 @@
         </div>
     </div>
 
-        <!-- SUPABASE SCRIPT MOTORU (EKSİKSİZ VE PARANTEZLERİ TAM SÜRÜM) -->
+            <!-- SUPABASE SCRIPT MOTORU (UYUŞMAZLIKLAR TAMAMEN GİDERİLDİ 🛠️) -->
     <script src="https://unpkg.com"></script>
     <script>
         const SB_URL = "https://tplpivnsxngeekqbbgyh.supabase.co/rest/v1/";
         const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRwbHBpdm5zeG5nZWVrcWJiZ3loIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE0NDcxODYsImV4cCI6MjEwNzAyMzE4Nn0.LssqKallOoDKWR9Q-zVjW_oFIFcBcnwaZ4YOtfhQvBE";
+        
+        // Değişken adını doğrudan 'supabaseQAManager' olarak sabitledik
         const supabaseQAManager = supabase.createClient(SB_URL, SB_KEY);
 
         async function fetchQAData() {
@@ -514,29 +516,38 @@
 
         document.addEventListener('DOMContentLoaded', fetchQAData);
 
-        // FORM GÖNDERME MOTORU (EKSİK OLAN KAPANIŞ PARANTEZLERİ DÜZELTİLDİ 🛠️)
+        // FORM GÖNDERİMİNDEKİ İSİM ÇAKIŞMALARI DÜZELTİLDİ
         document.getElementById('qaForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const title = document.getElementById('qaTitle').value;
             const content = document.getElementById('qaContent').value;
             const statusSpan = document.getElementById('formStatus');
-            statusSpan.style.color = '#888';
-            statusSpan.innerText = 'Gönderiliyor...';
+            
+            if (statusSpan) {
+                statusSpan.style.color = '#888';
+                statusSpan.innerText = 'Gönderiliyor...';
+            }
 
             try {
+                // Burada 'supabaseQAManager' ismiyle veri tabanına güvenli erişim sağlıyoruz
                 const { error } = await supabaseQAManager.from('messages').insert([{ title: title, content: content, is_approved: false }]);
                 if (error) throw error;
 
-                statusSpan.style.color = '#00ffcc';
-                statusSpan.innerText = 'Sorunuz başarıyla iletildi!';
+                if (statusSpan) {
+                    statusSpan.style.color = '#00ffcc';
+                    statusSpan.innerText = 'Sorunuz başarıyla iletildi!';
+                }
                 document.getElementById('qaForm').reset();
             } catch (err) {
-                statusSpan.style.color = '#ff6b6b';
-                statusSpan.innerText = 'Hata oluştu, tekrar dene.';
+                if (statusSpan) {
+                    statusSpan.style.color = '#ff6b6b';
+                    statusSpan.innerText = 'Hata oluştu, tekrar dene.';
+                }
                 console.error("Gönderim hatası:", err);
             }
-        }); // <-- UNUTULAN KAPANIŞ ETİKETİ BURAYA EKLENDİ!
+        });
     </script>
+
 
 
     <!-- SAYAÇ VE COPYRIGHT -->
