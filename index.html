@@ -480,38 +480,26 @@
         </div>
     </div>
 
-        <!-- SUPABASE SCRIPT MOTORU - KESİN ÇÖZÜM SÜRÜMÜ 🛡️ -->
-    <!-- CDN bağlantısının kilitlenmesini önlemek için resmi alternatif olan unpkg üzerinden çağırıyoruz -->
-    <script src="https://unpkg.com"></script>
+           <!-- DIŞ BAĞLANTI GEREKTİRMEYEN DOĞRUDAN API MOTORU 🛡️ -->
     <script>
         const SB_URL = "https://tplpivnsxngeekqbbgyh.supabase.co";
-        const SB_KEY = "sb_publishable_aG3JTIwogS3J9hmtetax4Q_5itN5cJ5"; // Ekranındaki o uzun publishable key'in tamamını buraya yaz
+        const SB_KEY = "sb_publishable_aG3JTIwogS3J9hmtetax4Q_5itN5cJ5"; // Ekranındaki o uzun anon public key'in tamamını yazın
 
-        // 'supabase is not defined' hatasını çözmek için tarayıcının unpkg üzerinden 
-        // yüklediği modülü hem pencere düzeyinde hem de doğrudan global düzeyde kontrol ederek başlatıyoruz.
-        let supabaseInstance = null;
-        if (typeof window.supabase !== 'undefined') {
-            supabaseInstance = window.supabase.createClient(SB_URL, SB_KEY);
-        } else if (typeof supabase !== 'undefined') {
-            supabaseInstance = supabase.createClient(SB_URL, SB_KEY);
-        } else if (typeof window.supabaseJS !== 'undefined') {
-            supabaseInstance = window.supabaseJS.createClient(SB_URL, SB_KEY);
-        }
-
-        // 1. ONAYLANAN MESAJLARI GERİ GETİRME
+        // 1. ONAYLANAN MESAJLARI TARAYICININ KENDİ MOTORUYLA ÇEKME
         async function fetchQAData() {
-            if (!supabaseInstance) {
-                console.error("Supabase istemcisi başlatılamadı, kütüphane yüklenemedi.");
-                return;
-            }
             try {
-                const { data, error } = await supabaseInstance
-                    .from('messages')
-                    .select('*')
-                    .eq('is_approved', true)
-                    .order('created_at', { ascending: false });
+                const response = await fetch(`${SB_URL}/rest/v1/messages?is_approved=eq.true&order=created_at.desc`, {
+                    method: "GET",
+                    headers: {
+                        "apikey": SB_KEY,
+                        "Authorization": `Bearer ${SB_KEY}`,
+                        "Content-Type": "application/json"
+                    }
+                });
+                
+                if (!response.ok) throw new Error("Veri çekilemedi");
+                const data = await response.json();
 
-                if (error) throw error;
                 const container = document.getElementById('approvedMessagesContainer');
                 const noTxt = document.getElementById('noMessageTxt');
                 
@@ -540,12 +528,12 @@
                         container.appendChild(p);
                     }
                 }
-            } catch (err) { console.error("Veri listeleme hatası:", err); }
+            } catch (err) { console.error("Listeleme hatası:", err); }
         }
 
         document.addEventListener('DOMContentLoaded', fetchQAData);
 
-        // 2. FORM GÖNDERME MOTORU
+        // 2. FORM GÖNDERME MOTORU (KÜTÜPHANESİZ DOĞRUDAN HTTP POST İSTEĞİ)
         const qaFormElement = document.getElementById('qaForm');
         if (qaFormElement) {
             qaFormElement.addEventListener('submit', async (e) => {
@@ -560,20 +548,19 @@
                     statusSpan.innerText = 'Gönderiliyor...';
                 }
 
-                if (!supabaseInstance) {
-                    if (statusSpan) {
-                        statusSpan.style.color = '#ff6b6b';
-                        statusSpan.innerText = 'Kütüphane hatası, sayfa yüklenemedi.';
-                    }
-                    return;
-                }
-
                 try {
-                    const { error } = await supabaseInstance
-                        .from('messages')
-                        .insert([{ title: titleVal, content: contentVal, is_approved: false }]);
+                    const response = await fetch(`${SB_URL}/rest/v1/messages`, {
+                        method: "POST",
+                        headers: {
+                            "apikey": SB_KEY,
+                            "Authorization": `Bearer ${SB_KEY}`,
+                            "Content-Type": "application/json",
+                            "Prefer": "return=minimal"
+                        },
+                        body: JSON.stringify({ title: titleVal, content: contentVal, is_approved: false })
+                    });
 
-                    if (error) throw error;
+                    if (!response.ok) throw new Error("Gönderim başarısız");
 
                     if (statusSpan) {
                         statusSpan.style.color = '#00ffcc';
@@ -585,12 +572,11 @@
                         statusSpan.style.color = '#ff6b6b';
                         statusSpan.innerText = 'Hata oluştu, tekrar dene.';
                     }
-                    console.error("Supabase insert hatası:", err);
+                    console.error("Doğrudan API hatası:", err);
                 }
             });
         }
     </script>
-
 
 
     <!-- SAYAÇ VE COPYRIGHT -->
