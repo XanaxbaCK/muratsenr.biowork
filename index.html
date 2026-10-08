@@ -480,12 +480,12 @@
         </div>
     </div>
 
-           <!-- DIŞ BAĞLANTI GEREKTİRMEYEN DOĞRUDAN API MOTORU 🛡️ -->
+               <!-- DOĞRUDAN HTTP API MOTORU - SÜTUN FORMATI DÜZELTİLMİŞ SÜRÜM 🛡️ -->
     <script>
         const SB_URL = "https://tplpivnsxngeekqbbgyh.supabase.co";
-        const SB_KEY = "sb_publishable_aG3JTIwogS3J9hmtetax4Q_5itN5cJ5"; // Ekranındaki o uzun anon public key'in tamamını yazın
+        const SB_KEY = "sb_publishable_aG3JTIwogS3J9hmtetax4Q_5itN5cJ5"; // Ekranındaki o uzun publishable key'in tamamını yapıştır
 
-        // 1. ONAYLANAN MESAJLARI TARAYICININ KENDİ MOTORUYLA ÇEKME
+        // 1. ONAYLANAN MESAJLARI HTTP GET İSTEĞİ İLE ÇEKME
         async function fetchQAData() {
             try {
                 const response = await fetch(`${SB_URL}/rest/v1/messages?is_approved=eq.true&order=created_at.desc`, {
@@ -493,11 +493,12 @@
                     headers: {
                         "apikey": SB_KEY,
                         "Authorization": `Bearer ${SB_KEY}`,
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
                     }
                 });
                 
-                if (!response.ok) throw new Error("Veri çekilemedi");
+                if (!response.ok) throw new Error("Veri çekme başarısız");
                 const data = await response.json();
 
                 const container = document.getElementById('approvedMessagesContainer');
@@ -533,7 +534,7 @@
 
         document.addEventListener('DOMContentLoaded', fetchQAData);
 
-        // 2. FORM GÖNDERME MOTORU (KÜTÜPHANESİZ DOĞRUDAN HTTP POST İSTEĞİ)
+        // 2. FORM GÖNDERME MOTORU (400 VERİ FORMATI HATASI DÜZELTİLDİ 🛠️)
         const qaFormElement = document.getElementById('qaForm');
         if (qaFormElement) {
             qaFormElement.addEventListener('submit', async (e) => {
@@ -549,6 +550,7 @@
                 }
 
                 try {
+                    // Veri tabanındaki sütun isimleriyle birebir eşleşen gövde paketi
                     const response = await fetch(`${SB_URL}/rest/v1/messages`, {
                         method: "POST",
                         headers: {
@@ -557,10 +559,17 @@
                             "Content-Type": "application/json",
                             "Prefer": "return=minimal"
                         },
-                        body: JSON.stringify({ title: titleVal, content: contentVal, is_approved: false })
+                        body: JSON.stringify({ 
+                            title: titleVal, 
+                            content: contentVal, 
+                            is_approved: false 
+                        })
                     });
 
-                    if (!response.ok) throw new Error("Gönderim başarısız");
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        throw new Error(errorText || "Gönderim başarısız");
+                    }
 
                     if (statusSpan) {
                         statusSpan.style.color = '#00ffcc';
@@ -577,6 +586,7 @@
             });
         }
     </script>
+
 
 
     <!-- SAYAÇ VE COPYRIGHT -->
