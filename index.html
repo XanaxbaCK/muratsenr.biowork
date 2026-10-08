@@ -480,22 +480,32 @@
         </div>
     </div>
 
-                      <!-- SUPABASE SCRIPT MOTORU - ÇAKIŞMA ÖNLEYİCİ İZOLE SÜRÜM 🛡️ -->
+        <!-- SUPABASE SCRIPT MOTORU - KESİN ÇÖZÜM SÜRÜMÜ 🛡️ -->
+    <!-- CDN bağlantısının kilitlenmesini önlemek için resmi alternatif olan unpkg üzerinden çağırıyoruz -->
     <script src="https://unpkg.com"></script>
     <script>
-        // Supabase bağlantı bilgilerini buraya tırnakları silmeden ekle
         const SB_URL = "https://tplpivnsxngeekqbbgyh.supabase.co";
         const SB_KEY = "sb_publishable_aG3JTIwogS3J9hmtetax4Q_5itN5cJ5"; // Ekranındaki o uzun publishable key'in tamamını buraya yaz
 
-        // 🎯 ÇAKIŞMAYI ÇÖZEN KRİTİK SATIR:
-        // window.supabase nesnesi üstteki kodlarla çakıştığı için, tarayıcının unpkg üzerinden 
-        // yüklediği ham kütüphane motorunu doğrudan 'supabaseJS' küresel adından güvenle çekiyoruz.
-        const supabaseQAManager = window.supabaseJS ? window.supabaseJS.createClient(SB_URL, SB_KEY) : supabase.createClient(SB_URL, SB_KEY);
+        // 'supabase is not defined' hatasını çözmek için tarayıcının unpkg üzerinden 
+        // yüklediği modülü hem pencere düzeyinde hem de doğrudan global düzeyde kontrol ederek başlatıyoruz.
+        let supabaseInstance = null;
+        if (typeof window.supabase !== 'undefined') {
+            supabaseInstance = window.supabase.createClient(SB_URL, SB_KEY);
+        } else if (typeof supabase !== 'undefined') {
+            supabaseInstance = supabase.createClient(SB_URL, SB_KEY);
+        } else if (typeof window.supabaseJS !== 'undefined') {
+            supabaseInstance = window.supabaseJS.createClient(SB_URL, SB_KEY);
+        }
 
         // 1. ONAYLANAN MESAJLARI GERİ GETİRME
         async function fetchQAData() {
+            if (!supabaseInstance) {
+                console.error("Supabase istemcisi başlatılamadı, kütüphane yüklenemedi.");
+                return;
+            }
             try {
-                const { data, error } = await supabaseQAManager
+                const { data, error } = await supabaseInstance
                     .from('messages')
                     .select('*')
                     .eq('is_approved', true)
@@ -550,8 +560,16 @@
                     statusSpan.innerText = 'Gönderiliyor...';
                 }
 
+                if (!supabaseInstance) {
+                    if (statusSpan) {
+                        statusSpan.style.color = '#ff6b6b';
+                        statusSpan.innerText = 'Kütüphane hatası, sayfa yüklenemedi.';
+                    }
+                    return;
+                }
+
                 try {
-                    const { error } = await supabaseQAManager
+                    const { error } = await supabaseInstance
                         .from('messages')
                         .insert([{ title: titleVal, content: contentVal, is_approved: false }]);
 
@@ -572,6 +590,7 @@
             });
         }
     </script>
+
 
 
     <!-- SAYAÇ VE COPYRIGHT -->
