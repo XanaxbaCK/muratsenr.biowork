@@ -514,13 +514,14 @@
                             const card = document.createElement('div');
                             card.style.cssText = "background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 15px; text-align: left; margin-bottom: 15px;";
                             card.innerHTML = `
-                                <div style="color: #00f2fe; font-weight: 600; font-size: 15px; margin-bottom: 8px;">📌 Başlık: ${msg.title || '📌 Başlık'}</div>
-                                <div style="color: #c9d1d9; font-size: 14px; margin-bottom: 12px; line-height: 1.4;">💬 Gelen Soru: ${msg.content || ''}</div>
-                                <div style="background: #0d1117; border-left: 3px solid #00f2fe; padding: 10px; border-radius: 0 4px 4px 0;">
-                                    <div style="color: #8b949e; font-size: 13px; font-weight: 600; margin-bottom: 4px;">👤 Murat Şener'in Cevabı:</div>
-                                    <div style="color: #fff; font-size: 14px; line-height: 1.4;">${msg.reply || '👉 Yanıt bekleniyor, Murat Şener kısa süre içinde değerlendirecektir...'}</div>
-                                </div>
-                            `;
+    <div style="color: #00f2fe; font-weight: 600; font-size: 12px; margin-bottom: 5px;">📌 Başlık: ${msg.title || '📌 Başlık'}</div>
+    <div style="color: #c9d1d9; font-size: 12px; margin-bottom: 8px; line-height: 1.4;">💬 Gelen Soru: ${msg.content || ''}</div>
+    <div style="background: #0d1117; border-left: 2px solid #00f2fe; padding: 6px 8px; border-radius: 0 4px 4px 0;">
+        <div style="color: #8b949e; font-size: 11px; font-weight: 600; margin-bottom: 2px;">👤 Murat Şener'in Cevabı:</div>
+        <div style="color: #fff; font-size: 12px; line-height: 1.4;">${msg.reply || '👉 Yanıtınız bekleniyor,kısa süre içinde değerlendirecektir... Desteğiniz için teşekkürler '}</div>
+    </div>
+`;
+
                             container.appendChild(card);
                         });
                     } else if(!noTxt) {
